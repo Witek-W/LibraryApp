@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Library.CheckBookPage"
+             Title="Wyszukaj książkę">
+    <VerticalStackLayout>
+        <Grid RowDefinitions="40,40,40,40"
+              ColumnDefinitions=".100*"
+              Padding="10"
+              RowSpacing="10">
+                <Entry Grid.Row="0"
+                    Text="" Placeholder="Autor"/>
+                <Entry Grid.Row="1" 
+                    Text="" Placeholder="Tytuł"/>
+                <Entry Grid.Row="2"
+                    Text="" Placeholder="Gatunek"/>
+                <Button Grid.Row="3"
+                        Text="Szukaj"
+                        WidthRequest="200"/>
+
+        </Grid>
+
+
+    </VerticalStackLayout>
+</ContentPage>

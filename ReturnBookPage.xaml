@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Library.ReturnBookPage"
+             Title="Zwróć książkę">
+    <VerticalStackLayout>
+        <Label 
+            Text="Tekst który ma zostać zamieniony w QR"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Frame BorderColor="LightSlateGray"
+               Padding="10">
+            <Entry x:Name="InputText"
+                   Text=""
+                   Placeholder="Coś"/>
+        </Frame>
+        <Button x:Name="GenerateButton"
+                Text="Generuj"
+                Clicked="OnGenerateClicked"/>
+        <Frame BorderColor="LightSlateGray"
+               BackgroundColor="White"
+               Padding="10">
+            <Image x:Name="QrCodeImage"
+                   HeightRequest="200"
+                   WidthRequest="200"/>
+        </Frame>
+    </VerticalStackLayout>
+</ContentPage>
