@@ -28,7 +28,7 @@ namespace Library
 		private void ManageLibraryPageButton(object sender, EventArgs e)
 		{
 			INavigation navigation = ((Button)sender).Navigation;
-			navigation.PushAsync(new ManageLibraryPage());
+			navigation.PushAsync(new AddBookPage());
 		}
 	}
 

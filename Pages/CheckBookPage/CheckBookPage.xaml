@@ -9,14 +9,19 @@
               Padding="10"
               RowSpacing="10">
                 <Entry Grid.Row="0"
-                    Text="" Placeholder="Autor"/>
+                    Text="" Placeholder="Autor"
+                       x:Name="SearchAuthor"/>
                 <Entry Grid.Row="1" 
-                    Text="" Placeholder="Tytuł"/>
+                    Text="" Placeholder="Tytuł"
+                       x:Name="SearchName"/>
                 <Entry Grid.Row="2"
-                    Text="" Placeholder="Gatunek"/>
+                    Text="" Placeholder="Gatunek"
+                       x:Name="SearchType"/>
                 <Button Grid.Row="3"
                         Text="Szukaj"
-                        WidthRequest="200"/>
+                        WidthRequest="200"
+                        Clicked="SearchResultClicked"/>
+            
 
         </Grid>
 

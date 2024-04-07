@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Library.AddBookPage"
+             Title="Dodaj książkę">
+    <VerticalStackLayout>
+        <Grid RowDefinitions="50,50,50,50"
+             ColumnDefinitions=".100*"
+             Padding="10"
+             RowSpacing="5">
+            <Entry Grid.Row="0"
+                   x:Name="NameBook"
+                   Placeholder="Nazwa książki"/>
+            <Entry Grid.Row="1"
+                   x:Name="AuthorBook"
+                   Placeholder="Autor"/>
+            <Entry Grid.Row="2"
+                   x:Name="TypeBook"
+                   Placeholder="Gatunek"/>
+            <Button Grid.Row="3"  Text="Dodaj książkę"
+                    Clicked="AddBookClicked"/>
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>

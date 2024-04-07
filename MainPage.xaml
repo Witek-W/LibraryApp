@@ -17,6 +17,6 @@
         <Button Grid.Row="3" 
         Text="Zwróć książkę" FontSize="20" Clicked="ReturnBookPageButton"/>
         <Button Grid.Row="4" 
-        Text="Zarządzaj książkami" FontSize="20" Clicked="ManageLibraryPageButton"/>
+        Text="Dodaj książkę" FontSize="20" Clicked="ManageLibraryPageButton"/>
     </Grid>
 </ContentPage>
