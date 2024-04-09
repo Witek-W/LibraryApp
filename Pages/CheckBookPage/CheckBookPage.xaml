@@ -4,7 +4,7 @@
              x:Class="Library.CheckBookPage"
              Title="Wyszukaj książkę">
     <VerticalStackLayout>
-        <Grid RowDefinitions="40,40,40,40"
+        <Grid RowDefinitions="40,40,40,40,40"
               ColumnDefinitions=".100*"
               Padding="10"
               RowSpacing="10">
@@ -17,7 +17,10 @@
                 <Entry Grid.Row="2"
                     Text="" Placeholder="Gatunek"
                        x:Name="SearchType"/>
-                <Button Grid.Row="3"
+            <Entry Grid.Row="3"
+                       Text="" Placeholder="Dostępność"
+                       x:Name="SearchAvailbility"/>
+            <Button Grid.Row="4"
                         Text="Szukaj"
                         WidthRequest="200"
                         Clicked="SearchResultClicked"/>

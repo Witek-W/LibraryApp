@@ -10,6 +10,18 @@ public partial class AddBookPage : ContentPage
 	public AddBookPage()
 	{
 		InitializeComponent();
+		AddBookButton.IsEnabled = false;
+	}
+
+	private void InputBook(object sender, EventArgs e)
+	{
+		if(!string.IsNullOrEmpty(NameBook.Text) && !string.IsNullOrEmpty(AuthorBook.Text) && !string.IsNullOrEmpty(TypeBook.Text))
+		{
+			AddBookButton.IsEnabled = true;
+		} else
+		{
+			AddBookButton.IsEnabled = false;
+		}
 	}
 
 	private async void AddBookClicked(object sender, EventArgs e)
@@ -20,7 +32,7 @@ public partial class AddBookPage : ContentPage
 		string IDrecord;
 		using (var dbContext = new LibraryDbContext())
 		{
-			var newRecord = new Books { Name = name, Author = author, Type = type, Availability = 1, Rental_date = null, Planned_return_date = null};
+			var newRecord = new Books { Name = name, Author = author, Type = type, Availability = 1, Rental_date = null, Planned_return_date = null, ReaderID = null};
 			dbContext.Book.Add(newRecord);
 			dbContext.SaveChanges();
 			IDrecord = newRecord.Id.ToString();

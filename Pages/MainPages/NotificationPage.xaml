@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Library.Pages.MainPages.NotificationPage"
+             Title="Powiadomienia">
+    <VerticalStackLayout>
+        <ListView x:Name="ResultsListView" Grid.Row="1">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid RowDefinitions="50"
+                      ColumnDefinitions="100,100,100"
+                      HorizontalOptions="Center">
+                            <Label Grid.Row="0" Grid.Column="0" Text="{Binding Name}"/>
+                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding Author}"/>
+                            <Label Grid.Row="0" Grid.Column="2" Text="{Binding ReaderID}"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </VerticalStackLayout>
+</ContentPage>

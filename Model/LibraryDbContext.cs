@@ -12,6 +12,8 @@ public class LibraryDbContext : DbContext
 {
 	public DbSet<Books> Book { get; set; }
 
+	public DbSet<Readers> Readers {  get; set; }
+
 	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 	{
 		string connectionString = "Server=sql11.freesqldatabase.com;Database=sql11696959;User=sql11696959;Password=yT8VtVba9I;";

@@ -18,8 +18,12 @@ public  class Books
 	public string Type { get; set; }
 
 	public int Availability { get; set; }
+
 	[Column("Rental date")]
 	public DateTime? Rental_date { get; set; }
+
 	[Column("Planned return date")]
 	public DateTime? Planned_return_date { get; set; }
+
+	public int? ReaderID { get; set; }
 }

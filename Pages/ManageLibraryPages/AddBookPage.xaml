@@ -10,15 +10,19 @@
              RowSpacing="5">
             <Entry Grid.Row="0"
                    x:Name="NameBook"
-                   Placeholder="Nazwa książki"/>
+                   Placeholder="Nazwa książki"
+                   TextChanged="InputBook"/>
             <Entry Grid.Row="1"
                    x:Name="AuthorBook"
-                   Placeholder="Autor"/>
+                   Placeholder="Autor"
+                   TextChanged="InputBook"/>
             <Entry Grid.Row="2"
                    x:Name="TypeBook"
-                   Placeholder="Gatunek"/>
+                   Placeholder="Gatunek"
+                   TextChanged="InputBook"/>
             <Button Grid.Row="3"  Text="Dodaj książkę"
-                    Clicked="AddBookClicked"/>
+                    Clicked="AddBookClicked"
+                    x:Name="AddBookButton"/>
         </Grid>
     </VerticalStackLayout>
 </ContentPage>

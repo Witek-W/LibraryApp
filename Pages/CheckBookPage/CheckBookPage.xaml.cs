@@ -21,6 +21,13 @@ private void SearchResultClicked(object sender, EventArgs e)
 		string Author = SearchAuthor.Text;
 		string Name = SearchName.Text;
 		string Type = SearchType.Text;
+		int? Availbility = null;
+		if (!string.IsNullOrEmpty(SearchAvailbility.Text))
+		{
+			Availbility = Convert.ToInt32(SearchAvailbility.Text);
+		}
+		
+
 		var query = _context.Book.AsQueryable();
 		if(!string.IsNullOrEmpty(Author))
 		{
@@ -34,7 +41,11 @@ private void SearchResultClicked(object sender, EventArgs e)
 		{
 			query = query.Where(p => p.Type == Type);
 		}
-		
+		if (!string.IsNullOrEmpty(Type))
+		{
+			query = query.Where(p => p.Availability == Availbility);
+		}
+
 		var results = query.ToList();
 		SearchResultPage resultsPage = new SearchResultPage(results);
 		Navigation.PushAsync(resultsPage); 

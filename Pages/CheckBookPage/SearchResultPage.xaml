@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="Library.SearchResultPage"
              Title="Wyniki wyszukiwania">
     <ContentPage.Content>
@@ -8,23 +9,21 @@
             <Grid RowDefinitions="Auto,Auto">
                 <Grid Grid.Row="0"
                       RowDefinitions="50"
-                      ColumnDefinitions="100,100,100"
-                      HorizontalOptions="Center">
+                      ColumnDefinitions="auto,auto,auto,auto"
+                      HorizontalOptions="Center"
+                      ColumnSpacing="10">
                         <Label Grid.Column="0" Text="Tytuł"/>
                         <Label Grid.Column="1" Text="Autor"/>
                         <Label Grid.Column="2" Text="Gatunek"/>
+                        <Label Grid.Column="3" Text="Dostępność"/>
                     </Grid>
                 <ListView x:Name="ResultsListView" Grid.Row="1">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Grid RowDefinitions="50"
-                                      ColumnDefinitions="100,100,100"
-                                      HorizontalOptions="Center">
-                                    <Label Grid.Row="0" Grid.Column="0" Text="{Binding Name}"/>
-                                    <Label Grid.Row="0" Grid.Column="1" Text="{Binding Author}"/>
-                                    <Label Grid.Row="0" Grid.Column="2" Text="{Binding Type}"/>
-                                </Grid>
+                                <toolkit:Expander>
+                                    
+                                </toolkit:Expander>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>

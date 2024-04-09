@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Library.Pages.ManageLibraryPages.AddReaderPage"
+             Title="Dodaj czytelnika">
+    <VerticalStackLayout>
+        <Grid RowDefinitions="50,50,50,50,50,50,50"
+       ColumnDefinitions=".100*"
+       Padding="10"
+       RowSpacing="5">
+            <Entry Grid.Row="0"
+             x:Name="ReaderName"
+             Placeholder="Imię"
+             TextChanged="ReaderInput"/>
+            <Entry Grid.Row="1"
+             x:Name="ReaderSurname"
+             Placeholder="Nazwisko"
+             TextChanged="ReaderInput"/>
+            <Entry Grid.Row="2"
+             x:Name="ReaderPhoneNumber"
+             Placeholder="Numer telefonu w formacie bez '-'"
+             TextChanged="ReaderInput"/>
+            <Entry Grid.Row="3"
+             x:Name="ReaderCity"
+             Placeholder="Miejscowość zamieszkania"
+             TextChanged="ReaderInput"/>
+            <Entry Grid.Row="4"
+            x:Name="ReaderStreet"
+            Placeholder="Ulica"
+            TextChanged="ReaderInput"/>
+            <Entry Grid.Row="5"
+            x:Name="ReaderHouseNumber"
+            Placeholder="Numer domu"
+            TextChanged="ReaderInput"/>
+            <Button Grid.Row="6"  Text="Dodaj czytelnika"
+              Clicked="AddNewReader" x:Name="AddReaderButton"/>
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>

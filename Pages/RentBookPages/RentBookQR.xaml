@@ -5,10 +5,9 @@
              x:Class="Library.RentBookQR"
              Title="Skanowanie kodu QR">
     <VerticalStackLayout>
-        <Grid>
+        <Grid RowDefinitions="auto"
+              ColumnDefinitions="auto">
             <zxing:CameraBarcodeReaderView
-                Grid.Row="0"
-                Grid.RowSpan="3"
                 x:Name="barcodeView"
                 BarcodesDetected="BarcodesDetected"/>
         </Grid>

@@ -6,10 +6,12 @@ public partial class RentBookQRConfirm : ContentPage
 {
 	private readonly LibraryDbContext _context;
 	private int qr;
+	private int idreader;
 	private Books result;
-	public RentBookQRConfirm(string qrresult)
+	public RentBookQRConfirm(string qrresult,string clientid)
 	{
 		qr = Convert.ToInt32(qrresult);
+		idreader = Convert.ToInt32(clientid);
 		InitializeComponent();
 		_context = new LibraryDbContext();
 		result = _context.Book.FirstOrDefault(p => p.Id == Convert.ToInt32(qrresult));
@@ -43,15 +45,18 @@ public partial class RentBookQRConfirm : ContentPage
 			result.Availability = 0;
 			result.Rental_date = DateTime.Now;
 			result.Planned_return_date = DateTime.Now.AddDays(Days);
+			result.ReaderID = idreader;
 			_context.SaveChanges();
 			await DisplayAlert("Powiadomienie", "Ksiπøka zosta≥a wypoøyczona", "Wyjdü");
 		}
 		MainPage BrandNew = new MainPage();
+		NavigationPage.SetHasBackButton(BrandNew, false);
 		Navigation.PushAsync(BrandNew);
 	}
 	private void BookRentDeny(object sender, EventArgs e)
 	{
 		MainPage BrandNew = new MainPage();
+		NavigationPage.SetHasBackButton(BrandNew, false);
 		Navigation.PushAsync(BrandNew);
 	}
 

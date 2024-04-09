@@ -6,9 +6,11 @@ namespace Library;
 public partial class RentBookQR : ContentPage
 {
 	string result;
-	public RentBookQR()
+	string idclient;
+	public RentBookQR(string id)
 	{
 		InitializeComponent();
+		idclient = id;
 	}
 	protected void BarcodesDetected(object sender, BarcodeDetectionEventArgs e)
 	{
@@ -16,7 +18,7 @@ public partial class RentBookQR : ContentPage
 		{
 			result = $"{e.Results[0].Value}";
 			barcodeView.IsDetecting = false;
-			RentBookQRConfirm resultsPage = new RentBookQRConfirm(result);
+			RentBookQRConfirm resultsPage = new RentBookQRConfirm(result, idclient);
 			Navigation.PushAsync(resultsPage);
 		});
 	}

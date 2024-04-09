@@ -20,6 +20,7 @@ public partial class ReturnBookQRConfirm : ContentPage
 	private void ReturnToMainPage(object sender, EventArgs e)
 	{
 		MainPage BrandNew = new MainPage();
+		NavigationPage.SetHasBackButton(BrandNew, false);
 		Navigation.PushAsync(BrandNew);
 	}
 	private async void ReturnBookClicked(object sender, EventArgs e)
@@ -27,6 +28,9 @@ public partial class ReturnBookQRConfirm : ContentPage
 		if(result.Availability == 0)
 		{
 			result.Availability = 1;
+			result.Rental_date = null;
+			result.Planned_return_date = null;
+			result.ReaderID = null;
 			_context.SaveChanges();
 			await DisplayAlert("Powiadomienie", "Ksiπøka zosta≥a zwrÛcona", "Wyjdü");
 		} else
@@ -34,6 +38,7 @@ public partial class ReturnBookQRConfirm : ContentPage
 			await DisplayAlert("Ostrzeøenie", "Ksiπøka nie jest zarezerwowana", "Wyjdü");
 		}
 		MainPage BrandNew = new MainPage();
+		NavigationPage.SetHasBackButton(BrandNew, false);
 		Navigation.PushAsync(BrandNew);
 	}
 }

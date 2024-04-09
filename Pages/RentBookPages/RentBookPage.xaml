@@ -6,17 +6,27 @@
              Title="Wypożycz książkę">
     <VerticalStackLayout>
         <Grid RowDefinitions="50,50"
-             ColumnDefinitions=".100*"
+             ColumnDefinitions=".50*,.50*"
               Padding="10"
-              RowSpacing="5">
-            <Button Grid.Row="0"
+              RowSpacing="5"
+              ColumnSpacing="10">
+            <Entry Grid.Row="0"
+                   Grid.ColumnSpan="2"
+                   Placeholder="ID czytelnika"
+                   x:Name="IDReaderInput"
+                   TextChanged="InputIsHere"/>
+            <Button Grid.Row="1"
+                    Grid.Column="0"
                     Text="Skanuj kod QR"
                     Clicked="RentBookQRClicked"
-                    WidthRequest="250"/>
+                    WidthRequest="140"
+                    x:Name="Qrbutton"/>
             <Button Grid.Row="1"
+                    Grid.Column="1"
                     Text="Wpisz kod ręcznie"
                     Clicked="RentBookManualClicked"
-                    WidthRequest="250"/>
+                    WidthRequest="140"
+                    x:Name="ManualButton"/>
         </Grid>
     </VerticalStackLayout>
 </ContentPage>
