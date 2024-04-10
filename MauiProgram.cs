@@ -1,4 +1,5 @@
-﻿using Library.ViewModel;
+﻿using epj.Expander.Maui;
+using Library.ViewModel;
 using Microsoft.Extensions.Logging;
 using ZXing.Net.Maui.Controls;
 
@@ -13,6 +14,7 @@ namespace Library
 			builder
 				.UseMauiApp<App>()
                 .UseBarcodeReader()
+				.UseExpander()
 				.ConfigureFonts(fonts =>
                 {
 					fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -33,7 +35,7 @@ namespace Library
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
-
+			Expander.EnableAnimations();
 			return builder.Build();
 		}
 	}

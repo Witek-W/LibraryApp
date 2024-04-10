@@ -1,23 +1,61 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:maui="clr-namespace:epj.Expander.Maui;assembly=epj.Expander.Maui"
              x:Class="Library.Pages.MainPages.NotificationPage"
-             Title="Powiadomienia">
-    <VerticalStackLayout>
-        <ListView x:Name="ResultsListView" Grid.Row="1">
-            <ListView.ItemTemplate>
+             Title="Zaległe książki">
+    <ContentPage.Content>
+        <CollectionView x:Name="ResultsListView">
+            <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <ViewCell>
-                        <Grid RowDefinitions="50"
-                      ColumnDefinitions="100,100,100"
-                      HorizontalOptions="Center">
-                            <Label Grid.Row="0" Grid.Column="0" Text="{Binding Name}"/>
-                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding Author}"/>
-                            <Label Grid.Row="0" Grid.Column="2" Text="{Binding ReaderID}"/>
+                    <maui:Expander Animated="True">
+                        <maui:Expander.HeaderContent>
+                            <Border BackgroundColor="#502BD4"
+                                    StrokeShape="RoundRectangle 6" StrokeThickness="0"
+                                    Margin="3,3,3,0">
+                                <Grid HeightRequest="60" ColumnDefinitions=".50*,.50*" ColumnSpacing="10" Padding="10">
+                                    <Label Grid.Column="0"
+                                           Text="{Binding Name}"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Center"
+                                           TextColor="White" />
+                                    <Label Grid.Column="1"
+                                           Text="{Binding Author}"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Center"
+                                           TextColor="White"/>
+                                    <Entry IsVisible="false" x:Name="testentry" Text="{Binding ReaderID}"/>
+                                </Grid>
+                            </Border>
+                        </maui:Expander.HeaderContent>
+                        <Grid HeightRequest="120"
+                              RowDefinitions="40,40"
+                              ColumnDefinitions=".50*,.50*"
+                              ColumnSpacing="10"
+                              Padding="10"
+                              RowSpacing="10"
+                              BackgroundColor="LightGrey"
+                              Margin="3,0,3,0">
+                            <Label Grid.Row="0" Grid.Column="0"
+                                   Text="Imię:" 
+                                   VerticalOptions="Center" 
+                                   HorizontalOptions="Center"/>
+                            <Label Grid.Row="0" Grid.Column="1"
+                                   Text="" 
+                                   VerticalOptions="Center" 
+                                   HorizontalOptions="Center"/>
+                            <Label Grid.Row="1" Grid.Column="0"
+                                   Text="Nazwisko:" 
+                                   VerticalOptions="Center" 
+                                   HorizontalOptions="Center"/>
+                            <Label Grid.Row="1" Grid.Column="1"
+                                   Text="" 
+                                   VerticalOptions="Center" 
+                                   HorizontalOptions="Center"/>
                         </Grid>
-                    </ViewCell>
+                    </maui:Expander>
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </VerticalStackLayout>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </ContentPage.Content>
 </ContentPage>

@@ -1,5 +1,6 @@
 using Library.Model;
 using System.Linq;
+using System.Xml;
 
 namespace Library.Pages.MainPages;
 
@@ -9,5 +10,6 @@ public partial class NotificationPage : ContentPage
 	{
 		InitializeComponent();
 		ResultsListView.ItemsSource = results.ToList();
+		
 	}
 }

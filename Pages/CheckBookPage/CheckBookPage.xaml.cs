@@ -1,3 +1,4 @@
+using epj.Expander.Maui;
 using Library.Model;
 using Library.ViewModel;
 using Microsoft.EntityFrameworkCore.Storage;
@@ -41,7 +42,7 @@ private void SearchResultClicked(object sender, EventArgs e)
 		{
 			query = query.Where(p => p.Type == Type);
 		}
-		if (!string.IsNullOrEmpty(Type))
+		if (!string.IsNullOrEmpty(Availbility.ToString()))
 		{
 			query = query.Where(p => p.Availability == Availbility);
 		}

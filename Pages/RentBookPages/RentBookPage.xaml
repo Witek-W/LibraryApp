@@ -19,13 +19,13 @@
                     Grid.Column="0"
                     Text="Skanuj kod QR"
                     Clicked="RentBookQRClicked"
-                    WidthRequest="140"
+                    WidthRequest="150"
                     x:Name="Qrbutton"/>
             <Button Grid.Row="1"
                     Grid.Column="1"
                     Text="Wpisz kod ręcznie"
                     Clicked="RentBookManualClicked"
-                    WidthRequest="140"
+                    WidthRequest="150"
                     x:Name="ManualButton"/>
         </Grid>
     </VerticalStackLayout>
