@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Library.Pages.CheckBookPage.EditBookPage"
+             Title="Edycja książki">
+    <VerticalStackLayout>
+        <Grid RowDefinitions="40,40,40,40,40,40,40,40,40"
+             ColumnDefinitions=".50*,.50*"
+             ColumnSpacing="5"
+             RowSpacing="5">
+            <Label  Grid.Row="0" Grid.ColumnSpan="2"
+                    Text="Książką którą chcesz zedytować:"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"/>
+            <Label Grid.Row="1" Grid.Column="0"
+                   Text="Tytuł książki:"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"/>
+            <Label Grid.Row="1" Grid.Column="1"
+                   Text=""
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   x:Name="BookName"/>
+            <Label Grid.Row="2" Grid.Column="0"
+                   Text="Autor książki:"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"/>
+            <Label Grid.Row="2" Grid.Column="1"
+                   Text=""
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   x:Name="Author"/>
+            <Label Grid.Row="3" Grid.Column="0"
+                   Text="Gatunek:"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"/>
+            <Label Grid.Row="3" Grid.Column="1"
+                   Text=""
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   x:Name="Type"/>
+            <Label  Grid.Row="4" Grid.ColumnSpan="2"
+                    Text="Zmiany:"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"/>
+            <Label Grid.Row="5" Grid.Column="0"
+                   Text="Tytuł: "
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"/>
+            <Entry Grid.Row="5" Grid.Column="1"
+                   Placeholder="Wpisz tutaj"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   WidthRequest="150"
+                   x:Name="EntryName"/>
+            <Label Grid.Row="6" Grid.Column="0"
+                   Text="Autor: "
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"/>
+            <Entry Grid.Row="6" Grid.Column="1"
+                   Placeholder="Wpisz tutaj"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   WidthRequest="150"
+                   x:Name="EntryAuthor"/>
+            <Label Grid.Row="7" Grid.Column="0"
+                   Text="Gatunek: "
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"/>
+            <Entry Grid.Row="7" Grid.Column="1"
+                   Placeholder="Wpisz tutaj"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   WidthRequest="150"
+                   x:Name="EntryType"/>
+            <Button Grid.Row="8" Grid.ColumnSpan="2"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    WidthRequest="200"
+                    Text="Zmień"
+                    Clicked="EditBook"/>
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>

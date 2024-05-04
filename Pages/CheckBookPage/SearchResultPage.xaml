@@ -19,9 +19,9 @@
                        HorizontalOptions="Center"/>
                 </Grid>
                 <CollectionView  x:Name="ResultsListView">
-                    <CollectionView.ItemTemplate>
+                    <CollectionView.ItemTemplate> 
                         <DataTemplate>
-                            <maui:Expander Animated="True">
+                            <maui:Expander Animated="True" BindingContext="{Binding}">
                                 <maui:Expander.HeaderContent>
                                     <Border BackgroundColor="#502BD4"
                                             StrokeShape="RoundRectangle 6" StrokeThickness="0"
@@ -40,8 +40,8 @@
                                         </Grid>
                                     </Border>
                                 </maui:Expander.HeaderContent>
-                                <Grid HeightRequest="120"
-                                      RowDefinitions="40,40"
+                                <Grid HeightRequest="155"
+                                      RowDefinitions="40,40,40"
                                       ColumnDefinitions=".50*,.50*"
                                       ColumnSpacing="10"
                                       Padding="10"
@@ -64,6 +64,22 @@
                                            Text="{Binding Availability}" 
                                            VerticalOptions="Center" 
                                            HorizontalOptions="Center"/>
+                                    <Button Grid.Row="2" Grid.Column="0"
+                                            VerticalOptions="Center"
+                                            HorizontalOptions="Center"
+                                            WidthRequest="100"
+                                            Text="Usuń"
+                                            BackgroundColor="Red"
+                                            Clicked="BookDeleteButton"
+                                            CommandParameter="{Binding ID, Mode=OneWay}"/>
+                                    <Button Grid.Row="2" Grid.Column="1"
+                                            VerticalOptions="Center"
+                                            HorizontalOptions="Center"
+                                            WidthRequest="100"
+                                            Text="Edytuj"
+                                            BackgroundColor="Green"
+                                            Clicked="BookEditButton"
+                                            CommandParameter="{Binding ID, Mode=OneWay}"/>
                                 </Grid>
                             </maui:Expander>
                         </DataTemplate>

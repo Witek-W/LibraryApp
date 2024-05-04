@@ -48,7 +48,7 @@ private void SearchResultClicked(object sender, EventArgs e)
 		}
 
 		var results = query.ToList();
-		SearchResultPage resultsPage = new SearchResultPage(results);
+		SearchResultPage resultsPage = new SearchResultPage(results, _context);
 		Navigation.PushAsync(resultsPage); 
 
 	}

@@ -6,7 +6,7 @@ namespace Library.Pages.MainPages;
 
 public partial class NotificationPage : ContentPage
 {
-	public NotificationPage(IQueryable<Books> results)
+	public NotificationPage(IQueryable<BookWithReaderInfo> results)
 	{
 		InitializeComponent();
 		ResultsListView.ItemsSource = results.ToList();
