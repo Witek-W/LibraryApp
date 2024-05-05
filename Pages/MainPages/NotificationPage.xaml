@@ -8,7 +8,7 @@
         <CollectionView x:Name="ResultsListView">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <maui:Expander Animated="True">
+                    <maui:Expander Animated="True" BindingContext="{Binding}">
                         <maui:Expander.HeaderContent>
                             <Border BackgroundColor="#502BD4"
                                     StrokeShape="RoundRectangle 6" StrokeThickness="0"
@@ -27,8 +27,8 @@
                                 </Grid>
                             </Border>
                         </maui:Expander.HeaderContent>
-                        <Grid HeightRequest="150"
-                              RowDefinitions="40,40,40"
+                        <Grid HeightRequest="205"
+                              RowDefinitions="40,40,40,40"
                               ColumnDefinitions=".50*,.50*"
                               ColumnSpacing="10"
                               Padding="10"
@@ -59,6 +59,13 @@
                                    Text="{Binding Planned_return}" 
                                    VerticalOptions="Center" 
                                    HorizontalOptions="Center"/>
+                            <Button Grid.Row="3" Grid.ColumnSpan="2"
+                                    Text="Wyślij SMS"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center"
+                                    WidthRequest="175"
+                                    Clicked="SendSms"
+                                    CommandParameter="{Binding ID, Mode=OneWay}"/>
                         </Grid>
                     </maui:Expander>
                 </DataTemplate>

@@ -6,6 +6,7 @@ namespace Library
 {
 	public class BookWithReaderInfo
 	{
+		public int ID { get; set; }
 		public string BookName { get; set; }
 		public string BookAuthor { get; set; }
 		public string ReaderName { get; set; }
@@ -26,6 +27,7 @@ namespace Library
 							Readers => Readers.Id,
 							(Books, Readers) => new BookWithReaderInfo
 							{
+								ID = Books.Id,
 								BookName = Books.Name,
 								BookAuthor = Books.Author,
 								ReaderName = Readers.Name,
@@ -69,7 +71,7 @@ namespace Library
 		}
 		private void NotificationButton(object sender, EventArgs e)
 		{
-			NotificationPage resultsPage = new NotificationPage(notifications);
+			NotificationPage resultsPage = new NotificationPage(notifications, _context);
 			Navigation.PushAsync(resultsPage);
 		}
 		private void RefreshButton(object sender, EventArgs e)
