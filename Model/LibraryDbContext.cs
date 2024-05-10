@@ -16,8 +16,8 @@ public class LibraryDbContext : DbContext
 
 	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 	{
-		string connectionString = "Server=sql11.freesqldatabase.com;Database=sql11703859;User=sql11703859;Password=BTs74uhd72;";
-		//string connectionString = "Server=10.0.2.2;Database=library;User=root;Password=;";
+		//string connectionString = "Server=sql11.freesqldatabase.com;Database=sql11705562;User=sql11705562;Password=BMtbmbVUSz;";
+		string connectionString = "Server=10.0.2.2;Database=library;User=root;Password=;";
 		optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
 	}
 }

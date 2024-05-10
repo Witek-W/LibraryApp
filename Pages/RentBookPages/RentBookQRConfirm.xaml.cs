@@ -35,29 +35,43 @@ public partial class RentBookQRConfirm : ContentPage
 		{
 			Days = Convert.ToInt32(RentLength.Text);
 		}
-		
-
 		if (result.Availability == 0)
 		{
-			await DisplayAlert("Ostrzeøenie", $"Ksiπøka jest zarezerwowana do dnia: {result.Planned_return_date}", "Wyjdü");
-		} else
+			await DisplayAlert("Ostrzeøenie", $"Ksiπøka jest wypoøyczona do dnia: {result.Planned_return_date}", "PowrÛt");
+			MainPageBack();
+			return;
+		} 
+		if(result.Reservation == 1)
 		{
-			result.Availability = 0;
-			result.Rental_date = DateTime.Now;
-			result.Planned_return_date = DateTime.Now.AddDays(Days);
-			result.ReaderID = idreader;
-			_context.SaveChanges();
-			await DisplayAlert("Powiadomienie", "Ksiπøka zosta≥a wypoøyczona", "Wyjdü");
+			if(DateTime.Now < result.Reservation_End) 
+			{
+				if (idreader != result.ReservationReaderID)
+				{
+					await DisplayAlert("Ostrzeøenie", $"Ksiπøka jest zarezerwowana dla innego uøytkownika", "PowrÛt");
+					MainPageBack();
+					return;
+				}
+			}
 		}
-		MainPage BrandNew = new MainPage();
-		NavigationPage.SetHasBackButton(BrandNew, false);
-		Navigation.PushAsync(BrandNew);
+		result.Availability = 0;
+		result.Rental_date = DateTime.Now;
+		result.Planned_return_date = DateTime.Now.AddDays(Days);
+		result.ReaderID = idreader;
+		result.Reservation = 0;
+		result.Reservation_End = null;
+		result.ReservationReaderID = null;
+		_context.SaveChanges();
+		await DisplayAlert("Powiadomienie", "Ksiπøka zosta≥a wypoøyczona", "Wyjdü");
+		MainPageBack();
 	}
 	private void BookRentDeny(object sender, EventArgs e)
+	{
+		MainPageBack();
+	}
+	private void MainPageBack()
 	{
 		MainPage BrandNew = new MainPage();
 		NavigationPage.SetHasBackButton(BrandNew, false);
 		Navigation.PushAsync(BrandNew);
 	}
-
 }

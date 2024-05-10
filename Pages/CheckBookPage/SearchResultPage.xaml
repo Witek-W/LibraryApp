@@ -42,44 +42,101 @@
                                 </maui:Expander.HeaderContent>
                                 <Grid HeightRequest="155"
                                       RowDefinitions="40,40,40"
-                                      ColumnDefinitions=".50*,.50*"
+                                      ColumnDefinitions=".25*,.25*,.25*,.25*"
                                       ColumnSpacing="10"
                                       Padding="10"
                                       RowSpacing="10"
                                       BackgroundColor="LightGrey"
                                       Margin="3,0,3,0">
-                                    <Label Grid.Row="0" Grid.Column="0"
+                                    <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
                                            Text="Gatunek:" 
                                            VerticalOptions="Center" 
                                            HorizontalOptions="Center"/>
-                                    <Label Grid.Row="0" Grid.Column="1"
+                                    <Label Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2"
                                            Text="{Binding Type}" 
                                            VerticalOptions="Center" 
                                            HorizontalOptions="Center"/>
-                                    <Label Grid.Row="1" Grid.Column="0"
+                                    <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
                                            Text="Dostępność:" 
                                            VerticalOptions="Center" 
                                            HorizontalOptions="Center"/>
-                                    <Label Grid.Row="1" Grid.Column="1"
-                                           Text="{Binding Availability}" 
+                                    <Label Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2"
+                                           Text="Nie" 
                                            VerticalOptions="Center" 
-                                           HorizontalOptions="Center"/>
-                                    <Button Grid.Row="2" Grid.Column="0"
+                                           HorizontalOptions="Center">
+                                        <Label.Triggers>
+                                            <DataTrigger TargetType="Label"
+                                                         Binding="{Binding Availability}"
+                                                         Value="1">
+                                                <Setter Property="IsVisible"
+                                                        Value="False"/>
+                                            </DataTrigger>
+                                        </Label.Triggers>
+                                    </Label>
+                                    <Label Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2"
+                                           Text="Tak" 
+                                           VerticalOptions="Center" 
+                                           HorizontalOptions="Center">
+                                        <Label.Triggers>
+                                            <DataTrigger TargetType="Label"
+                                                         Binding="{Binding Availability}"
+                                                         Value="0">
+                                                <Setter Property="IsVisible"
+                                                        Value="False"/>
+                                            </DataTrigger>
+                                        </Label.Triggers>
+                                    </Label>
+                                    <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
                                             VerticalOptions="Center"
                                             HorizontalOptions="Center"
                                             WidthRequest="100"
                                             Text="Usuń"
                                             BackgroundColor="Red"
                                             Clicked="BookDeleteButton"
-                                            CommandParameter="{Binding ID, Mode=OneWay}"/>
-                                    <Button Grid.Row="2" Grid.Column="1"
+                                            CommandParameter="{Binding ID, Mode=OneWay}">
+                                        <Button.Triggers>
+                                            <DataTrigger TargetType="Button"
+                                                         Binding="{Binding Availability}"
+                                                         Value="0">
+                                                <Setter Property="HorizontalOptions"
+                                                        Value="StartAndExpand"/>
+                                            </DataTrigger>
+                                        </Button.Triggers>
+                                    </Button>
+                                    <Button Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2"
                                             VerticalOptions="Center"
                                             HorizontalOptions="Center"
                                             WidthRequest="100"
                                             Text="Edytuj"
                                             BackgroundColor="Green"
                                             Clicked="BookEditButton"
-                                            CommandParameter="{Binding ID, Mode=OneWay}"/>
+                                            CommandParameter="{Binding ID, Mode=OneWay}">
+                                        <Button.Triggers>
+                                            <DataTrigger TargetType="Button"
+                                                         Binding="{Binding Availability}"
+                                                         Value="0">
+                                                <Setter Property="HorizontalOptions"
+                                                        Value="EndAndExpand"/>
+                                            </DataTrigger>
+                                        </Button.Triggers>
+                                    </Button>
+                                    <Button Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
+                                            VerticalOptions="Center"
+                                            HorizontalOptions="Center"
+                                            WidthRequest="100"
+                                            Text="Rezerwuj"
+                                            IsVisible="false"
+                                            Clicked="ReservationButton"
+                                            CommandParameter="{Binding ID, Mode=OneWay}">
+                                        <Button.Triggers>
+                                            <DataTrigger TargetType="Button"
+                                                         Binding="{Binding Availability}"
+                                                         Value="0">
+                                                <Setter Property="IsVisible"
+                                                        Value="True"/>
+                                            </DataTrigger>
+                                        </Button.Triggers>
+                                    </Button>
                                 </Grid>
                             </maui:Expander>
                         </DataTemplate>

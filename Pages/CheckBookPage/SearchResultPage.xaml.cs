@@ -68,12 +68,24 @@ public partial class SearchResultPage : ContentPage
 	{
 		Button button = (Button)sender;
 		var book = button.BindingContext as Model.Books;
-		bool result = await Application.Current.MainPage.DisplayAlert("Potwierdzenie", "Czy na pewno chcesz zedytowaæ tê ksi¹¿kê?", "Tak", "Nie");
+		bool result = await Application.Current.MainPage.DisplayAlert("Potwierdzenie", "Czy na pewno chcesz edytowaæ tê ksi¹¿kê?", "Tak", "Nie");
 		if (result)
 		{
 			int ID = book.Id;
 			EditBookPage resultsPage = new EditBookPage(ID, _context);
 			Navigation.PushAsync(resultsPage);
+		}
+	}
+	async void ReservationButton(object sender, EventArgs e)
+	{
+		Button button = (Button)sender;
+		var book = button.BindingContext as Model.Books;
+		bool result = await Application.Current.MainPage.DisplayAlert("Potwierdzenie", "Czy na pewno chcesz zarezerwowaæ te ksi¹¿kê?", "Tak", "Nie");
+		if(result)
+		{
+			int ID = book.Id;
+			ReservationPage resultPage = new ReservationPage(ID, _context);
+			Navigation.PushAsync(resultPage);
 		}
 	}
 }

@@ -84,6 +84,9 @@
 	  <MauiXaml Update="Pages\CheckBookPage\EditBookPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\CheckBookPage\ReservationPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\MainPages\NotificationPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -131,5 +134,7 @@
 	<ItemGroup>
 	  <PackageReference Update="Microsoft.Maui.Controls" Version="8.0.20" />
 	</ItemGroup>
+
+	<ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadDebuggerTimeoutExceptionLibraryHideInfoBar="True" /></VisualStudio></ProjectExtensions>
 
 </Project>

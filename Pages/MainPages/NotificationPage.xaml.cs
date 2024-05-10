@@ -14,7 +14,7 @@ public partial class NotificationPage : ContentPage
 		_context = context;
 	}
 
-	async void SendSms(object sender, EventArgs e)
+	 async void SendSms(object sender, EventArgs e)
 	{
 		Button button = (Button)sender;
 		var book = button.BindingContext as BookWithReaderInfo;
@@ -24,7 +24,7 @@ public partial class NotificationPage : ContentPage
 		var resultReader = _context.Readers.FirstOrDefault(p => p.Id == ReaderID);
 
 		string message = $"Dzieñ Dobry. Niezw³ocznie prosimy Pana/Pani¹ o oddanie zaleg³ej ksi¹¿ki pod tytu³em: {result.Name}. Ksi¹¿ka mia³a zostaæ zwrócona dnia: {result.Planned_return_date.Value.Date.ToString("dd-MM-yyyy")}.";
-		
+
 		await SmsMethod(message, resultReader.Phone_Number);
 	}
 	async Task SmsMethod(string messageText, string number)

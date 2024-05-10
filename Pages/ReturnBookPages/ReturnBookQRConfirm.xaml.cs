@@ -7,6 +7,7 @@ public partial class ReturnBookQRConfirm : ContentPage
 	private readonly LibraryDbContext _context;
 	private int qr;
 	private Books result;
+	private int ReservationBookLength = 2;
 	public ReturnBookQRConfirm(string qrresult)
 	{
 		InitializeComponent();
@@ -31,6 +32,12 @@ public partial class ReturnBookQRConfirm : ContentPage
 			result.Rental_date = null;
 			result.Planned_return_date = null;
 			result.ReaderID = null;
+			if(result.Reservation == 1)
+			{
+				DateTime dateTime = DateTime.Now;
+				dateTime = dateTime.AddDays(ReservationBookLength);
+				result.Reservation_End = dateTime;
+			}
 			_context.SaveChanges();
 			await DisplayAlert("Powiadomienie", "Ksi¹¿ka zosta³a zwrócona", "WyjdŸ");
 		} else
