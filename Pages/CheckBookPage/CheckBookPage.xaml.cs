@@ -12,12 +12,12 @@ public partial class CheckBookPage : ContentPage
 	{
 		InitializeComponent();
 		_context = new LibraryDbContext();
-
 	}
-	
+	public double ScreenWidthPercentage => DeviceDisplay.MainDisplayInfo.Width * 0.8;
+	public double ScreenHeightPercentage => DeviceDisplay.MainDisplayInfo.Height * 0.7;
 
 
-private void SearchResultClicked(object sender, EventArgs e)
+	private void SearchResultClicked(object sender, EventArgs e)
 	{
 		string Author = SearchAuthor.Text;
 		string Name = SearchName.Text;
@@ -28,7 +28,7 @@ private void SearchResultClicked(object sender, EventArgs e)
 			Availbility = Convert.ToInt32(SearchAvailbility.Text);
 		}
 		
-
+		
 		var query = _context.Book.AsQueryable();
 		if(!string.IsNullOrEmpty(Author))
 		{
@@ -46,7 +46,7 @@ private void SearchResultClicked(object sender, EventArgs e)
 		{
 			query = query.Where(p => p.Availability == Availbility);
 		}
-
+		
 		var results = query.ToList();
 		SearchResultPage resultsPage = new SearchResultPage(results, _context);
 		Navigation.PushAsync(resultsPage); 

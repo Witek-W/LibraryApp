@@ -5,28 +5,49 @@
              x:Class="Library.CheckBookPage"
              Title="Wyszukaj książkę">
     <VerticalStackLayout>
-        <Grid RowDefinitions="40,40,40,40,40"
-              ColumnDefinitions=".100*"
-              Padding="10"
-              RowSpacing="10">
-                <Entry Grid.Row="0"
-                    Text="" Placeholder="Autor"
-                       x:Name="SearchAuthor"/>
-                <Entry Grid.Row="1" 
-                    Text="" Placeholder="Tytuł"
-                       x:Name="SearchName"/>
-                <Entry Grid.Row="2"
-                    Text="" Placeholder="Gatunek"
-                       x:Name="SearchType"/>
-            <Entry Grid.Row="3"
-                       Text="" Placeholder="Dostępność"
-                       x:Name="SearchAvailbility"/>
-            <Button Grid.Row="4"
-                        Text="Szukaj"
-                        WidthRequest="200"
-                        Clicked="SearchResultClicked"/>
-        </Grid>
-
-
+        <StackLayout Padding="20">
+            <Grid RowDefinitions="25,55,15,25,55,15,25,55,15,25,55,15,58"
+                  ColumnDefinitions=".10*,.10*,.10*,.10*,.10*,.10*,.10*,.10*,.10*,.10*">
+                <!-- Autor -->
+                <Label Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" Grid.ColumnSpan="2"
+                       Text="Autor" TextColor="#6f78df" FontSize="16" FontAttributes="Bold" Margin="0,0,0,6"/>
+                <Frame Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="10" CornerRadius="30" Padding="0" BorderColor="Gray"/>
+                <Entry Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="7"  Placeholder="Wpisz autora książki"  PlaceholderColor="Gray"
+                       VerticalOptions="Center" FontSize="15" x:Name="SearchAuthor"/>
+                <Frame Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="#6f78df"
+                       WidthRequest="40" HeightRequest="40" CornerRadius="50" HorizontalOptions="Center"/>
+                <Image Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center" Source="user.png" WidthRequest="25" HeightRequest="25"/>
+                <!-- Tytul -->
+                <Label Grid.Row="3" Grid.Column="0" HorizontalOptions="Center" Grid.ColumnSpan="2"
+                       Text="Tytuł" TextColor="#6f78df" FontSize="16" FontAttributes="Bold" Margin="0,0,0,6"/>
+                <Frame Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="10" CornerRadius="30" Padding="0" BorderColor="Gray"/>
+                <Entry Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="7"  Placeholder="Wpisz tytuł książki" PlaceholderColor="Gray"
+                       VerticalOptions="Center" FontSize="15" x:Name="SearchName"/>
+                <Frame Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="#6f78df"
+                       WidthRequest="40" HeightRequest="40" CornerRadius="50" HorizontalOptions="Center"/>
+                <Image Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center" Source="booktitle.png" WidthRequest="25" HeightRequest="25"/>
+                <!-- Gatunek -->
+                <Label Grid.Row="6" Grid.Column="0" HorizontalOptions="Center" Grid.ColumnSpan="2"
+                       Text="Gatunek" TextColor="#6f78df" FontSize="16" FontAttributes="Bold" Margin="0,0,0,6"/>
+                <Frame Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="10" CornerRadius="30" Padding="0" BorderColor="Gray"/>
+                <Entry Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="7"  Placeholder="Wpisz gatunek książki" PlaceholderColor="Gray"
+                       VerticalOptions="Center" FontSize="15" x:Name="SearchType"/>
+                <Frame Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="#6f78df"
+                       WidthRequest="40" HeightRequest="40" CornerRadius="50" HorizontalOptions="Center"/>
+                <Image Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center" Source="booktype.png" WidthRequest="25" HeightRequest="25"/>
+                <!-- Dostepnosc -->
+                <Label Grid.Row="9" Grid.Column="0" HorizontalOptions="Center" Grid.ColumnSpan="3"
+                       Text="Dostępność" TextColor="#6f78df" FontSize="16" FontAttributes="Bold" Margin="0,0,0,6"/>
+                <Frame Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="10" CornerRadius="30" Padding="0" BorderColor="Gray"/>
+                <Entry Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="7"  Placeholder="Wpisz żądaną dostępność" PlaceholderColor="Gray"
+                       VerticalOptions="Center" FontSize="15" x:Name="SearchAvailbility"/>
+                <Frame Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="#6f78df"
+                       WidthRequest="40" HeightRequest="40" CornerRadius="50" HorizontalOptions="Center"/>
+                <Image Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center" Source="bookaval.png" WidthRequest="25" HeightRequest="25"/>
+                <Button Grid.Row="12" Grid.Column="1" Grid.ColumnSpan="8" Text="Szukaj"
+                        BackgroundColor="#6f78df" FontSize="20" FontAttributes="Bold" CornerRadius="20" Clicked="SearchResultClicked" Margin="0,6,0,0"/>
+            </Grid>
+            
+        </StackLayout>
     </VerticalStackLayout>
 </ContentPage>

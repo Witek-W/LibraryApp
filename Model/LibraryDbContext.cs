@@ -16,8 +16,9 @@ public class LibraryDbContext : DbContext
 
 	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 	{
-		//string connectionString = "Server=sql11.freesqldatabase.com;Database=sql11705562;User=sql11705562;Password=BMtbmbVUSz;";
-		string connectionString = "Server=10.0.2.2;Database=library;User=root;Password=;";
+		string connectionString = "Server=bjf8qvoacsli0xdg4sc9-mysql.services.clever-cloud.com;Port=3306;Database=bjf8qvoacsli0xdg4sc9;User=uorfgn1pjbsyonep;Password=dl0kEPveXxvEQC0zHYpj;";
+		//string connectionString = "Server=sql7.freemysqlhosting.net;Database=sql7708171;User=sql7708171;Password=EmyrAk44gX;";
+		//string connectionString = "Server=10.0.2.2;Database=library;User=root;Password=;";
 		optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
 	}
 }
