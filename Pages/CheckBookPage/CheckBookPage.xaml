@@ -6,7 +6,7 @@
              Title="Wyszukaj książkę">
     <VerticalStackLayout>
         <StackLayout Padding="20">
-            <Grid RowDefinitions="25,55,15,25,55,15,25,55,15,25,55,15,58"
+            <Grid RowDefinitions="25,55,15,25,55,15,25,55,20,20,10,58"
                   ColumnDefinitions=".10*,.10*,.10*,.10*,.10*,.10*,.10*,.10*,.10*,.10*">
                 <!-- Autor -->
                 <Label Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" Grid.ColumnSpan="2"
@@ -36,15 +36,10 @@
                        WidthRequest="40" HeightRequest="40" CornerRadius="50" HorizontalOptions="Center"/>
                 <Image Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center" Source="booktype.png" WidthRequest="25" HeightRequest="25"/>
                 <!-- Dostepnosc -->
-                <Label Grid.Row="9" Grid.Column="0" HorizontalOptions="Center" Grid.ColumnSpan="3"
-                       Text="Dostępność" TextColor="#6f78df" FontSize="16" FontAttributes="Bold" Margin="0,0,0,6"/>
-                <Frame Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="10" CornerRadius="30" Padding="0" BorderColor="Gray"/>
-                <Entry Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="7"  Placeholder="Wpisz żądaną dostępność" PlaceholderColor="Gray"
-                       VerticalOptions="Center" FontSize="15" x:Name="SearchAvailbility"/>
-                <Frame Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="#6f78df"
-                       WidthRequest="40" HeightRequest="40" CornerRadius="50" HorizontalOptions="Center"/>
-                <Image Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center" Source="bookaval.png" WidthRequest="25" HeightRequest="25"/>
-                <Button Grid.Row="12" Grid.Column="1" Grid.ColumnSpan="8" Text="Szukaj"
+                <Label Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="6" Text="Pokaż tylko dostępne:" TextColor="#6f78df" FontSize="16" FontAttributes="Bold"/>
+                <Switch Grid.Row="9" Grid.Column="6" Toggled="OnSwitchToggledAval"
+                        HorizontalOptions="Start" VerticalOptions="Center" Margin="0,0,0,0"/>
+                <Button Grid.Row="11" Grid.Column="1" Grid.ColumnSpan="8" Text="Szukaj"
                         BackgroundColor="#6f78df" FontSize="20" FontAttributes="Bold" CornerRadius="20" Clicked="SearchResultClicked" Margin="0,6,0,0"/>
             </Grid>
             

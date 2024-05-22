@@ -12,7 +12,6 @@ public partial class AddBookPage : ContentPage
 		InitializeComponent();
 		AddBookButton.IsEnabled = false;
 	}
-
 	private void InputBook(object sender, EventArgs e)
 	{
 		if(!string.IsNullOrEmpty(NameBook.Text) && !string.IsNullOrEmpty(AuthorBook.Text) && !string.IsNullOrEmpty(TypeBook.Text))
@@ -23,7 +22,6 @@ public partial class AddBookPage : ContentPage
 			AddBookButton.IsEnabled = false;
 		}
 	}
-
 	private async void AddBookClicked(object sender, EventArgs e)
 	{
 		string name = NameBook.Text;
@@ -37,7 +35,6 @@ public partial class AddBookPage : ContentPage
 			dbContext.SaveChanges();
 			IDrecord = newRecord.Id.ToString();
 		}
-
 		await DisplayAlert("Powiadomienie", "Ksi¹¿ka dodana pomyœlnie", "Pobierz QR");
 		QRCodeGenerator qrGenerator = new QRCodeGenerator();
 		QRCodeData qrCodeData = qrGenerator.CreateQrCode(IDrecord, QRCodeGenerator.ECCLevel.H);
@@ -47,17 +44,12 @@ public partial class AddBookPage : ContentPage
 		string fileName = $"kodQR_{name}_{author}_{type}.png";
 		if(DeviceInfo.Platform == DevicePlatform.Android)
 		{
-			
 
 		} else
 		{
 			string filePath = Path.Combine("C:\\Users\\Witek\\Desktop\\6 semestr\\Inzynierka\\LibraryNowe\\Zdjecia", fileName);
 			File.WriteAllBytes(filePath, qrCodeBytes);
 		}
-
-		
-		
-
 		NameBook.Text = string.Empty;
 		AuthorBook.Text = string.Empty;
 		TypeBook.Text = string.Empty;

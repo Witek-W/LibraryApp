@@ -8,27 +8,31 @@ namespace Library;
 public partial class CheckBookPage : ContentPage
 {
 	private readonly LibraryDbContext _context;
+	private int? Availbility = null;
 	public CheckBookPage()
 	{
 		InitializeComponent();
 		_context = new LibraryDbContext();
 	}
-	public double ScreenWidthPercentage => DeviceDisplay.MainDisplayInfo.Width * 0.8;
-	public double ScreenHeightPercentage => DeviceDisplay.MainDisplayInfo.Height * 0.7;
+	//public double ScreenWidthPercentage => DeviceDisplay.MainDisplayInfo.Width * 0.8;
+	//public double ScreenHeightPercentage => DeviceDisplay.MainDisplayInfo.Height * 0.7;
 
-
+	private void OnSwitchToggledAval(object sender, ToggledEventArgs e)
+	{
+		if(e.Value == true)
+		{
+			Availbility = 1;
+		} else
+		{
+			Availbility = null;
+		}
+	}
 	private void SearchResultClicked(object sender, EventArgs e)
 	{
 		string Author = SearchAuthor.Text;
 		string Name = SearchName.Text;
 		string Type = SearchType.Text;
-		int? Availbility = null;
-		if (!string.IsNullOrEmpty(SearchAvailbility.Text))
-		{
-			Availbility = Convert.ToInt32(SearchAvailbility.Text);
-		}
-		
-		
+
 		var query = _context.Book.AsQueryable();
 		if(!string.IsNullOrEmpty(Author))
 		{

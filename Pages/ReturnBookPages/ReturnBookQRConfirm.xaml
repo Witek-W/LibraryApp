@@ -4,21 +4,41 @@
              x:Class="Library.Pages.ReturnBookPages.ReturnBookQRConfirm"
              Title="Potwierdź zwrot książki">
     <VerticalStackLayout>
-        <Grid RowDefinitions="50,50,50,50,50"
-              ColumnDefinitions=".50*,.50*"
-              Padding="10"
-              RowSpacing="5">
-            <Label Grid.Row="0" Grid.ColumnSpan="2" Text="Czy chodziło Ci o tę książkę?" HorizontalOptions="Center"/>
-            <Label Grid.Row="1" Grid.Column="0" Text="Nazwa książki:"/>
-            <Label Grid.Row="1" Grid.Column="1" Text="" x:Name="ManualResultName"/>
-            <Label Grid.Row="2" Grid.Column="0" Text="Autor:"/>
-            <Label Grid.Row="2" Grid.Column="1" Text="" x:Name="ManualResultAuthor"/>
-            <Label Grid.Row="3" Grid.Column="0" Text="Gatunek książki:"/>
-            <Label Grid.Row="3" Grid.Column="1" Text="" x:Name="ManualResultType"/>
-            <Button Grid.Row="4" Grid.Column="0" 
-                    Text="Nie" MaximumWidthRequest="120" BackgroundColor="Red" Clicked="ReturnToMainPage"/>
-            <Button Grid.Row="4" Grid.Column="1" 
-                    Text="Tak" MaximumWidthRequest="120" BackgroundColor="Green" Clicked="ReturnBookClicked"/>
-        </Grid>
+        <StackLayout Padding="10">
+            <Grid RowDefinitions="20,20,55,20,55,20,55,20,40"
+                  ColumnDefinitions=".10*,.10*,.10*,.10*,.10*,.10*,.10*,.10*,.10*,.10*">
+                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="10" HorizontalOptions="Center" VerticalOptions="Center"
+                       FontAttributes="Bold" FontSize="16" Text="Czy na pewno chcesz zwrócić tę książkę?" TextColor="#6f78df"/>
+                <!-- Nazwa książki -->
+                <Frame Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="10" CornerRadius="30" Padding="0" BorderColor="Gray"/>
+                <Label Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="3" VerticalOptions="Center" Text="Tytuł książki: "/>
+                <Label Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="5" VerticalOptions="Center" HorizontalOptions="Start" x:Name="ManualResultName"/>
+                <Frame Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="#6f78df"
+                       WidthRequest="40" HeightRequest="40" CornerRadius="50" HorizontalOptions="Center"/>
+                <Image Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center"
+                       Source="booktitle.png" WidthRequest="25" HeightRequest="25"/>
+                <!-- Autor książki -->
+                <Frame Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="10" CornerRadius="30" Padding="0" BorderColor="Gray"/>
+                <Label Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3" VerticalOptions="Center" Text="Autor książki: "/>
+                <Label Grid.Row="4" Grid.Column="5" Grid.ColumnSpan="5" VerticalOptions="Center" HorizontalOptions="Start" x:Name="ManualResultAuthor"/>
+                <Frame Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="#6f78df"
+                       WidthRequest="40" HeightRequest="40" CornerRadius="50" HorizontalOptions="Center"/>
+                <Image Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center"
+                       Source="user.png" WidthRequest="25" HeightRequest="25"/>
+                <!-- Gatunek książki -->
+                <Frame Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="10" CornerRadius="30" Padding="0" BorderColor="Gray"/>
+                <Label Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="3" VerticalOptions="Center" Text="Gatunek książki: "/>
+                <Label Grid.Row="6" Grid.Column="5" Grid.ColumnSpan="5" VerticalOptions="Center" HorizontalOptions="Start" x:Name="ManualResultType"/>
+                <Frame Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="#6f78df"
+                       WidthRequest="40" HeightRequest="40" CornerRadius="50" HorizontalOptions="Center"/>
+                <Image Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center"
+                       Source="booktype.png" WidthRequest="25" HeightRequest="25"/>
+                <!-- Przyciski -->
+                <Button Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="3" Text="Nie" BackgroundColor="red"
+                        WidthRequest="120" Clicked="ReturnToMainPage"/>
+                <Button Grid.Row="8" Grid.Column="6" Grid.ColumnSpan="3" Text="Tak" BackgroundColor="Green"
+                        WidthRequest="120" Clicked="ReturnBookClicked"/>
+            </Grid>
+        </StackLayout>
     </VerticalStackLayout>
 </ContentPage>

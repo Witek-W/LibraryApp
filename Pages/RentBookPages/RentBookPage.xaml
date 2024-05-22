@@ -5,28 +5,42 @@
              x:Class="Library.RentBookPage"
              Title="Wypożycz książkę">
     <VerticalStackLayout>
-        <Grid RowDefinitions="50,50"
-             ColumnDefinitions=".50*,.50*"
-              Padding="10"
-              RowSpacing="5"
-              ColumnSpacing="10">
-            <Entry Grid.Row="0"
-                   Grid.ColumnSpan="2"
-                   Placeholder="ID czytelnika"
-                   x:Name="IDReaderInput"
-                   TextChanged="InputIsHere"/>
-            <Button Grid.Row="1"
-                    Grid.Column="0"
-                    Text="Skanuj kod QR"
-                    Clicked="RentBookQRClicked"
-                    WidthRequest="150"
-                    x:Name="Qrbutton"/>
-            <Button Grid.Row="1"
-                    Grid.Column="1"
-                    Text="Wpisz kod ręcznie"
-                    Clicked="RentBookManualClicked"
-                    WidthRequest="150"
-                    x:Name="ManualButton"/>
-        </Grid>
+        <StackLayout Padding="20">
+            <Grid RowDefinitions="28,55,20,65,10,28,55,10,70"
+                  ColumnDefinitions=".10*,.10*,.10*,.10*,.10*,.10*,.10*,.10*,.10*,.10*">
+                <!-- ID czytelnka -->
+                <Label Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" Grid.ColumnSpan="3"
+                       Text="ID czytelnika" TextColor="#6f78df" FontSize="16" FontAttributes="Bold" Margin="0,0,0,6"/>
+                <Frame Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="10" CornerRadius="30" Padding="0" BorderColor="Gray"/>
+                <Entry Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="7"  Placeholder="Wpisz ID czytelnika"  PlaceholderColor="Gray"
+                       VerticalOptions="Center" FontSize="15" x:Name="IDReaderInput"/>
+                <Frame Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="#6f78df"
+                       WidthRequest="40" HeightRequest="40" CornerRadius="50" HorizontalOptions="Center"/>
+                <Image Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center"
+                       Source="readerid.png" WidthRequest="25" HeightRequest="25"/>
+                <Label Grid.Row="3" Grid.Column="0" HorizontalOptions="Center" Grid.ColumnSpan="4"
+                       Text="Skanuj kod QR" TextColor="#6f78df" FontSize="16" FontAttributes="Bold" Margin="0,0,0,6"
+                       VerticalOptions="Center"/>
+                <Switch Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="2" Toggled="OnSwitchToggled"
+                        x:Name="BinarySwitch" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,0,0,5"/>
+                <Label Grid.Row="3" Grid.Column="6" HorizontalOptions="Center" Grid.ColumnSpan="4"
+                       Text="Wpisz ID książki" TextColor="#6f78df" FontSize="16" FontAttributes="Bold" Margin="0,0,0,6"
+                       VerticalOptions="Center"/>
+                <Button Grid.Row="5" Grid.RowSpan="2" Grid.Column="1"  Grid.ColumnSpan="8" CornerRadius="25" BackgroundColor="#6f78df"
+                        Text="Skanuj kod QR książki" FontSize="16" FontAttributes="Bold" x:Name="qrbutton" Clicked="RentBookQRClicked"/>
+                <!-- ID ksiazki -->
+                <Label Grid.Row="5" Grid.Column="0" HorizontalOptions="Center" Grid.ColumnSpan="3" x:Name="labelhide"
+                       Text="ID książki" TextColor="#6f78df" FontSize="16" FontAttributes="Bold" Margin="0,0,0,6"/>
+                <Frame Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="10" CornerRadius="30" Padding="0" BorderColor="Gray" x:Name="framehide"/>
+                <Entry Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="7"  Placeholder="Wpisz ID książki"  PlaceholderColor="Gray"
+                       VerticalOptions="Center" FontSize="15" x:Name="entryhide"/>
+                <Frame Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="#6f78df"
+                       WidthRequest="40" HeightRequest="40" CornerRadius="50" HorizontalOptions="Center" x:Name="frame2hide"/>
+                <Image Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center"
+                       Source="bookid.png" WidthRequest="25" HeightRequest="25" x:Name="imagehide"/>
+                <Button Grid.Row="8" Grid.Column="1"  Grid.ColumnSpan="8" CornerRadius="25" BackgroundColor="#6f78df"
+                        Text="Wypożycz książkę" FontSize="16" FontAttributes="Bold" x:Name="button2hide" Clicked="RentBookManualClicked"/>
+            </Grid>
+        </StackLayout>
     </VerticalStackLayout>
 </ContentPage>

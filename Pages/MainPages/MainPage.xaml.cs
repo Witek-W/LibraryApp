@@ -1,5 +1,6 @@
 ﻿using Library.Model;
 using Library.Pages.MainPages;
+using Library.Pages.ManageLibraryPages;
 using Library.ViewModel;
 
 namespace Library
@@ -20,6 +21,7 @@ namespace Library
 		public MainPage()
 		{
 			InitializeComponent();
+			refreshanimate.IsAnimationEnabled = false;
 			_context = new LibraryDbContext();
 			DateTime today = DateTime.Now;
 			notifications = _context.Book.Where(p => p.Planned_return_date < today).Join(_context.Readers,
@@ -38,14 +40,20 @@ namespace Library
 			{
 				NotificationsView.Text = notifications.Count().ToString();
 				FrameNotification.IsVisible = true;
+				bellanimation.IsVisible = true;
+				bellstatic.IsVisible = false;
 
 			} else if(notifications.Count() >= 99) {
 				NotificationsView.Text = "99";
 				FrameNotification.IsVisible = true;
+				bellanimation.IsVisible = true;
+				bellstatic.IsVisible = false;
 			}
 			else
 			{
 				FrameNotification.IsVisible = false;
+				bellanimation.IsVisible = false;
+				bellstatic.IsVisible = true;
 			}
 		}
 		private void CheckBookPageButton(object sender, EventArgs e)
@@ -64,21 +72,30 @@ namespace Library
 			INavigation navigation = ((Button)sender).Navigation;
 			navigation.PushAsync(new ReturnBookPage());
 		}
-		private void ManageLibraryPageButton(object sender, EventArgs e)
+		private void AddBook(object sender, EventArgs e)
 		{
 			INavigation navigation = ((Button)sender).Navigation;
-			navigation.PushAsync(new ManageLibraryPage());
+			navigation.PushAsync(new AddBookPage());
+		}
+
+		private void AddReader(object sender, EventArgs e)
+		{
+			INavigation navigation = ((Button)sender).Navigation;
+			navigation.PushAsync(new AddReaderPage());
 		}
 		private void NotificationButton(object sender, EventArgs e)
 		{
 			NotificationPage resultsPage = new NotificationPage(notifications, _context);
 			Navigation.PushAsync(resultsPage);
 		}
-		private void RefreshButton(object sender, EventArgs e)
+		private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
 		{
+			refreshanimate.IsAnimationEnabled = true;
+			await Task.Delay(950);
+			refreshanimate.IsAnimationEnabled = false;
 			MainPage refreshMainPage = new MainPage();
 			NavigationPage.SetHasBackButton(refreshMainPage, false);
-			Navigation.PushAsync(refreshMainPage);
+			await Navigation.PushAsync(refreshMainPage);
 		}
 	}
 

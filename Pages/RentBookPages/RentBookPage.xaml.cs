@@ -1,4 +1,5 @@
 using ZXing.Net.Maui;
+using Library.Pages.RentBookPages;
 
 namespace Library;
 
@@ -7,13 +8,16 @@ public partial class RentBookPage : ContentPage
 	public RentBookPage()
 	{
 		InitializeComponent();
-		Qrbutton.IsEnabled = false;
-		ManualButton.IsEnabled = false;
+		qrbutton.IsVisible = true;
+		labelhide.IsVisible = false;
+		framehide.IsVisible = false;
+		entryhide.IsVisible = false;
+		frame2hide.IsVisible = false;
+		imagehide.IsVisible = false;
+		button2hide.IsVisible = false;
 	}
 	private void InputIsHere(object sender, EventArgs e)
 	{
-		Qrbutton.IsEnabled = true;
-		ManualButton.IsEnabled = true;
 	}
 	private void RentBookQRClicked(object sender, EventArgs e)
 	{
@@ -24,7 +28,31 @@ public partial class RentBookPage : ContentPage
 	private void RentBookManualClicked(object sender, EventArgs e)
 	{
 		string id = IDReaderInput.Text;
-		RentBookManual resultsPage = new RentBookManual(id);
+		string idbook = entryhide.Text;
+		RentBookQRConfirm resultsPage = new RentBookQRConfirm(idbook, id);
 		Navigation.PushAsync(resultsPage);
+	}
+	private void OnSwitchToggled(object sender, ToggledEventArgs e)
+	{
+		if(e.Value == true)
+		{
+			qrbutton.IsVisible = false;
+			labelhide.IsVisible = true;
+			framehide.IsVisible = true;
+			entryhide.IsVisible = true;
+			frame2hide.IsVisible = true;
+			imagehide.IsVisible = true;
+			button2hide.IsVisible = true;
+
+		} else
+		{
+			qrbutton.IsVisible = true;
+			labelhide.IsVisible = false;
+			framehide.IsVisible = false;
+			entryhide.IsVisible = false;
+			frame2hide.IsVisible = false;
+			imagehide.IsVisible = false;
+			button2hide.IsVisible = false;
+		}
 	}
 }

@@ -12,19 +12,21 @@
                     <Label Grid.Column="0"
                        Text="Tytuł książki"
                        VerticalOptions="Center"
-                       HorizontalOptions="Center"/>
+                       HorizontalOptions="Center"
+                       FontAttributes="Bold" FontSize="16"/>
                     <Label Grid.Column="1"
                        Text="Autor książki"
                        VerticalOptions="Center"
-                       HorizontalOptions="Center"/>
+                       HorizontalOptions="Center"
+                       FontAttributes="Bold" FontSize="16"/>
                 </Grid>
                 <CollectionView  x:Name="ResultsListView">
                     <CollectionView.ItemTemplate> 
                         <DataTemplate>
                             <maui:Expander Animated="True" BindingContext="{Binding}">
                                 <maui:Expander.HeaderContent>
-                                    <Border BackgroundColor="#502BD4"
-                                            StrokeShape="RoundRectangle 6" StrokeThickness="0"
+                                    <Border BackgroundColor="#6f78df"
+                                            StrokeShape="RoundRectangle 25" StrokeThickness="0"
                                             Margin="3,3,3,0">
                                         <Grid HeightRequest="60" ColumnDefinitions=".50*,.50*" ColumnSpacing="10" Padding="10">
                                             <Label Grid.Column="0"
@@ -47,7 +49,8 @@
                                       Padding="10"
                                       RowSpacing="10"
                                       BackgroundColor="LightGrey"
-                                      Margin="3,0,3,0">
+                                      Margin="3,0,3,0"
+                                      WidthRequest="310">
                                     <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
                                            Text="Gatunek:" 
                                            VerticalOptions="Center" 
@@ -100,6 +103,8 @@
                                                          Value="0">
                                                 <Setter Property="HorizontalOptions"
                                                         Value="StartAndExpand"/>
+                                                <Setter Property="WidthRequest"
+                                                        Value="80"/>
                                             </DataTrigger>
                                         </Button.Triggers>
                                     </Button>
@@ -117,16 +122,19 @@
                                                          Value="0">
                                                 <Setter Property="HorizontalOptions"
                                                         Value="EndAndExpand"/>
+                                                <Setter Property="WidthRequest"
+                                                        Value="80"/>
                                             </DataTrigger>
                                         </Button.Triggers>
                                     </Button>
                                     <Button Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
                                             VerticalOptions="Center"
                                             HorizontalOptions="Center"
-                                            WidthRequest="100"
+                                            WidthRequest="90"
                                             Text="Rezerwuj"
                                             IsVisible="false"
                                             Clicked="ReservationButton"
+                                            BackgroundColor="#6f78df"
                                             CommandParameter="{Binding ID, Mode=OneWay}">
                                         <Button.Triggers>
                                             <DataTrigger TargetType="Button"
@@ -145,11 +153,11 @@
                 <Grid ColumnDefinitions=".40*,.20*,.40*"
                       ColumnSpacing="10"
                       Padding="10">
-                    <Button Grid.Column="0" Text="Poprzednia strona" Clicked="PreviousPage"/>
+                    <Button Grid.Column="0" Text="Poprzednia strona" Clicked="PreviousPage" BackgroundColor="#6f78df"/>
                     <Label Grid.Column="1" Text="" x:Name="PageNumberLabel"
                            HorizontalOptions="Center" VerticalOptions="Center"
                            FontSize="Large"/>
-                    <Button Grid.Column="2" Text="Następna strona" Clicked="NextPage"/>
+                    <Button Grid.Column="2" Text="Następna strona" Clicked="NextPage" BackgroundColor="#6f78df"/>
                 </Grid>
             </StackLayout>
         </ScrollView>

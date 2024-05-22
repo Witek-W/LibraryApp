@@ -4,20 +4,21 @@
              x:Class="Library.ReturnBookManual"
              Title="Wpisz kod książki">
     <VerticalStackLayout>
-        <Grid RowDefinitions="50,50"
-       ColumnDefinitions=".100*"
-       Padding="10"
-       RowSpacing="5">
-            <Entry Grid.Row="0"
-            Text=""
-            Placeholder="Numer książki"
-            x:Name="ManualBookNumber"
-            TextChanged="ReturnLengthText"
-            />
-            <Button Grid.Row="1" 
-             Text="Zwróć"
-             x:Name="ButtonReturn"
-             Clicked="ReturnBookManualButton"/>
-        </Grid>
+        <StackLayout Padding="20">
+            <Grid RowDefinitions="28,55,10,55"
+                  ColumnDefinitions=".10*,.10*,.10*,.10*,.10*,.10*,.10*,.10*,.10*,.10*">
+                <Label Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" Grid.ColumnSpan="3"
+                       Text="ID książki" TextColor="#6f78df" FontSize="16" FontAttributes="Bold" Margin="0,0,0,6"/>
+                <Frame Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="10" CornerRadius="30" Padding="0" BorderColor="Gray"/>
+                <Entry Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="7"  Placeholder="Wpisz ID książki"  PlaceholderColor="Gray"
+                       VerticalOptions="Center" FontSize="15" x:Name="ManualBookNumber" TextChanged="ReturnLengthText"/>
+                <Frame Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="#6f78df"
+                       WidthRequest="40" HeightRequest="40" CornerRadius="50" HorizontalOptions="Center"/>
+                <Image Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center"
+                       Source="readerid.png" WidthRequest="25" HeightRequest="25"/>
+                <Button Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="8" Text="Zwróć" CornerRadius="25"
+                        BackgroundColor="#6f78df" x:Name="ButtonReturn" Clicked="ReturnBookManualButton"/>
+            </Grid>
+        </StackLayout>
     </VerticalStackLayout>
 </ContentPage>

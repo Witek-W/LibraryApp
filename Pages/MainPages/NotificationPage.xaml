@@ -10,8 +10,8 @@
                 <DataTemplate>
                     <maui:Expander Animated="True" BindingContext="{Binding}">
                         <maui:Expander.HeaderContent>
-                            <Border BackgroundColor="#502BD4"
-                                    StrokeShape="RoundRectangle 6" StrokeThickness="0"
+                            <Border BackgroundColor="#6f78df"
+                                    StrokeShape="RoundRectangle 25" StrokeThickness="0"
                                     Margin="3,3,3,0">
                                 <Grid HeightRequest="60" ColumnDefinitions=".50*,.50*" ColumnSpacing="10" Padding="10">
                                     <Label Grid.Column="0"
@@ -34,7 +34,8 @@
                               Padding="10"
                               RowSpacing="10"
                               BackgroundColor="LightGrey"
-                              Margin="3,0,3,0">
+                              Margin="3,0,3,0"
+                              WidthRequest="310">
                             <Label Grid.Row="0" Grid.Column="0"
                                    Text="Imię:" 
                                    VerticalOptions="Center" 
@@ -65,7 +66,9 @@
                                     VerticalOptions="Center"
                                     WidthRequest="175"
                                     Clicked="SendSms"
-                                    CommandParameter="{Binding ID, Mode=OneWay}"/>
+                                    CommandParameter="{Binding ID, Mode=OneWay}"
+                                    BackgroundColor="#6f78df"
+                                    FontAttributes="Bold"/>
                         </Grid>
                     </maui:Expander>
                 </DataTemplate>
