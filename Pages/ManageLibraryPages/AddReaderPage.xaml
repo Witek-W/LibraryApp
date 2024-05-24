@@ -59,7 +59,7 @@
                     <Image Grid.Row="13" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center"
                            Source="city.png" WidthRequest="25" HeightRequest="25"/>
                     <!-- Numer domu czytelnika -->
-                    <Label Grid.Row="15" Grid.Column="0" HorizontalOptions="Center" Grid.ColumnSpan="2"
+                    <Label Grid.Row="15" Grid.Column="0" HorizontalOptions="Center" Grid.ColumnSpan="4"
                            Text="Numer domu" TextColor="#6f78df" FontSize="16" FontAttributes="Bold" Margin="0,0,10,6"/>
                     <Frame Grid.Row="16" Grid.Column="0" Grid.ColumnSpan="10" CornerRadius="30" Padding="0" BorderColor="Gray"/>
                     <Entry Grid.Row="16" Grid.Column="2" Grid.ColumnSpan="7"  Placeholder="Wpisz numer domu"  PlaceholderColor="Gray"

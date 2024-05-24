@@ -5,7 +5,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Library"
     Shell.FlyoutBehavior="Disabled"
-    Title="Library">
+    Title="Biblioteka"
+    Shell.TabBarBackgroundColor="#6f78df">
 
     <ShellContent
         Title="Biblioteka"

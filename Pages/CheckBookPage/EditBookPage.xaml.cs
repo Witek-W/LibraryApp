@@ -13,13 +13,23 @@ public partial class EditBookPage : ContentPage
 	{
 		_context = context;
 		InitializeComponent();
+		EditButtonConfirm.IsEnabled = false;
 		IDbook = ID;
 		Books result = _context.Book.FirstOrDefault(p => p.Id == IDbook);
 		BookName.Text = $"{result.Name}";
 		Author.Text = $"{result.Author}";
 		Type.Text = $"{result.Type}";
 	}
-
+	private void EditEntry(object sender, EventArgs e)
+	{
+		if(!string.IsNullOrEmpty(EntryName.Text) || !string.IsNullOrEmpty(EntryAuthor.Text) || !string.IsNullOrEmpty(EntryType.Text))
+		{
+			EditButtonConfirm.IsEnabled = true;
+		} else
+		{
+			EditButtonConfirm.IsEnabled = false;
+		}
+	}
 	void EditBook(object sender, EventArgs e)
 	{
 		NameEntry = EntryName.Text;

@@ -3,82 +3,79 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Library.Pages.CheckBookPage.EditBookPage"
              Title="Edycja książki">
-    <VerticalStackLayout>
-        <Grid RowDefinitions="40,40,40,40,40,40,40,40,40"
-             ColumnDefinitions=".50*,.50*"
-             ColumnSpacing="5"
-             RowSpacing="5">
-            <Label  Grid.Row="0" Grid.ColumnSpan="2"
-                    Text="Książką którą chcesz edytować:"
-                    HorizontalOptions="Center"
-                    VerticalOptions="Center"/>
-            <Label Grid.Row="1" Grid.Column="0"
-                   Text="Tytuł książki:"
-                   HorizontalOptions="Center"
-                   VerticalOptions="Center"/>
-            <Label Grid.Row="1" Grid.Column="1"
-                   Text=""
-                   HorizontalOptions="Center"
-                   VerticalOptions="Center"
-                   x:Name="BookName"/>
-            <Label Grid.Row="2" Grid.Column="0"
-                   Text="Autor książki:"
-                   HorizontalOptions="Center"
-                   VerticalOptions="Center"/>
-            <Label Grid.Row="2" Grid.Column="1"
-                   Text=""
-                   HorizontalOptions="Center"
-                   VerticalOptions="Center"
-                   x:Name="Author"/>
-            <Label Grid.Row="3" Grid.Column="0"
-                   Text="Gatunek:"
-                   HorizontalOptions="Center"
-                   VerticalOptions="Center"/>
-            <Label Grid.Row="3" Grid.Column="1"
-                   Text=""
-                   HorizontalOptions="Center"
-                   VerticalOptions="Center"
-                   x:Name="Type"/>
-            <Label  Grid.Row="4" Grid.ColumnSpan="2"
-                    Text="Zmiany:"
-                    HorizontalOptions="Center"
-                    VerticalOptions="Center"/>
-            <Label Grid.Row="5" Grid.Column="0"
-                   Text="Tytuł: "
-                   HorizontalOptions="Center"
-                   VerticalOptions="Center"/>
-            <Entry Grid.Row="5" Grid.Column="1"
-                   Placeholder="Wpisz tutaj"
-                   HorizontalOptions="Center"
-                   VerticalOptions="Center"
-                   WidthRequest="150"
-                   x:Name="EntryName"/>
-            <Label Grid.Row="6" Grid.Column="0"
-                   Text="Autor: "
-                   HorizontalOptions="Center"
-                   VerticalOptions="Center"/>
-            <Entry Grid.Row="6" Grid.Column="1"
-                   Placeholder="Wpisz tutaj"
-                   HorizontalOptions="Center"
-                   VerticalOptions="Center"
-                   WidthRequest="150"
-                   x:Name="EntryAuthor"/>
-            <Label Grid.Row="7" Grid.Column="0"
-                   Text="Gatunek: "
-                   HorizontalOptions="Center"
-                   VerticalOptions="Center"/>
-            <Entry Grid.Row="7" Grid.Column="1"
-                   Placeholder="Wpisz tutaj"
-                   HorizontalOptions="Center"
-                   VerticalOptions="Center"
-                   WidthRequest="150"
-                   x:Name="EntryType"/>
-            <Button Grid.Row="8" Grid.ColumnSpan="2"
-                    HorizontalOptions="Center"
-                    VerticalOptions="Center"
-                    WidthRequest="200"
-                    Text="Zmień"
-                    Clicked="EditBook"/>
-        </Grid>
-    </VerticalStackLayout>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="10">
+                <Grid RowDefinitions="20,20,55,20,55,20,55,10,20,2,30,55,10,30,55,10,30,55,10,40"
+                      ColumnDefinitions=".10*,.10*,.10*,.10*,.10*,.10*,.10*,.10*,.10*,.10*">
+                    <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="10" HorizontalOptions="Center" VerticalOptions="Center"
+                           FontAttributes="Bold" FontSize="16" Text="Książka którą edytujesz:" TextColor="#6f78df"/>
+                    <!--Tytul ksiazki -->
+                    <Frame Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="10" CornerRadius="30" Padding="0" BorderColor="Gray"/>
+                    <Label Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="3" VerticalOptions="Center" Text="Tytuł książki: "/>
+                    <Label Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="5" VerticalOptions="Center" HorizontalOptions="Start" Text="" x:Name="BookName"/>
+                    <Frame Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="#6f78df"
+                           WidthRequest="40" HeightRequest="40" CornerRadius="50" HorizontalOptions="Center"/>
+                    <Image Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center"
+                           Source="booktitle.png" WidthRequest="25" HeightRequest="25"/>
+                    <!-- Autor ksiazki -->
+                    <Frame Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="10" CornerRadius="30" Padding="0" BorderColor="Gray"/>
+                    <Label Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3" VerticalOptions="Center" Text="Autor książki: "/>
+                    <Label Grid.Row="4" Grid.Column="5" Grid.ColumnSpan="5" VerticalOptions="Center" HorizontalOptions="Start" Text="" x:Name="Author"/>
+                    <Frame Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="#6f78df"
+                           WidthRequest="40" HeightRequest="40" CornerRadius="50" HorizontalOptions="Center"/>
+                    <Image Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center"
+                           Source="user.png" WidthRequest="25" HeightRequest="25"/>
+                    <!-- Gatunek ksiazki -->
+                    <Frame Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="10" CornerRadius="30" Padding="0" BorderColor="Gray"/>
+                    <Label Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="4" VerticalOptions="Center" Text="Gatunek książki: "/>
+                    <Label Grid.Row="6" Grid.Column="5" Grid.ColumnSpan="5" VerticalOptions="Center" HorizontalOptions="Start"
+                           Margin="10,0,0,0" Text="" x:Name="Type"/>
+                    <Frame Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="#6f78df"
+                           WidthRequest="40" HeightRequest="40" CornerRadius="50" HorizontalOptions="Center"/>
+                    <Image Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center"
+                           Source="booktype.png" WidthRequest="25" HeightRequest="25"/>
+                    <!-- Zmiany napis -->
+                    <Label Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="10" HorizontalOptions="Center" VerticalOptions="Center"
+                           FontAttributes="Bold" FontSize="16" Text="Zmiany (możesz tylko jedną wartość):" TextColor="#6f78df"/>
+                    <!-- Zmiany tytuł -->
+                    <Label Grid.Row="10" Grid.Column="0" HorizontalOptions="Start" Grid.ColumnSpan="7" VerticalOptions="Start"
+                           Text="Nowy tytuł" TextColor="#6f78df" FontSize="16" FontAttributes="Bold" Margin="12,0,0,6"/>
+                    <Frame Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="10" CornerRadius="30" Padding="0" BorderColor="Gray"/>
+                    <!--Entry-->
+                    <Entry Grid.Row="11" Grid.Column="2" Grid.ColumnSpan="7"  Placeholder="Wpisz nowy tytuł"  PlaceholderColor="Gray"
+                           VerticalOptions="Center" FontSize="15" x:Name="EntryName" TextChanged="EditEntry"/>
+                    <Frame Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="#6f78df"
+                           WidthRequest="40" HeightRequest="40" CornerRadius="50" HorizontalOptions="Center"/>
+                    <Image Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center"
+                           Source="calendar.png" WidthRequest="25" HeightRequest="25"/>
+                    <!-- Zmiany Autor -->
+                    <Label Grid.Row="13" Grid.Column="0" HorizontalOptions="Start" Grid.ColumnSpan="7" VerticalOptions="Start"
+                           Text="Nowy autor" TextColor="#6f78df" FontSize="16" FontAttributes="Bold" Margin="12,0,0,6"/>
+                    <Frame Grid.Row="14" Grid.Column="0" Grid.ColumnSpan="10" CornerRadius="30" Padding="0" BorderColor="Gray"/>
+                    <!--Entry-->
+                    <Entry Grid.Row="14" Grid.Column="2" Grid.ColumnSpan="7"  Placeholder="Wpisz nowego autora"  PlaceholderColor="Gray"
+                           VerticalOptions="Center" FontSize="15" x:Name="EntryAuthor" TextChanged="EditEntry"/>
+                    <Frame Grid.Row="14" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="#6f78df"
+                           WidthRequest="40" HeightRequest="40" CornerRadius="50" HorizontalOptions="Center"/>
+                    <Image Grid.Row="14" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center"
+                           Source="calendar.png" WidthRequest="25" HeightRequest="25"/>
+                    <!-- Zmiany Gatunek -->
+                    <Label Grid.Row="16" Grid.Column="0" HorizontalOptions="Start" Grid.ColumnSpan="7" VerticalOptions="Start"
+                           Text="Nowy gatunek" TextColor="#6f78df" FontSize="16" FontAttributes="Bold" Margin="12,0,0,6"/>
+                    <Frame Grid.Row="17" Grid.Column="0" Grid.ColumnSpan="10" CornerRadius="30" Padding="0" BorderColor="Gray"/>
+                    <!--Entry-->
+                    <Entry Grid.Row="17" Grid.Column="2" Grid.ColumnSpan="7"  Placeholder="Wpisz nowy gatunek"  PlaceholderColor="Gray"
+                           VerticalOptions="Center" FontSize="15" x:Name="EntryType" TextChanged="EditEntry"/>
+                    <Frame Grid.Row="17" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="#6f78df"
+                           WidthRequest="40" HeightRequest="40" CornerRadius="50" HorizontalOptions="Center"/>
+                    <Image Grid.Row="17" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center"
+                           Source="calendar.png" WidthRequest="25" HeightRequest="25"/>
+                    <!-- Przycisk -->
+                    <Button Grid.Row="19" Grid.Column="3" Grid.ColumnSpan="4" Text="Edytuj" Clicked="EditBook" x:Name="EditButtonConfirm"
+                            WidthRequest="170" FontAttributes="Bold" FontSize="16" BackgroundColor="#6f78df"/>
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
 </ContentPage>

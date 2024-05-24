@@ -96,6 +96,8 @@
                                             Text="Usuń"
                                             BackgroundColor="Red"
                                             Clicked="BookDeleteButton"
+                                            FontSize="12"
+                                            FontAttributes="Bold"
                                             CommandParameter="{Binding ID, Mode=OneWay}">
                                         <Button.Triggers>
                                             <DataTrigger TargetType="Button"
@@ -115,6 +117,8 @@
                                             Text="Edytuj"
                                             BackgroundColor="Green"
                                             Clicked="BookEditButton"
+                                            FontSize="12"
+                                            FontAttributes="Bold"
                                             CommandParameter="{Binding ID, Mode=OneWay}">
                                         <Button.Triggers>
                                             <DataTrigger TargetType="Button"
@@ -130,11 +134,13 @@
                                     <Button Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
                                             VerticalOptions="Center"
                                             HorizontalOptions="Center"
-                                            WidthRequest="90"
+                                            WidthRequest="80"
                                             Text="Rezerwuj"
                                             IsVisible="false"
                                             Clicked="ReservationButton"
                                             BackgroundColor="#6f78df"
+                                            FontSize="12"
+                                            FontAttributes="Bold"
                                             CommandParameter="{Binding ID, Mode=OneWay}">
                                         <Button.Triggers>
                                             <DataTrigger TargetType="Button"
