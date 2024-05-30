@@ -63,13 +63,13 @@
                        CornerRadius="35" BackgroundColor="Transparent" BorderColor="Transparent"
                        Padding="0" HasShadow="False" IsClippedToBounds="True" InputTransparent="True">
                     <Ellipse Grid.Row="0" Grid.Column="1" WidthRequest="60" HeightRequest="260"
-                             BackgroundColor="#6f78df" HorizontalOptions="End"/>
+                             BackgroundColor="#6f78df" HorizontalOptions="End" VerticalOptions="Center"/>
                 </Frame>
                 <Frame Grid.Row="0" Grid.ColumnSpan="2"
                        CornerRadius="35" BackgroundColor="Transparent"
                        Padding="0" HasShadow="False" IsClippedToBounds="True" InputTransparent="True" BorderColor="Transparent">
                     <Ellipse Grid.Row="0" Grid.Column="1" WidthRequest="120" HeightRequest="140"
-                             BackgroundColor="#6f78df" HorizontalOptions="End"/> 
+                             BackgroundColor="#6f78df" HorizontalOptions="End"/>
                 </Frame>
                 <Image Grid.Row="0" Grid.Column="1"
                        Source="search.png" HorizontalOptions="End" Margin="0,0,20,0"

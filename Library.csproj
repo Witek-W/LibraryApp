@@ -65,6 +65,8 @@
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
 		<PackageReference Include="epj.Expander.Maui" Version="1.0.2" />
+		<PackageReference Include="Google.Apis.Auth" Version="1.68.0" />
+		<PackageReference Include="Google.Apis.Drive.v3" Version="1.68.0.3428" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.4" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.4">
 		  <PrivateAssets>all</PrivateAssets>
@@ -130,6 +132,15 @@
 	  <MauiXaml Update="Pages\ReturnBookPages\ReturnBookQRConfirm.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="Pages\ManageLibraryPages\credentials.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Platforms\Android\Resources\credentials.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
 	</ItemGroup>
 
 	<ItemGroup>

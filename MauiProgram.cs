@@ -1,9 +1,9 @@
 ﻿using epj.Expander.Maui;
 using Library.ViewModel;
 using Microsoft.Extensions.Logging;
-using Microsoft.Maui.Controls.Compatibility.Platform.Android;
 using SkiaSharp.Views.Maui.Controls.Hosting;
 using ZXing.Net.Maui.Controls;
+using Microsoft.Maui.Controls.Compatibility.Platform.Android;
 
 
 namespace Library
@@ -29,6 +29,7 @@ namespace Library
 				h.PlatformView.BackgroundTintList =
 					Android.Content.Res.ColorStateList.ValueOf(Colors.Transparent.ToAndroid());
 			});
+
 
 			builder.Services.AddSingleton<MainPage>();
 			builder.Services.AddSingleton<MainViewModel>();
