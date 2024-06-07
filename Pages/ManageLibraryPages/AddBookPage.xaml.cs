@@ -47,10 +47,10 @@ public partial class AddBookPage : ContentPage
 		
 		string fileName = $"kodQR_{name}_{author}_{type}_{IDrecord}.png";
 		//Problem ze znalezieniem pliku, rozwi¹zanie chwilowe
-		//Tutaj jest credentialjson ale na razie ze wzglêdów bezpieczeñstwa jest usuniêty
+		//Credentials.json
 		string folderId = "***REMOVED***";
 		GoogleDrive disk = new GoogleDrive();
-		disk.UploadToGoogleDrive(credentialsJson, folderId, qrCodeBytes, fileName);
+		//disk.UploadToGoogleDrive(credentialsJson, folderId, qrCodeBytes, fileName);
 		NameBook.Text = string.Empty;
 		AuthorBook.Text = string.Empty;
 		TypeBook.Text = string.Empty;
