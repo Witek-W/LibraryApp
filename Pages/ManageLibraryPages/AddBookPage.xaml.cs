@@ -39,7 +39,6 @@ public partial class AddBookPage : ContentPage
 			dbContext.SaveChanges();
 			IDrecord = newRecord.Id.ToString();
 		}
-		await DisplayAlert("Powiadomienie", "Ksi¹¿ka dodana pomyœlnie", "Wygeneruj kod QR");
 		QRCodeGenerator qrGenerator = new QRCodeGenerator();
 		QRCodeData qrCodeData = qrGenerator.CreateQrCode(IDrecord, QRCodeGenerator.ECCLevel.H);
 		PngByteQRCode qRCode = new PngByteQRCode(qrCodeData);
@@ -51,6 +50,7 @@ public partial class AddBookPage : ContentPage
 		string folderId = "***REMOVED***";
 		GoogleDrive disk = new GoogleDrive();
 		//disk.UploadToGoogleDrive(credentialsJson, folderId, qrCodeBytes, fileName);
+		await DisplayAlert("Powiadomienie", "Ksi¹¿ka dodana pomyœlnie", "Wygeneruj kod QR");
 		NameBook.Text = string.Empty;
 		AuthorBook.Text = string.Empty;
 		TypeBook.Text = string.Empty;
