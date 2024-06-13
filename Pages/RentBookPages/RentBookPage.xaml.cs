@@ -1,10 +1,14 @@
 using ZXing.Net.Maui;
 using Library.Pages.RentBookPages;
+using Plugin.NFC;
+using System.Text;
+using Library.Model;
 
 namespace Library;
 
 public partial class RentBookPage : ContentPage
 {
+	private readonly NFC _nfc;
 	public RentBookPage()
 	{
 		InitializeComponent();
@@ -15,10 +19,19 @@ public partial class RentBookPage : ContentPage
 		frame2hide.IsVisible = false;
 		imagehide.IsVisible = false;
 		button2hide.IsVisible = false;
+		_nfc = new NFC();
+		_nfc.ReadNfcTag();
+		_nfc.MessageReceived += NFC_MessageReceived;
 	}
-	private void InputIsHere(object sender, EventArgs e)
+	private void NFC_MessageReceived(object sender, string message)
 	{
+		Device.BeginInvokeOnMainThread(() =>
+		{
+			IDReaderInput.Text = message;
+			_nfc.StopReadNfcTag();
+		});
 	}
+
 	private void RentBookQRClicked(object sender, EventArgs e)
 	{
 		string id = IDReaderInput.Text;
