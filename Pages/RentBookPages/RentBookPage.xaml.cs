@@ -19,7 +19,7 @@ public partial class RentBookPage : ContentPage
 		frame2hide.IsVisible = false;
 		imagehide.IsVisible = false;
 		button2hide.IsVisible = false;
-		_nfc = new NFC();
+		_nfc = new NFC(Navigation);
 		_nfc.ReadNfcTag();
 		_nfc.MessageReceived += NFC_MessageReceived;
 	}

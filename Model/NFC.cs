@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+﻿using Library.Pages.ManageLibraryPages;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Plugin.NFC;
 using System;
 using System.Collections.Generic;
@@ -17,9 +18,10 @@ namespace Library.Model
 		public event EventHandler<int> MessagePublished;
 		public NFCNdefTypeFormat _type;
 		private int ID;
-
-		public NFC()
+		private readonly INavigation _navigation;
+		public NFC(INavigation navigation)
 		{
+			_navigation = navigation;
 			CrossNFC.Current.OnMessageReceived += Current_OnMessageReceived;
 			CrossNFC.Current.OnTagDiscovered += Current_OnTagDiscovered;
 			CrossNFC.Current.OnMessagePublished += Current_OnMessagePublished;
@@ -50,20 +52,33 @@ namespace Library.Model
 			{
 				return;
 			}
-			
-			if (ID != 0)
+
+			try
 			{
-				NFCNdefRecord record = new NFCNdefRecord
+
+				if (ID != 0)
 				{
-					TypeFormat = NFCNdefTypeFormat.WellKnown,
-					Payload = NFCUtils.EncodeToByteArray(ID.ToString()),
-				};
-				tagInfo.Records = new[] { record };
+					NFCNdefRecord record = new NFCNdefRecord
+					{
+						TypeFormat = NFCNdefTypeFormat.WellKnown,
+						Payload = NFCUtils.EncodeToByteArray(ID.ToString()),
+					};
+					tagInfo.Records = new[] { record };
 				
-				CrossNFC.Current.PublishMessage(tagInfo);
+					CrossNFC.Current.PublishMessage(tagInfo);
+				}
+			} catch(Exception ex)
+			{
+				StopWriteNfcTag();
+				await GoToMainPageAsync();
 			}
 		}
-
+		private async Task GoToMainPageAsync()
+		{
+			MainPage refreshMainPage = new MainPage();
+			NavigationPage.SetHasBackButton(refreshMainPage, false);
+			await _navigation.PushAsync(refreshMainPage);
+		}
 		private string GetTextFromPayload(byte[] payload)
 		{
 			var statusByte = payload[0];
