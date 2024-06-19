@@ -14,19 +14,36 @@ public partial class AddReaderPage : ContentPage
 		_context = new LibraryDbContext();
 		AddReaderButton.IsEnabled = false;
 		_nfc = new NFC();
-		CrossNFC.Current.OnTagDiscovered += Current_OnTagDiscovered;
+		_nfc.MessagePublished += NFC_MessagePublished;
 
 	}
-	private void Current_OnTagDiscovered(ITagInfo tagInfo, bool format)
+	protected override void OnAppearing()
 	{
-		int readerid = ID;
-		if(readerid != 0)
+		base.OnAppearing();
+
+		if (CrossNFC.IsSupported)
 		{
-			MainPage refreshMainPage = new MainPage();
-			NavigationPage.SetHasBackButton(refreshMainPage, false);
-			Navigation.PushAsync(refreshMainPage);
+			_nfc.ReadNfcTag();
 		}
 	}
+	
+	protected override void OnDisappearing()
+	{
+		base.OnDisappearing();
+
+		if (CrossNFC.IsSupported)
+		{
+			_nfc.StopReadNfcTag();
+		}
+	}
+	private void NFC_MessagePublished(object sender, int id)
+	{
+		_nfc.StopWriteNfcTag();
+		MainPage refreshMainPage = new MainPage();
+		NavigationPage.SetHasBackButton(refreshMainPage, false);
+		Navigation.PushAsync(refreshMainPage);
+	}
+	
 	private void ReaderInput(object sender, EventArgs e)
 	{
 		if(!string.IsNullOrEmpty(ReaderName.Text) && !string.IsNullOrEmpty(ReaderSurname.Text) && !string.IsNullOrEmpty(ReaderPhoneNumber.Text) &&
@@ -54,6 +71,8 @@ public partial class AddReaderPage : ContentPage
 			dbContext.SaveChanges();
 			ID = newRecord.Id;
 		}
-		await DisplayAlert("Powiadomienie", "Przy³ó¿ kartê NFC aby zapisaæ dane czytelnika", "Dalej");
+		await DisplayAlert("Powiadomienie", $"Przy³ó¿ kartê NFC aby zapisaæ dane czytelnika {ID}", "Dalej");
+		_nfc.WriteNfcTag(ID);
 	}
+	
 }

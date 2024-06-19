@@ -10,8 +10,8 @@ namespace Library
 	{
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
-			base.OnCreate(savedInstanceState);
 			CrossNFC.Init(this);
+			base.OnCreate(savedInstanceState);
 		}
 
 		protected override void OnResume()
@@ -25,5 +25,10 @@ namespace Library
 			base.OnNewIntent(intent);
 			CrossNFC.OnNewIntent(intent);
 		}
+		protected override void OnPause()
+		{
+			base.OnPause();
+		}
+
 	}
 }

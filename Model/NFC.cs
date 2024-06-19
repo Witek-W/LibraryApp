@@ -1,23 +1,28 @@
-﻿using Plugin.NFC;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Plugin.NFC;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static Org.BouncyCastle.Bcpg.Attr.ImageAttrib;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Library.Model
 {
+	
     class NFC
     {
 		public event EventHandler<string> MessageReceived;
-		public event EventHandler<string> MessagePublished;
-		public const string MIME_TYPE = "application/com.companyname.library";
+		public event EventHandler<int> MessagePublished;
 		public NFCNdefTypeFormat _type;
+		private int ID;
 
 		public NFC()
 		{
 			CrossNFC.Current.OnMessageReceived += Current_OnMessageReceived;
+			CrossNFC.Current.OnTagDiscovered += Current_OnTagDiscovered;
+			CrossNFC.Current.OnMessagePublished += Current_OnMessagePublished;
 		}
 		//Read NFC
 		private void Current_OnMessageReceived(ITagInfo tagInfo)
@@ -34,6 +39,31 @@ namespace Library.Model
 				}
 			}
 		}
+		private void Current_OnMessagePublished(ITagInfo tagInfo)
+		{
+			//StopWriteNfcTag();
+			MessagePublished?.Invoke(this, ID);
+		}
+		private async void Current_OnTagDiscovered(ITagInfo tagInfo, bool format)
+		{
+			if (!CrossNFC.Current.IsWritingTagSupported)
+			{
+				return;
+			}
+			
+			if (ID != 0)
+			{
+				NFCNdefRecord record = new NFCNdefRecord
+				{
+					TypeFormat = NFCNdefTypeFormat.WellKnown,
+					Payload = NFCUtils.EncodeToByteArray(ID.ToString()),
+				};
+				tagInfo.Records = new[] { record };
+				
+				CrossNFC.Current.PublishMessage(tagInfo);
+			}
+		}
+
 		private string GetTextFromPayload(byte[] payload)
 		{
 			var statusByte = payload[0];
@@ -52,6 +82,16 @@ namespace Library.Model
 			CrossNFC.Current.StopListening();
 		}
 		//Write NFC
-		
+		public void WriteNfcTag(int id)
+		{
+			ID = id;
+			CrossNFC.Current.StartListening();
+			CrossNFC.Current.StartPublishing();
+		}
+		public void StopWriteNfcTag()
+		{
+			CrossNFC.Current.StopListening();
+			CrossNFC.Current.StopPublishing();
+		}
 	}
 }

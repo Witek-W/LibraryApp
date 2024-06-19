@@ -68,4 +68,5 @@ public partial class RentBookPage : ContentPage
 			button2hide.IsVisible = false;
 		}
 	}
+	
 }
