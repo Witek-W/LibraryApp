@@ -106,6 +106,9 @@
 	  <MauiXaml Update="Pages\ManageLibraryPages\ManageLibraryPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\Popups\WriteNFCWaiting.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\RentBookPages\RentBookManual.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

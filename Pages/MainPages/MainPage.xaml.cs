@@ -1,7 +1,6 @@
 ﻿using Library.Model;
 using Library.Pages.MainPages;
 using Library.Pages.ManageLibraryPages;
-using Library.ViewModel;
 
 namespace Library
 {

@@ -1,5 +1,6 @@
 using Library.Model;
 using Plugin.NFC;
+using Library.Pages.Popups;
 
 namespace Library.Pages.ManageLibraryPages;
 
@@ -8,6 +9,7 @@ public partial class AddReaderPage : ContentPage
 	private readonly LibraryDbContext _context;
 	private int ID;
 	private NFCNdefTypeFormat _type;
+	private WriteNFCWaiting _writenfcwaiting;
 	public AddReaderPage()
 	{
 		CrossNFC.Current.OnTagDiscovered += Current_OnTagDiscovered;
@@ -17,11 +19,18 @@ public partial class AddReaderPage : ContentPage
 		AddReaderButton.IsEnabled = false;
 		
 	}
-	private void ReturnMainPage()
+	async Task ShowPopup()
 	{
-		MainPage refreshMainPage = new MainPage();
-		NavigationPage.SetHasBackButton(refreshMainPage, false);
-		Navigation.PushAsync(refreshMainPage);
+		_writenfcwaiting = new WriteNFCWaiting();
+		await Navigation.PushModalAsync(_writenfcwaiting);
+	}
+	async Task ClosePopup()
+	{
+		if (_writenfcwaiting != null)
+		{
+			await _writenfcwaiting.Change();
+			_writenfcwaiting = null;
+		}
 	}
 	private void ReaderInput(object sender, EventArgs e)
 	{
@@ -49,8 +58,9 @@ public partial class AddReaderPage : ContentPage
 			dbContext.SaveChanges();
 			ID = newRecord.Id;
 		}
-		await DisplayAlert("Powiadomienie", $"Przy³ó¿ kartê NFC aby zapisaæ dane czytelnika {ID}", "Dalej");
+		//await DisplayAlert("Powiadomienie", $"Przy³ó¿ kartê NFC aby zapisaæ dane czytelnika {ID}", "Dalej");
 		//WriteNfcTag();
+		await ShowPopup();
 		await Publish(NFCNdefTypeFormat.WellKnown);
 
 	}
@@ -95,16 +105,10 @@ public partial class AddReaderPage : ContentPage
 		{
 		}
 	}
-	private void MainPageBack()
-	{
-		MainPage BrandNew = new MainPage();
-		NavigationPage.SetHasBackButton(BrandNew, false);
-		Navigation.PushAsync(BrandNew);
-	}
 	async void Current_OnMessagePublished(ITagInfo tagInfo)
 	{
 		CrossNFC.Current.StopPublishing();
-		await DisplayAlert("Sukces!", "ID zosta³o poprawnie zapisane", "Dalej");
+		await ClosePopup();
 		ReaderName.Text = string.Empty;
 		ReaderSurname.Text = string.Empty;
 		ReaderPhoneNumber.Text = string.Empty;

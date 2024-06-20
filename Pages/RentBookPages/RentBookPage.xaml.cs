@@ -9,9 +9,12 @@ namespace Library;
 public partial class RentBookPage : ContentPage
 {
 	private readonly NFC _nfc;
+	private bool NfcEnabled = false;
+	private int ID = 0;
 	public RentBookPage()
 	{
 		InitializeComponent();
+		_nfc = new NFC(Navigation);
 		qrbutton.IsVisible = true;
 		labelhide.IsVisible = false;
 		framehide.IsVisible = false;
@@ -19,9 +22,43 @@ public partial class RentBookPage : ContentPage
 		frame2hide.IsVisible = false;
 		imagehide.IsVisible = false;
 		button2hide.IsVisible = false;
-		_nfc = new NFC(Navigation);
-		_nfc.ReadNfcTag();
+		if(!CrossNFC.Current.IsAvailable)
+		{
+			IDReaderInput.Text = "NFC jest niedostêpne";
+		} else if(!CrossNFC.Current.IsEnabled)
+		{
+			IDReaderInput.Text = "NFC jest wy³¹czone";
+		} else
+		{
+			NfcEnabled = true;
+			IDReaderInput.Text = "Przy³ó¿ kartê czytelnika";
+			_nfc.ReadNfcTag();
+		}
 		_nfc.MessageReceived += NFC_MessageReceived;
+		CrossNFC.Current.OnNfcStatusChanged += Current_OnNfcStatusChanged;
+	}
+	private void Current_OnNfcStatusChanged(bool isEnabled)
+	{
+		try
+		{
+			ID = Convert.ToInt32(IDReaderInput.Text);
+		} catch(Exception ex)
+		{
+
+		}
+		if(ID > 0)
+		{
+			return;
+		}
+		if(isEnabled)
+		{
+			_nfc.ReadNfcTag();
+			IDReaderInput.Text = "Przy³ó¿ kartê czytelnika";
+		} else
+		{
+			_nfc.StopReadNfcTag();
+			IDReaderInput.Text = "NFC jest wy³¹czone";
+		}
 	}
 	private void NFC_MessageReceived(object sender, string message)
 	{
