@@ -1,6 +1,11 @@
 using Library.Model;
 using Plugin.NFC;
 using Library.Pages.Popups;
+using Microsoft.Maui.Platform;
+using System.Security.Cryptography;
+using System.Diagnostics;
+using Microsoft.Maui.Controls.PlatformConfiguration;
+using Library;
 
 namespace Library.Pages.ManageLibraryPages;
 
@@ -17,7 +22,6 @@ public partial class AddReaderPage : ContentPage
 		InitializeComponent();
 		_context = new LibraryDbContext();
 		AddReaderButton.IsEnabled = false;
-		
 	}
 	async Task ShowPopup()
 	{
@@ -60,6 +64,7 @@ public partial class AddReaderPage : ContentPage
 		}
 		//await DisplayAlert("Powiadomienie", $"Przy³ó¿ kartê NFC aby zapisaæ dane czytelnika {ID}", "Dalej");
 		//WriteNfcTag();
+		ReaderHouseNumber.IsEnabled = false;
 		await ShowPopup();
 		await Publish(NFCNdefTypeFormat.WellKnown);
 
@@ -136,5 +141,22 @@ public partial class AddReaderPage : ContentPage
 		{
 			CrossNFC.Current.StopListening();
 		}
+	}
+
+	//Aktualizowanie strony przy w³¹czonej klawiaturze
+	private void OnEntryFocused(object sender, FocusEventArgs e)
+	{
+		if (e.IsFocused)
+		{
+			MainStackLayout.Padding = new Thickness(20, 20, 20, 260);
+		}
+		if (sender is VisualElement element)
+		{
+			MainScrollView.ScrollToAsync(element, ScrollToPosition.MakeVisible, true);
+		}
+	}
+	private void OnEntryUnfocused(object sender, FocusEventArgs e)
+	{
+		MainStackLayout.Padding = new Thickness(20, 20, 20, 20);
 	}
 }

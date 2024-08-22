@@ -1,7 +1,11 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using Android.Views.InputMethods;
+using Library.Model;
+using Library.Pages.ManageLibraryPages;
 using Plugin.NFC;
+using System.ComponentModel;
 
 namespace Library
 {
@@ -13,7 +17,6 @@ namespace Library
 			CrossNFC.Init(this);
 			base.OnCreate(savedInstanceState);
 		}
-
 		protected override void OnResume()
 		{
 			base.OnResume();
@@ -29,6 +32,5 @@ namespace Library
 		{
 			base.OnPause();
 		}
-
 	}
 }
