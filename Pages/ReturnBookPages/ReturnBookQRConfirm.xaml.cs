@@ -8,15 +8,24 @@ public partial class ReturnBookQRConfirm : ContentPage
 	private int qr;
 	private Books result;
 	private int ReservationBookLength = 2;
+	private Helpers _help;
 	public ReturnBookQRConfirm(string qrresult)
 	{
 		InitializeComponent();
 		_context = new LibraryDbContext();
 		qr = Convert.ToInt32(qrresult);
-		result = _context.Book.FirstOrDefault(p => p.Id == qr);
-		ManualResultName.Text = $"{result.Name}";
-		ManualResultAuthor.Text = $"{result.Author}";
-		ManualResultType.Text = $"{result.Type}";
+		_help = new Helpers(Navigation);
+		try
+		{
+			result = _context.Book.FirstOrDefault(p => p.Id == qr);
+			ManualResultName.Text = $"{result.Name}";
+			ManualResultAuthor.Text = $"{result.Author}";
+			ManualResultType.Text = $"{result.Type}";
+		}
+		catch
+		{
+			_help.ShowInternetError();
+		}
 	}
 	private void ReturnToMainPage(object sender, EventArgs e)
 	{
@@ -28,21 +37,28 @@ public partial class ReturnBookQRConfirm : ContentPage
 	{
 		if(result.Availability == 0)
 		{
-			result.Availability = 1;
-			result.Rental_date = null;
-			result.Planned_return_date = null;
-			result.ReaderID = null;
-			if(result.Reservation == 1)
+			try
 			{
-				DateTime dateTime = DateTime.Now;
-				dateTime = dateTime.AddDays(ReservationBookLength);
-				result.Reservation_End = dateTime;
+				result.Availability = 1;
+				result.Rental_date = null;
+				result.Planned_return_date = null;
+				result.ReaderID = null;
+				if (result.Reservation == 1)
+				{
+					DateTime dateTime = DateTime.Now;
+					dateTime = dateTime.AddDays(ReservationBookLength);
+					result.Reservation_End = dateTime;
+				}
+				_context.SaveChanges();
+				await DisplayAlert("Powiadomienie", "Ksiπøka zosta≥a zwrÛcona", "Wyjdü");
 			}
-			_context.SaveChanges();
-			await DisplayAlert("Powiadomienie", "Ksiπøka zosta≥a zwrÛcona", "Wyjdü");
+			catch
+			{
+				_help.ShowInternetError();
+			}
 		} else
 		{
-			await DisplayAlert("Ostrzeøenie", "Ksiπøka nie jest zarezerwowana", "Wyjdü");
+			await DisplayAlert("Ostrzeøenie", "Ksiπøka nie jest wypoøyczona", "Wyjdü");
 		}
 		MainPage BrandNew = new MainPage();
 		NavigationPage.SetHasBackButton(BrandNew, false);

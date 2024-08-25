@@ -15,11 +15,13 @@ public partial class AddReaderPage : ContentPage
 	private int ID;
 	private NFCNdefTypeFormat _type;
 	private WriteNFCWaiting _writenfcwaiting;
+	private Helpers _help;
 	public AddReaderPage()
 	{
 		CrossNFC.Current.OnTagDiscovered += Current_OnTagDiscovered;
 		CrossNFC.Current.OnMessagePublished += Current_OnMessagePublished;
 		InitializeComponent();
+		_help = new Helpers(Navigation);
 		_context = new LibraryDbContext();
 		AddReaderButton.IsEnabled = false;
 	}
@@ -55,12 +57,20 @@ public partial class AddReaderPage : ContentPage
 		string city = ReaderCity.Text;
 		string street = ReaderStreet.Text;
 		string housenumber = ReaderHouseNumber.Text;
-		using (var dbContext = new LibraryDbContext())
+		try
 		{
-			var newRecord = new Readers {Name = name, Surname = surname, Phone_Number = phone, City = city, Street = street, House_Number = housenumber};
-			dbContext.Readers.Add(newRecord);
-			dbContext.SaveChanges();
-			ID = newRecord.Id;
+			using (var dbContext = new LibraryDbContext())
+			{
+				var newRecord = new Readers { Name = name, Surname = surname, Phone_Number = phone, City = city, Street = street, House_Number = housenumber };
+				dbContext.Readers.Add(newRecord);
+				dbContext.SaveChanges();
+				ID = newRecord.Id;
+			}
+		}
+		catch
+		{
+			_help.ShowInternetError();
+			return;
 		}
 		//await DisplayAlert("Powiadomienie", $"Przy³ó¿ kartê NFC aby zapisaæ dane czytelnika {ID}", "Dalej");
 		//WriteNfcTag();

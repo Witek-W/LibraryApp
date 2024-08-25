@@ -8,18 +8,26 @@ public partial class RentBookQRConfirm : ContentPage
 	private int qr;
 	private int idreader;
 	private Books result;
+	private Helpers _help;
 	public RentBookQRConfirm(string qrresult,string clientid)
 	{
 		qr = Convert.ToInt32(qrresult);
 		idreader = Convert.ToInt32(clientid);
 		InitializeComponent();
+		_help = new Helpers(Navigation);
 		_context = new LibraryDbContext();
-		result = _context.Book.FirstOrDefault(p => p.Id == Convert.ToInt32(qrresult));
-		NameType.Text = $"{result.Name}";
-		AuthorType.Text = $"{result.Author}";
-		Type.Text = $"{result.Type}";
-
-		ButtonConfirm.IsEnabled = false;
+		try
+		{
+			result = _context.Book.FirstOrDefault(p => p.Id == Convert.ToInt32(qrresult));
+			NameType.Text = $"{result.Name}";
+			AuthorType.Text = $"{result.Author}";
+			Type.Text = $"{result.Type}";
+			ButtonConfirm.IsEnabled = false;
+		}
+		catch
+		{
+			_help.ShowInternetError();
+		}
 	}
 	private void RentLengthText(object sender, EventArgs e)
 	{
@@ -53,16 +61,23 @@ public partial class RentBookQRConfirm : ContentPage
 				}
 			}
 		}
-		result.Availability = 0;
-		result.Rental_date = DateTime.Now;
-		result.Planned_return_date = DateTime.Now.AddDays(Days);
-		result.ReaderID = idreader;
-		result.Reservation = 0;
-		result.Reservation_End = null;
-		result.ReservationReaderID = null;
-		_context.SaveChanges();
-		await DisplayAlert("Powiadomienie", "Ksiπøka zosta≥a wypoøyczona", "Wyjdü");
-		MainPageBack();
+		try
+		{
+			result.Availability = 0;
+			result.Rental_date = DateTime.Now;
+			result.Planned_return_date = DateTime.Now.AddDays(Days);
+			result.ReaderID = idreader;
+			result.Reservation = 0;
+			result.Reservation_End = null;
+			result.ReservationReaderID = null;
+			_context.SaveChanges();
+			await DisplayAlert("Powiadomienie", "Ksiπøka zosta≥a wypoøyczona", "Wyjdü");
+			MainPageBack();
+		}
+		catch
+		{
+			_help.ShowInternetError();
+		}
 	}
 	private void BookRentDeny(object sender, EventArgs e)
 	{

@@ -23,7 +23,8 @@ public partial class ReturnBookManual : ContentPage
 		if (!string.IsNullOrEmpty(qrnumber))
 		{
 			ButtonReturn.IsEnabled = true;
-		} else
+		}
+		else
 		{
 			ButtonReturn.IsEnabled = false;
 		}

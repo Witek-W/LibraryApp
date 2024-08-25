@@ -39,7 +39,6 @@ namespace Library
             builder.Services.AddTransient<RentBookViewModel>();
             builder.Services.AddTransient<ReturnBookPage>();
             builder.Services.AddTransient<ReturnBookViewModel>();
-            builder.Services.AddTransient<ManageLibraryPage>();
             builder.Services.AddTransient<ManageLibraryViewModel>();
 #if DEBUG
             builder.Logging.AddDebug();

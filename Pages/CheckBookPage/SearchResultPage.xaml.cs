@@ -11,6 +11,7 @@ public partial class SearchResultPage : ContentPage
 	private const int pageSize = 9;
 	private List<Model.Books> allbooks;
 	private LibraryDbContext _context;
+	private Helpers _help;
 	public SearchResultPage(List<Model.Books> results, LibraryDbContext context)
 	{
 		InitializeComponent();
@@ -18,6 +19,7 @@ public partial class SearchResultPage : ContentPage
 		LoadPage(currentPage);
 		PageNumberLabel.Text = (currentPage + 1).ToString();
 		_context = context;
+		_help = new Helpers(Navigation);
 	}
 	private void LoadPage(int pageNumber)
 	{
@@ -48,44 +50,65 @@ public partial class SearchResultPage : ContentPage
 	{
 		Button button = (Button)sender;
 		var book = button.BindingContext as Model.Books;
-		bool result = await Application.Current.MainPage.DisplayAlert("Potwierdzenie", "Czy na pewno chcesz usun¹æ tê ksi¹¿kê?", "Tak", "Nie");
-		if (result)
+		try
 		{
-			int ID = book.Id;
-			var BookToDelete = _context.Book.FirstOrDefault(p => p.Id == ID);
-			if (BookToDelete != null)
+			bool result = await Application.Current.MainPage.DisplayAlert("Potwierdzenie", "Czy na pewno chcesz usun¹æ tê ksi¹¿kê?", "Tak", "Nie");
+			if (result)
 			{
-				_context.Book.Remove(BookToDelete);
-				await _context.SaveChangesAsync();
+				int ID = book.Id;
+				var BookToDelete = _context.Book.FirstOrDefault(p => p.Id == ID);
+				if (BookToDelete != null)
+				{
+					_context.Book.Remove(BookToDelete);
+					await _context.SaveChangesAsync();
 
-				MainPage refreshMainPage = new MainPage();
-				NavigationPage.SetHasBackButton(refreshMainPage, false);
-				Navigation.PushAsync(refreshMainPage);
+					MainPage refreshMainPage = new MainPage();
+					NavigationPage.SetHasBackButton(refreshMainPage, false);
+					Navigation.PushAsync(refreshMainPage);
+				}
 			}
+		} catch
+		{
+			_help.ShowInternetError();
 		}
+		
 	}
 	async void BookEditButton(object sender, EventArgs e)
 	{
 		Button button = (Button)sender;
 		var book = button.BindingContext as Model.Books;
-		bool result = await Application.Current.MainPage.DisplayAlert("Potwierdzenie", "Czy na pewno chcesz edytowaæ tê ksi¹¿kê?", "Tak", "Nie");
-		if (result)
+		try
 		{
-			int ID = book.Id;
-			EditBookPage resultsPage = new EditBookPage(ID, _context);
-			Navigation.PushAsync(resultsPage);
+			bool result = await Application.Current.MainPage.DisplayAlert("Potwierdzenie", "Czy na pewno chcesz edytowaæ tê ksi¹¿kê?", "Tak", "Nie");
+			if (result)
+			{
+				int ID = book.Id;
+				EditBookPage resultsPage = new EditBookPage(ID, _context);
+				Navigation.PushAsync(resultsPage);
+			}
+		}
+		catch
+		{
+			_help.ShowInternetError();
 		}
 	}
 	async void ReservationButton(object sender, EventArgs e)
 	{
 		Button button = (Button)sender;
 		var book = button.BindingContext as Model.Books;
-		bool result = await Application.Current.MainPage.DisplayAlert("Potwierdzenie", "Czy na pewno chcesz zarezerwowaæ te ksi¹¿kê?", "Tak", "Nie");
-		if(result)
+		try
 		{
-			int ID = book.Id;
-			ReservationPage resultPage = new ReservationPage(ID, _context);
-			Navigation.PushAsync(resultPage);
+			bool result = await Application.Current.MainPage.DisplayAlert("Potwierdzenie", "Czy na pewno chcesz zarezerwowaæ te ksi¹¿kê?", "Tak", "Nie");
+			if (result)
+			{
+				int ID = book.Id;
+				ReservationPage resultPage = new ReservationPage(ID, _context);
+				Navigation.PushAsync(resultPage);
+			}
+		}
+		catch
+		{
+			_help.ShowInternetError();
 		}
 	}
 }

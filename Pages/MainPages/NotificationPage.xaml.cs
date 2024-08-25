@@ -7,11 +7,13 @@ namespace Library.Pages.MainPages;
 public partial class NotificationPage : ContentPage
 {
 	private LibraryDbContext _context;
+	private Helpers _help;
 	public NotificationPage(IQueryable<BookWithReaderInfo> results, LibraryDbContext context)
 	{
 		InitializeComponent();
 		ResultsListView.ItemsSource = results.ToList();
 		_context = context;
+		_help = new Helpers(Navigation);
 	}
 
 	 async void SendSms(object sender, EventArgs e)
@@ -19,7 +21,16 @@ public partial class NotificationPage : ContentPage
 		Button button = (Button)sender;
 		var book = button.BindingContext as BookWithReaderInfo;
 		int ID = book.ID;
-		var result = _context.Book.FirstOrDefault(p => p.Id == ID);
+		Books result = null;
+		try
+		{
+			result = _context.Book.FirstOrDefault(p => p.Id == ID);
+		}
+		catch
+		{
+			_help.ShowInternetError();	
+		}
+
 		int? ReaderID = result.ReaderID;
 		var resultReader = _context.Readers.FirstOrDefault(p => p.Id == ReaderID);
 

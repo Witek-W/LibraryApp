@@ -2,6 +2,7 @@
 using Android.Content.PM;
 using Android.OS;
 using Android.Views.InputMethods;
+using AndroidX.AppCompat.App;
 using Library.Model;
 using Library.Pages.ManageLibraryPages;
 using Plugin.NFC;
@@ -15,6 +16,7 @@ namespace Library
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			CrossNFC.Init(this);
+			AppCompatDelegate.DefaultNightMode = AppCompatDelegate.ModeNightNo;
 			base.OnCreate(savedInstanceState);
 		}
 		protected override void OnResume()

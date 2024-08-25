@@ -9,6 +9,7 @@ public partial class ReservationPage : ContentPage
 	private int IDbook = 0;
 	private int ReaderID;
 	private Books book;
+	private Helpers _help;
 	//NFC
 	private readonly NFC _nfc;
 	private bool NfcEnabled = false;
@@ -18,13 +19,19 @@ public partial class ReservationPage : ContentPage
 		_context = context;
 		InitializeComponent();
 		_nfc = new NFC(Navigation);
+		_help = new Helpers(Navigation);
 		ButtonReservation.IsEnabled = false;
 		IDbook = ID;
-		book = _context.Book.FirstOrDefault(p => p.Id == IDbook);
+		try
+		{
+			book = _context.Book.FirstOrDefault(p => p.Id == IDbook);
+		} catch
+		{
+			_help.ShowInternetError();
+		}
 		BookName.Text = $"{book.Name}";
 		Author.Text = $"{book.Author}";
 		Type.Text = $"{book.Type}";
-
 		ReturnDate.Text = $"{book.Planned_return_date.Value.Date.ToString("dd-MM-yyyy")}";
 		if (!CrossNFC.Current.IsAvailable)
 		{
@@ -46,20 +53,27 @@ public partial class ReservationPage : ContentPage
 	async private void ReservationSend(object sender, EventArgs e)
 	{
 		ReaderID = Convert.ToInt32(ReaderEntry.Text);
-		if(book.Reservation == 1)
+		try
 		{
-			await Application.Current.MainPage.DisplayAlert("Ostrze¿enie", "Nie mo¿na zarezerwowaæ ksi¹¿ki", "WyjdŸ");
-		} else
-		{
-			book.Reservation = 1;
-			book.ReservationReaderID = ReaderID;
-			_context.SaveChanges();
-			await Application.Current.MainPage.DisplayAlert("Potwierdzenie", "Ksi¹¿ka zosta³a zarezerwowana", "Ok");
+			if (book.Reservation == 1)
+			{
+				await Application.Current.MainPage.DisplayAlert("Ostrze¿enie", "Nie mo¿na zarezerwowaæ ksi¹¿ki", "WyjdŸ");
+			}
+			else
+			{
+				book.Reservation = 1;
+				book.ReservationReaderID = ReaderID;
+				_context.SaveChanges();
+				await Application.Current.MainPage.DisplayAlert("Potwierdzenie", "Ksi¹¿ka zosta³a zarezerwowana", "Ok");
+			}
+			MainPage refreshMainPage = new MainPage();
+			NavigationPage.SetHasBackButton(refreshMainPage, false);
+			Navigation.PushAsync(refreshMainPage);
 		}
-		
-		MainPage refreshMainPage = new MainPage();
-		NavigationPage.SetHasBackButton(refreshMainPage, false);
-		Navigation.PushAsync(refreshMainPage);
+		catch
+		{
+			_help.ShowInternetError();
+		}
 	}
 	//NFC Reading
 	private void Current_OnNfcStatusChanged(bool isEnabled)

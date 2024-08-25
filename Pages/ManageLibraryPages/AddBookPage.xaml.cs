@@ -8,11 +8,12 @@ namespace Library;
 
 public partial class AddBookPage : ContentPage
 {
-	
+	private Helpers _help;
 	public AddBookPage()
 	{
 		InitializeComponent();
 		AddBookButton.IsEnabled = false;
+		_help = new Helpers(Navigation);
 	}
 	private void InputBook(object sender, EventArgs e)
 	{
@@ -29,13 +30,21 @@ public partial class AddBookPage : ContentPage
 		string name = NameBook.Text;
 		string author = AuthorBook.Text;
 		string type = TypeBook.Text;
-		string IDrecord;
-		using (var dbContext = new LibraryDbContext())
+		string IDrecord = "";
+		try
 		{
-			var newRecord = new Books { Name = name, Author = author, Type = type, Availability = 1, Rental_date = null, Planned_return_date = null, ReaderID = null};
-			dbContext.Book.Add(newRecord);
-			dbContext.SaveChanges();
-			IDrecord = newRecord.Id.ToString();
+			using (var dbContext = new LibraryDbContext())
+			{
+				var newRecord = new Books { Name = name, Author = author, Type = type, Availability = 1, Rental_date = null, Planned_return_date = null, ReaderID = null };
+				dbContext.Book.Add(newRecord);
+				dbContext.SaveChanges();
+				IDrecord = newRecord.Id.ToString();
+			}
+		}
+		catch
+		{
+			_help.ShowInternetError();
+			return;
 		}
 		QRCodeGenerator qrGenerator = new QRCodeGenerator();
 		QRCodeData qrCodeData = qrGenerator.CreateQrCode(IDrecord, QRCodeGenerator.ECCLevel.H);
