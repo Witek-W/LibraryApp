@@ -19,11 +19,11 @@ namespace Library
 		private IQueryable<BookWithReaderInfo> notifications;
 		public MainPage()
 		{
-			InitializeComponent();
-			refreshanimate.IsAnimationEnabled = false;
-			_context = new LibraryDbContext();
 			DateTime today = DateTime.Now;
-			notifications = _context.Book.Where(p => p.Planned_return_date < today).Join(_context.Readers,
+			_context = new LibraryDbContext();
+			try
+			{
+				notifications = _context.Book.Where(p => p.Planned_return_date < today).Join(_context.Readers,
 							book => book.ReaderID,
 							Readers => Readers.Id,
 							(Books, Readers) => new BookWithReaderInfo
@@ -35,24 +35,38 @@ namespace Library
 								ReaderSurname = Readers.Surname,
 								Planned_return = Books.Planned_return_date.Value.Date.ToString("dd-MM-yyyy")
 							});
-			if (notifications.Count() > 0 && notifications.Count() < 99)
-			{
-				NotificationsView.Text = notifications.Count().ToString();
-				FrameNotification.IsVisible = true;
-				bellanimation.IsVisible = true;
-				bellstatic.IsVisible = false;
-
-			} else if(notifications.Count() >= 99) {
-				NotificationsView.Text = "99";
-				FrameNotification.IsVisible = true;
-				bellanimation.IsVisible = true;
-				bellstatic.IsVisible = false;
 			}
-			else
+			catch (Exception ex)
 			{
-				FrameNotification.IsVisible = false;
-				bellanimation.IsVisible = false;
-				bellstatic.IsVisible = true;
+				ErrorStartPage BrandNew = new ErrorStartPage();
+				NavigationPage.SetHasBackButton(BrandNew, false);
+				Navigation.PushAsync(BrandNew);
+			}
+			InitializeComponent();
+			refreshanimate.IsAnimationEnabled = false;
+			if (notifications != null) {
+				IconsLayout.IsVisible = true;
+				if (notifications.Count() > 0 && notifications.Count() < 99)
+				{
+					NotificationsView.Text = notifications.Count().ToString();
+					FrameNotification.IsVisible = true;
+					bellanimation.IsVisible = true;
+					bellstatic.IsVisible = false;
+
+				}
+				else if (notifications.Count() >= 99)
+				{
+					NotificationsView.Text = "99";
+					FrameNotification.IsVisible = true;
+					bellanimation.IsVisible = true;
+					bellstatic.IsVisible = false;
+				}
+				else
+				{
+					FrameNotification.IsVisible = false;
+					bellanimation.IsVisible = false;
+					bellstatic.IsVisible = true;
+				}
 			}
 		}
 		private void CheckBookPageButton(object sender, EventArgs e)
