@@ -45,8 +45,7 @@
                 <Label Grid.Row="10" Grid.Column="0" HorizontalOptions="Start" Grid.ColumnSpan="7" VerticalOptions="Start"
                        Text="ID czytelnika" TextColor="#6f78df" FontSize="16" FontAttributes="Bold" Margin="12,0,0,6"/>
                 <Frame Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="10" CornerRadius="30" Padding="0" BorderColor="Gray"/>
-                <Entry Grid.Row="11" Grid.Column="2" Grid.ColumnSpan="7"  Placeholder="Wpisz ID czytelnika"  PlaceholderColor="Gray"
-                       VerticalOptions="Center" FontSize="15" x:Name="ReaderEntry" TextChanged="IDreaderEntry"/>
+                <Label Grid.Row="11" Grid.Column="2" Grid.ColumnSpan="7" VerticalOptions="Center" FontSize="15" x:Name="ReaderEntry"/>
                 <Frame Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="#6f78df"
                        WidthRequest="40" HeightRequest="40" CornerRadius="50" HorizontalOptions="Center"/>
                 <Image Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center"
