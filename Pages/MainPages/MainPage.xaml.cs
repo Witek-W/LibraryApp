@@ -45,8 +45,9 @@ namespace Library
 			InitializeComponent();
 			refreshanimate.IsAnimationEnabled = false;
 			if (notifications != null) {
+				var res = notifications.Count();
 				IconsLayout.IsVisible = true;
-				if (notifications.Count() > 0 && notifications.Count() < 99)
+				if (res > 0 && res < 99)
 				{
 					NotificationsView.Text = notifications.Count().ToString();
 					FrameNotification.IsVisible = true;
@@ -54,7 +55,7 @@ namespace Library
 					bellstatic.IsVisible = false;
 
 				}
-				else if (notifications.Count() >= 99)
+				else if (res >= 99)
 				{
 					NotificationsView.Text = "99";
 					FrameNotification.IsVisible = true;

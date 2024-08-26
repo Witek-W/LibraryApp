@@ -63,6 +63,14 @@ public partial class EditBookPage : ContentPage
 					bookToUpdate.Type = TypeEntry;
 				}
 				_context.SaveChanges();
+				MainStackLayout.Padding = new Thickness(20, 20, 20, 20);
+				EntryName.IsEnabled = false;
+				EntryName.IsEnabled = true;
+				EntryAuthor.IsEnabled = false;
+				EntryAuthor.IsEnabled = true;
+				EntryType.IsEnabled = false;
+				EntryType.IsEnabled = true;
+
 				Application.Current.MainPage.DisplayAlert("Potwierdzenie", "Ksi¹¿ka zosta³a zedytowana", "Ok");
 				MainPage refreshMainPage = new MainPage();
 				NavigationPage.SetHasBackButton(refreshMainPage, false);
@@ -72,6 +80,13 @@ public partial class EditBookPage : ContentPage
 		catch
 		{
 			_help.ShowInternetError();
+		}
+	}
+	private void OnFocused(object sender, FocusEventArgs e)
+	{
+		if (e.IsFocused)
+		{
+			MainStackLayout.Padding = new Thickness(20, 20, 20, 260);
 		}
 	}
 }

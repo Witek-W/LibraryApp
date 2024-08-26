@@ -44,6 +44,20 @@ public partial class AddReaderPage : ContentPage
 			!string.IsNullOrEmpty(ReaderCity.Text) && !string.IsNullOrEmpty(ReaderStreet.Text) && !string.IsNullOrEmpty(ReaderHouseNumber.Text))
 		{
 			AddReaderButton.IsEnabled = true;
+			MainStackLayout.Padding = new Thickness(20, 20, 20, 20);
+
+			ReaderHouseNumber.IsEnabled = false;
+			ReaderHouseNumber.IsEnabled = true;
+			ReaderSurname.IsEnabled = false;
+			ReaderSurname.IsEnabled = true;
+			ReaderPhoneNumber.IsEnabled = false;
+			ReaderPhoneNumber.IsEnabled = true;
+			ReaderCity.IsEnabled = false;
+			ReaderCity.IsEnabled = true;
+			ReaderStreet.IsEnabled = false;
+			ReaderStreet.IsEnabled = true;
+			ReaderName.IsEnabled = false;
+			ReaderName.IsEnabled = true;
 		} else
 		{
 			AddReaderButton.IsEnabled = false;
@@ -160,13 +174,5 @@ public partial class AddReaderPage : ContentPage
 		{
 			MainStackLayout.Padding = new Thickness(20, 20, 20, 260);
 		}
-		if (sender is VisualElement element)
-		{
-			MainScrollView.ScrollToAsync(element, ScrollToPosition.MakeVisible, true);
-		}
-	}
-	private void OnEntryUnfocused(object sender, FocusEventArgs e)
-	{
-		MainStackLayout.Padding = new Thickness(20, 20, 20, 20);
 	}
 }
