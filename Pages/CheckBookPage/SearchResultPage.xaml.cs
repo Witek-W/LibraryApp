@@ -1,6 +1,7 @@
 using epj.Expander.Maui;
 using Library.Model;
 using Library.Pages.CheckBookPage;
+using Library.Pages.Popups;
 using System.Globalization;
 
 namespace Library;
@@ -24,8 +25,34 @@ public partial class SearchResultPage : ContentPage
 	private void LoadPage(int pageNumber)
 	{
 		var booksForPage = allbooks.Skip(pageNumber * pageSize).Take(pageSize).ToList();
-		ResultsListView.ItemsSource = booksForPage;
-		currentPage = pageNumber;
+		int booksCount = booksForPage.Count();
+		if(booksCount == 0)
+		{
+			NoBooks.IsVisible = true;
+			PrevButton.IsEnabled = false;
+			NextButton.IsEnabled = false;
+		} else
+		{
+			ResultsListView.ItemsSource = booksForPage;
+			currentPage = pageNumber;
+
+			if (currentPage == 0)
+			{
+				PrevButton.IsEnabled = false;
+			}
+			else
+			{
+				PrevButton.IsEnabled = true;
+			}
+			if (booksCount < currentPage * pageSize)
+			{
+				NextButton.IsEnabled = false;
+			}
+			else
+			{
+				NextButton.IsEnabled = true;
+			}
+		}
 	}
 	public void NextPage(object sender, EventArgs e)
 	{

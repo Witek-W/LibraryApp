@@ -1,6 +1,7 @@
 ﻿using Library.Model;
 using Library.Pages.MainPages;
 using Library.Pages.ManageLibraryPages;
+using Library.Pages.Popups;
 
 namespace Library
 {
@@ -17,6 +18,7 @@ namespace Library
 	{
 		private readonly LibraryDbContext _context;
 		private IQueryable<BookWithReaderInfo> notifications;
+		private Loading load;
 		public MainPage()
 		{
 			DateTime today = DateTime.Now;
@@ -75,7 +77,6 @@ namespace Library
 			INavigation navigation = ((Button)sender).Navigation;
 			navigation.PushAsync(new CheckBookPage());
 		}
-
 		private void RentBookPageButton(object sender, EventArgs e)
 		{
 			INavigation navigation = ((Button)sender).Navigation;

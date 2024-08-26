@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
+             x:Class="Library.Pages.Popups.Loading"
+             BackgroundColor="#aaC0C0C0">
+    <Grid>
+        <Border VerticalOptions="End"
+            Background="White"
+            StrokeShape="{RoundRectangle CornerRadius=20}"
+            Margin="30"
+            Padding="10"
+            MinimumHeightRequest="220">
+            <VerticalStackLayout>
+                <skia:SKLottieView Source="LoadingSnake.json"
+                                   MaximumHeightRequest="200"
+                                   MaximumWidthRequest="180"
+                                   RepeatCount="-1"
+                                   IsVisible="True"/>
+            </VerticalStackLayout>
+        </Border>
+    </Grid>
+</ContentPage>

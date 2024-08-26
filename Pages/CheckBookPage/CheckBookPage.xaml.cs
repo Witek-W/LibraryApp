@@ -1,6 +1,7 @@
 using epj.Expander.Maui;
 using Library.Model;
 using Library.Pages.MainPages;
+using Library.Pages.Popups;
 using Library.ViewModel;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
@@ -12,6 +13,7 @@ public partial class CheckBookPage : ContentPage
 	private readonly LibraryDbContext _context;
 	private int? Availbility = null;
 	private Helpers _help;
+	private Loading _load;
 	public CheckBookPage()
 	{
 		InitializeComponent();
@@ -31,8 +33,20 @@ public partial class CheckBookPage : ContentPage
 			Availbility = null;
 		}
 	}
-	private void SearchResultClicked(object sender, EventArgs e)
+	async Task ShowPopup()
 	{
+		_load = new Loading();
+		await Navigation.PushModalAsync(_load);
+	}
+	private async void SearchResultClicked(object sender, EventArgs e)
+	{
+		SearchAuthor.IsEnabled = false;
+		SearchAuthor.IsEnabled = true;
+		SearchName.IsEnabled = false;
+		SearchName.IsEnabled = true;
+		SearchType.IsEnabled = false;
+		SearchType.IsEnabled = true;
+		await ShowPopup();
 		string Author = SearchAuthor.Text;
 		string Name = SearchName.Text;
 		string Type = SearchType.Text;
@@ -56,13 +70,14 @@ public partial class CheckBookPage : ContentPage
 		{
 			query = query.Where(p => p.Availability == Availbility);
 		}
-		
-			var results =  query.ToList();
+			var results =  await query.ToListAsync();
 			var resultsPage = new SearchResultPage(results, _context);
-			Navigation.PushAsync(resultsPage);
+			await Navigation.PushAsync(resultsPage);
+			await Navigation.PopModalAsync();
 		}
 		catch
 		{
+			await Navigation.PopModalAsync();
 			_help.ShowInternetError();
 		}
 	}

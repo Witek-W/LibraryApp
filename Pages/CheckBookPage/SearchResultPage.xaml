@@ -20,6 +20,8 @@
                        HorizontalOptions="Center"
                        FontAttributes="Bold" FontSize="16"/>
                 </Grid>
+                <Label x:Name="NoBooks" Text="Brak książek do wyświetlenia" HorizontalOptions="Center" VerticalOptions="Start" FontSize="16" 
+                       TextColor="Red" FontAttributes="Bold" IsVisible="False"/>
                 <CollectionView  x:Name="ResultsListView">
                     <CollectionView.ItemTemplate> 
                         <DataTemplate>
@@ -159,11 +161,11 @@
                 <Grid ColumnDefinitions=".40*,.20*,.40*"
                       ColumnSpacing="10"
                       Padding="10">
-                    <Button Grid.Column="0" Text="Poprzednia strona" Clicked="PreviousPage" BackgroundColor="#6f78df"/>
+                    <Button Grid.Column="0" Text="Poprzednia strona" Clicked="PreviousPage" BackgroundColor="#6f78df" x:Name="PrevButton"/>
                     <Label Grid.Column="1" Text="" x:Name="PageNumberLabel"
                            HorizontalOptions="Center" VerticalOptions="Center"
                            FontSize="Large"/>
-                    <Button Grid.Column="2" Text="Następna strona" Clicked="NextPage" BackgroundColor="#6f78df"/>
+                    <Button Grid.Column="2" Text="Następna strona" Clicked="NextPage" BackgroundColor="#6f78df" x:Name="NextButton"/>
                 </Grid>
             </StackLayout>
         </ScrollView>
