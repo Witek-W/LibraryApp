@@ -91,10 +91,22 @@
 	  <MauiXaml Update="Pages\CheckBookPage\ReservationPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\MainPages\ChoiceBook.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\MainPages\EditReader.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\MainPages\ErrorStartPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\MainPages\NotificationPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\MainPages\QRMainPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\MainPages\ReaderChoice.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\ManageLibraryPages\AddBookPage.xaml">
@@ -151,6 +163,6 @@
 	  <PackageReference Update="Microsoft.Maui.Controls" Version="8.0.20" />
 	</ItemGroup>
 
-	<ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadDebuggerTimeoutExceptionLibraryHideInfoBar="True" /></VisualStudio></ProjectExtensions>
+	<ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadDebuggerTimeoutExceptionLibraryHideInfoBar="True" XamarinHotReloadUnhandledDeviceExceptionLibraryHideInfoBar="True" /></VisualStudio></ProjectExtensions>
 
 </Project>

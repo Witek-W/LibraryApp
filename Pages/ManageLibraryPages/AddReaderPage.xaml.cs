@@ -172,7 +172,7 @@ public partial class AddReaderPage : ContentPage
 	{
 		if (e.IsFocused)
 		{
-			MainStackLayout.Padding = new Thickness(20, 20, 20, 260);
+			MainStackLayout.Padding = new Thickness(20, 20, 20, 280);
 		}
 	}
 }

@@ -8,6 +8,18 @@
              x:DataType="viewmodel:MainViewModel">
     <NavigationPage.TitleView>
         <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" x:Name="IconsLayout" IsVisible="False">
+            <ImageButton Source="qr.png" HorizontalOptions="Center" VerticalOptions="Center"
+                         AbsoluteLayout.LayoutBounds="0.01, 0.8, 50,50"
+                         AbsoluteLayout.LayoutFlags="PositionProportional"
+                         MaximumWidthRequest="45"
+                         MaximumHeightRequest="45"
+                         Clicked="QRButton"/>
+            <ImageButton Source="idcardbold.png" HorizontalOptions="Center" VerticalOptions="Center"
+                         AbsoluteLayout.LayoutBounds="0.23, 0.8, 50,50"
+                         AbsoluteLayout.LayoutFlags="PositionProportional"
+                         MaximumWidthRequest="47"
+                         MaximumHeightRequest="47"
+                         Clicked="IDReaderButton"/>
             <skia:SKLottieView Source="bell.json" HorizontalOptions="Center" VerticalOptions="Center"
                          AbsoluteLayout.LayoutBounds="0.96, 0.8, 50,50"
                          AbsoluteLayout.LayoutFlags="PositionProportional"

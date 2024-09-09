@@ -12,7 +12,8 @@
                 <!-- Nazwa książki -->
                 <Frame Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="10" CornerRadius="30" Padding="0" BorderColor="Gray"/>
                 <Label Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="3" VerticalOptions="Center" Text="Tytuł książki: "/>
-                <Label Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="5" VerticalOptions="Center" HorizontalOptions="Start" x:Name="ManualResultName"/>
+                <Label Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="5" VerticalOptions="Center" HorizontalOptions="Start" x:Name="ManualResultName" 
+                       LineBreakMode="TailTruncation"/>
                 <Frame Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="#6f78df"
                        WidthRequest="40" HeightRequest="40" CornerRadius="50" HorizontalOptions="Center"/>
                 <Image Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center"
@@ -20,7 +21,8 @@
                 <!-- Autor książki -->
                 <Frame Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="10" CornerRadius="30" Padding="0" BorderColor="Gray"/>
                 <Label Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3" VerticalOptions="Center" Text="Autor książki: "/>
-                <Label Grid.Row="4" Grid.Column="5" Grid.ColumnSpan="5" VerticalOptions="Center" HorizontalOptions="Start" x:Name="ManualResultAuthor"/>
+                <Label Grid.Row="4" Grid.Column="5" Grid.ColumnSpan="5" VerticalOptions="Center" HorizontalOptions="Start" x:Name="ManualResultAuthor"
+                       LineBreakMode="TailTruncation"/>
                 <Frame Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="#6f78df"
                        WidthRequest="40" HeightRequest="40" CornerRadius="50" HorizontalOptions="Center"/>
                 <Image Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center"
@@ -28,7 +30,8 @@
                 <!-- Gatunek książki -->
                 <Frame Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="10" CornerRadius="30" Padding="0" BorderColor="Gray"/>
                 <Label Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="3" VerticalOptions="Center" Text="Gatunek książki: "/>
-                <Label Grid.Row="6" Grid.Column="5" Grid.ColumnSpan="5" VerticalOptions="Center" HorizontalOptions="Start" x:Name="ManualResultType"/>
+                <Label Grid.Row="6" Grid.Column="5" Grid.ColumnSpan="5" VerticalOptions="Center" HorizontalOptions="Start" x:Name="ManualResultType"
+                       LineBreakMode="TailTruncation"/>
                 <Frame Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="#6f78df"
                        WidthRequest="40" HeightRequest="40" CornerRadius="50" HorizontalOptions="Center"/>
                 <Image Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center"

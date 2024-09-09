@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Library.Pages.MainPages.ChoiceBook">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="20" x:Name="MainStackLayout">
+                <Grid RowDefinitions="25,20,55,20,55,20,55,20,35"
+                  ColumnDefinitions=".10*,.10*,.10*,.10*,.10*,.10*,.10*,.10*,.10*,.10*">
+                    <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="10" HorizontalOptions="Center" VerticalOptions="Center"
+                       FontAttributes="Bold" FontSize="18" Text="Książka którą zeskanowałeś" TextColor="#6f78df"/>
+                    <!--Tytul ksiazki -->
+                    <Frame Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="10" CornerRadius="30" Padding="0" BorderColor="Gray"/>
+                    <Label Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="3" VerticalOptions="Center" Text="Tytuł książki: "/>
+                    <Label Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="5" VerticalOptions="Center" HorizontalOptions="Start" Text="" x:Name="BookName"/>
+                    <Frame Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="#6f78df"
+                       WidthRequest="40" HeightRequest="40" CornerRadius="50" HorizontalOptions="Center"/>
+                    <Image Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center"
+                       Source="booktitle.png" WidthRequest="25" HeightRequest="25"/>
+                    <!-- Autor ksiazki -->
+                    <Frame Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="10" CornerRadius="30" Padding="0" BorderColor="Gray"/>
+                    <Label Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3" VerticalOptions="Center" Text="Autor książki: "/>
+                    <Label Grid.Row="4" Grid.Column="5" Grid.ColumnSpan="5" VerticalOptions="Center" HorizontalOptions="Start" Text="" x:Name="Author"/>
+                    <Frame Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="#6f78df"
+                       WidthRequest="40" HeightRequest="40" CornerRadius="50" HorizontalOptions="Center"/>
+                    <Image Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center"
+                       Source="user.png" WidthRequest="25" HeightRequest="25"/>
+                    <!-- Gatunek ksiazki -->
+                    <Frame Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="10" CornerRadius="30" Padding="0" BorderColor="Gray"/>
+                    <Label Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="4" VerticalOptions="Center" Text="Gatunek książki: "/>
+                    <Label Grid.Row="6" Grid.Column="5" Grid.ColumnSpan="5" VerticalOptions="Center" HorizontalOptions="Start"
+                       Margin="10,0,0,0" Text="" x:Name="Type"/>
+                    <Frame Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="#6f78df"
+                       WidthRequest="40" HeightRequest="40" CornerRadius="50" HorizontalOptions="Center"/>
+                    <Image Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center"
+                       Source="booktype.png" WidthRequest="25" HeightRequest="25"/>
+                    <!-- Przyciski -->
+                    <Button Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="4" BackgroundColor="Red" WidthRequest="150" HeightRequest="40"
+                            CornerRadius="50" HorizontalOptions="Start" VerticalOptions="Center" Text="Usuń książkę" Clicked="DeleteBook"/>
+                    <Button Grid.Row="8" Grid.Column="6" Grid.ColumnSpan="4" BackgroundColor="Green" WidthRequest="150" HeightRequest="40"
+                            CornerRadius="50" HorizontalOptions="End" VerticalOptions="Center" Text="Edytuj książkę" Clicked="EditBook"/>
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

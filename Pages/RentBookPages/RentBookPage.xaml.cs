@@ -65,10 +65,10 @@ public partial class RentBookPage : ContentPage
 		Device.BeginInvokeOnMainThread(() =>
 		{
 			IDReaderInput.Text = message;
+			qrbutton.IsEnabled = true;
 			_nfc.StopReadNfcTag();
 		});
 	}
-
 	private void RentBookQRClicked(object sender, EventArgs e)
 	{
 		string id = IDReaderInput.Text;
@@ -105,5 +105,14 @@ public partial class RentBookPage : ContentPage
 			button2hide.IsVisible = false;
 		}
 	}
-	
+	private void entryhidechanged(object sender, EventArgs e)
+	{
+		if(!string.IsNullOrEmpty(entryhide.Text))
+		{
+			button2hide.IsEnabled = true;
+		} else
+		{
+			button2hide.IsEnabled = false;
+		}
+	}
 }

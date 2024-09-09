@@ -27,19 +27,19 @@
                        Text="Wpisz ID książki" TextColor="#6f78df" FontSize="16" FontAttributes="Bold" Margin="0,0,0,6"
                        VerticalOptions="Center"/>
                 <Button Grid.Row="5" Grid.RowSpan="2" Grid.Column="1"  Grid.ColumnSpan="8" CornerRadius="25" BackgroundColor="#6f78df"
-                        Text="Skanuj kod QR książki" FontSize="16" FontAttributes="Bold" x:Name="qrbutton" Clicked="RentBookQRClicked"/>
+                        Text="Skanuj kod QR książki" FontSize="16" FontAttributes="Bold" x:Name="qrbutton" IsEnabled="False" Clicked="RentBookQRClicked"/>
                 <!-- ID ksiazki -->
                 <Label Grid.Row="5" Grid.Column="0" HorizontalOptions="Center" Grid.ColumnSpan="3" x:Name="labelhide"
                        Text="ID książki" TextColor="#6f78df" FontSize="16" FontAttributes="Bold" Margin="0,0,0,6"/>
                 <Frame Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="10" CornerRadius="30" Padding="0" BorderColor="Gray" x:Name="framehide"/>
                 <Entry Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="7"  Placeholder="Wpisz ID książki"  PlaceholderColor="Gray"
-                       VerticalOptions="Center" FontSize="15" x:Name="entryhide"/>
+                       VerticalOptions="Center" FontSize="15" x:Name="entryhide" TextChanged="entryhidechanged"/>
                 <Frame Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="#6f78df"
                        WidthRequest="40" HeightRequest="40" CornerRadius="50" HorizontalOptions="Center" x:Name="frame2hide"/>
                 <Image Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center"
                        Source="bookid.png" WidthRequest="25" HeightRequest="25" x:Name="imagehide"/>
                 <Button Grid.Row="8" Grid.Column="1"  Grid.ColumnSpan="8" CornerRadius="25" BackgroundColor="#6f78df"
-                        Text="Wypożycz książkę" FontSize="16" FontAttributes="Bold" x:Name="button2hide" Clicked="RentBookManualClicked"/>
+                        Text="Wypożycz książkę" FontSize="16" FontAttributes="Bold" x:Name="button2hide" IsEnabled="False" Clicked="RentBookManualClicked"/>
             </Grid>
         </StackLayout>
     </VerticalStackLayout>

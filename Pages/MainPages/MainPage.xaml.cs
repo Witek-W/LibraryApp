@@ -23,6 +23,7 @@ namespace Library
 		{
 			DateTime today = DateTime.Now;
 			_context = new LibraryDbContext();
+			Application.Current.UserAppTheme = AppTheme.Light;
 			try
 			{
 				notifications = _context.Book.Where(p => p.Planned_return_date < today).Join(_context.Readers,
@@ -103,6 +104,17 @@ namespace Library
 			NotificationPage resultsPage = new NotificationPage(notifications, _context);
 			Navigation.PushAsync(resultsPage);
 		}
+		private void QRButton(object sender, EventArgs e)
+		{
+			QRMainPage resultsPage = new QRMainPage();
+			Navigation.PushAsync(resultsPage);
+		}
+		private void IDReaderButton(object sender, EventArgs e)
+		{
+			ReaderChoice resultsPage = new ReaderChoice();
+			Navigation.PushAsync(resultsPage);
+		}
+		
 		private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
 		{
 			refreshanimate.IsAnimationEnabled = true;
