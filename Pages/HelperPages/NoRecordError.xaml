@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Library.Pages.HelperPages.NoRecordError">
+    <VerticalStackLayout>
+        <StackLayout Padding="10">
+            <Grid RowDefinitions="300,80,60">
+                <Image Grid.Row="0" Source="nosql.png" HorizontalOptions="Center" VerticalOptions="End" WidthRequest="250" HeightRequest="250"/>
+                <Label Grid.Row="1" Text="Brak odpowiadającego rekordu w bazie danych" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"
+                FontSize="20" FontAttributes="Bold" Padding="10"/>
+                <Button Grid.Row="2" Text="Powrót do menu" WidthRequest="220" BackgroundColor="#6f78df" FontSize="16" FontAttributes="Bold" Clicked="ReturnButton"/>
+            </Grid>
+        </StackLayout>
+    </VerticalStackLayout>
+</ContentPage>

@@ -9,18 +9,31 @@ public partial class ReturnBookQRConfirm : ContentPage
 	private Books result;
 	private int ReservationBookLength = 2;
 	private Helpers _help;
+	private string PhoneNumerReader = "";
+	private ApiSms _sms;
 	public ReturnBookQRConfirm(string qrresult)
 	{
 		InitializeComponent();
 		_context = new LibraryDbContext();
 		qr = Convert.ToInt32(qrresult);
+		_sms = new ApiSms();
 		_help = new Helpers(Navigation);
 		try
 		{
 			result = _context.Book.FirstOrDefault(p => p.Id == qr);
+			if(result == null)
+			{
+				_help.ShowSQLError();
+				return;
+			}
 			ManualResultName.Text = $"{result.Name}";
 			ManualResultAuthor.Text = $"{result.Author}";
 			ManualResultType.Text = $"{result.Type}";
+			if(result.Reservation == 1)
+			{
+				var reader = _context.Readers.FirstOrDefault(p => p.Id == result.ReservationReaderID);
+				PhoneNumerReader = reader.Phone_Number;
+			}
 		}
 		catch
 		{
@@ -43,11 +56,21 @@ public partial class ReturnBookQRConfirm : ContentPage
 				result.Rental_date = null;
 				result.Planned_return_date = null;
 				result.ReaderID = null;
+				result.SmsSendApi = 0;
 				if (result.Reservation == 1)
 				{
 					DateTime dateTime = DateTime.Now;
 					dateTime = dateTime.AddDays(ReservationBookLength);
 					result.Reservation_End = dateTime;
+					string number = "48" + PhoneNumerReader;
+					string message = $"Dzien dobry. Informujemy, ze zarezerwowana ksiazka pod tytulem: {result.Name} jest ju¿ dostepna do wypozyczenia.";
+					try
+					{
+						_sms.SendSmsToReader(message, number);
+					} catch
+					{
+
+					}
 				}
 				_context.SaveChanges();
 				await DisplayAlert("Powiadomienie", "Ksi¹¿ka zosta³a zwrócona", "WyjdŸ");

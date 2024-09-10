@@ -19,6 +19,11 @@ public partial class RentBookQRConfirm : ContentPage
 		try
 		{
 			result = _context.Book.FirstOrDefault(p => p.Id == Convert.ToInt32(qrresult));
+			if(result == null)
+			{
+				_help.ShowSQLError();
+				return;
+			}
 			NameType.Text = $"{result.Name}";
 			AuthorType.Text = $"{result.Author}";
 			Type.Text = $"{result.Type}";

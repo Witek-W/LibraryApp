@@ -107,7 +107,7 @@ public partial class RentBookPage : ContentPage
 	}
 	private void entryhidechanged(object sender, EventArgs e)
 	{
-		if(!string.IsNullOrEmpty(entryhide.Text))
+		if(!string.IsNullOrEmpty(entryhide.Text) && int.TryParse(IDReaderInput.Text, out int b))
 		{
 			button2hide.IsEnabled = true;
 		} else

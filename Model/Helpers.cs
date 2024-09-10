@@ -1,4 +1,5 @@
-﻿using Library.Pages.MainPages;
+﻿using Library.Pages.HelperPages;
+using Library.Pages.MainPages;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,13 @@ namespace Library.Model
 		public void ShowInternetError()
 		{
 			ErrorStartPage BrandNew = new ErrorStartPage();
+			NavigationPage.SetHasBackButton(BrandNew, false);
+			_navigation.PushAsync(BrandNew);
+		}
+		//SqlError
+		public void ShowSQLError()
+		{
+			NoRecordError BrandNew = new NoRecordError();
 			NavigationPage.SetHasBackButton(BrandNew, false);
 			_navigation.PushAsync(BrandNew);
 		}

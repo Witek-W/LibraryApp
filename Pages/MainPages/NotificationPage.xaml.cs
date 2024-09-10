@@ -34,7 +34,7 @@ public partial class NotificationPage : ContentPage
 		int? ReaderID = result.ReaderID;
 		var resultReader = _context.Readers.FirstOrDefault(p => p.Id == ReaderID);
 
-		string message = $"Dzieñ Dobry. Niezw³ocznie prosimy Pana/Pani¹ o oddanie zaleg³ej ksi¹¿ki pod tytu³em: {result.Name}. Ksi¹¿ka mia³a zostaæ zwrócona dnia: {result.Planned_return_date.Value.Date.ToString("dd-MM-yyyy")}.";
+		string message = $"Dzien dobry. Niezwlocznie prosimy Pana/Pania o oddanie zaleglej ksiazki pod tytulem: {result.Name}. Ksiazka miala zostac zwrocona dnia: {result.Planned_return_date.Value.Date.ToString("dd-MM-yyyy")}.";
 
 		await SmsMethod(message, resultReader.Phone_Number);
 	}

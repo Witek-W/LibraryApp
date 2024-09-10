@@ -18,6 +18,7 @@ public  class Books
 	public DateTime? Rental_date { get; set; }
 	[Column("Planned return date")]
 	public DateTime? Planned_return_date { get; set; }
+	public int SmsSendApi { get; set; }
 	public int? ReaderID { get; set; }
 	public int? Reservation {  get; set; }
 	[Column("Reservation End")]

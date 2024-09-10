@@ -19,6 +19,11 @@ public partial class ChoiceBook : ContentPage
 		try
 		{
 			result = _context.Book.FirstOrDefault(p => p.Id == IDBook);
+			if(result == null)
+			{
+				_help.ShowSQLError();
+				return;
+			}
 		}
 		catch
 		{
