@@ -145,7 +145,7 @@ public partial class AddReaderPage : ContentPage
 		ReaderStreet.Text = string.Empty;
 		ReaderHouseNumber.Text = string.Empty;
 		ID = 0;
-
+		await Navigation.PopAsync();
 	}
 	protected override void OnAppearing()
 	{

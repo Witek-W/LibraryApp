@@ -11,10 +11,12 @@ public partial class ReaderChoice : ContentPage
 	private readonly LibraryDbContext _context;
 	private bool NfcEnabled = false;
 	private int ID = 0;
+	private Helpers _help;
 	public ReaderChoice()
 	{
 		InitializeComponent();
 		_nfc = new NFC(Navigation);
+		_help = new Helpers(Navigation);
 		_context = new LibraryDbContext();
 		if (!CrossNFC.Current.IsAvailable)
 		{
@@ -71,25 +73,32 @@ public partial class ReaderChoice : ContentPage
 			_nfc.StopReadNfcTag();
 		});
 	}
-	private void EditButtonClick(object sender, EventArgs e)
+	private async void EditButtonClick(object sender, EventArgs e)
 	{
-		EditReader edit = new EditReader(ID);
-		Navigation.PushAsync(edit);
+		var user = await _context.Readers.FirstOrDefaultAsync(p => p.Id == ID);
+		if(user != null)
+		{
+			EditReader edit = new EditReader(ID);
+			Navigation.PushAsync(edit);
+		} else
+		{
+			_help.ShowSQLError();
+		}
 	}
 	private async void DeleteButtonClick(object sender, EventArgs e)
-	{
-		await Delete();
-		MainPage Main = new MainPage();
-		NavigationPage.SetHasBackButton(Main, false);
-		Navigation.PushAsync(Main);
-	}
-	private async Task Delete()
 	{
 		var ReaderToDelete = await _context.Readers.FirstOrDefaultAsync(p => p.Id == ID);
 		if (ReaderToDelete != null)
 		{
 			_context.Readers.Remove(ReaderToDelete);
 			await _context.SaveChangesAsync();
+			MainPage Main = new MainPage();
+			NavigationPage.SetHasBackButton(Main, false);
+			Navigation.PushAsync(Main);
+		}
+		else
+		{
+			_help.ShowSQLError();
 		}
 	}
 }

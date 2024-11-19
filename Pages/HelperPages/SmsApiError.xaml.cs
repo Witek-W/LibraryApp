@@ -6,4 +6,10 @@ public partial class SmsApiError : ContentPage
 	{
 		InitializeComponent();
 	}
+	private void TryMainPage(object sender, EventArgs e)
+	{
+		MainPage BrandNew = new MainPage();
+		NavigationPage.SetHasBackButton(BrandNew, false);
+		Navigation.PushAsync(BrandNew);
+	}
 }

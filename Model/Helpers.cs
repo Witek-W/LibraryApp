@@ -31,5 +31,12 @@ namespace Library.Model
 			NavigationPage.SetHasBackButton(BrandNew, false);
 			_navigation.PushAsync(BrandNew);
 		}
+		//SMSApiError
+		public void ShowSMSApiError()
+		{
+			SmsApiError BrandNew = new SmsApiError();
+			NavigationPage.SetHasBackButton(BrandNew, false);
+			_navigation.PushAsync(BrandNew);
+		}
 	}
 }

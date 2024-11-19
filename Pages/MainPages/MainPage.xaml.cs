@@ -3,6 +3,7 @@ using Library.Pages.MainPages;
 using Library.Pages.ManageLibraryPages;
 using Library.Pages.Popups;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Maui.Controls;
 
 namespace Library
 {
@@ -23,10 +24,13 @@ namespace Library
 		private List<BookWithReaderInfo> notifications;
 		private Loading load;
 		private ApiSms _sms;
+		private Helpers _help;
+		private bool smsApiFail = false;
 		public MainPage()
 		{
 			_context = new LibraryDbContext();
 			_sms = new ApiSms();
+			_help = new Helpers(Navigation);
 			var network = Connectivity.Current.NetworkAccess;
 			Application.Current.UserAppTheme = AppTheme.Light;
 			InitializeComponent();
@@ -62,19 +66,33 @@ namespace Library
 							   Phone_Number = Readers.Phone_Number
 						   }).ToListAsync();
 			notifications = notificationss;
+			smsApiFail = false;
+			int apiNumber = 1;
 			foreach (var not in notificationss)
 			{
 				string number = "48" + not.Phone_Number;
-				string message = $"Dzień Dobry. Niezwłocznie prosimy Pana/Panią o oddanie zaległej książki pod tytułem: {not.ReaderName}. " +
+				string message = $"Dzień Dobry. Niezwłocznie prosimy Pana/Panią o oddanie zaległej książki pod tytułem: {not.BookName}. " +
 									$"Książka miała zostać zwrócona dnia: {not.Planned_return}.";
-				await _sms.SendSmsToReader(message, number);
+				try
+				{
+					await _sms.SendSmsToReader(message, number);
+				} catch
+				{
+					smsApiFail = true;
+				}
+				if(smsApiFail)
+				{
+					apiNumber = 2;
+				}
 				var bookToUpdate = _context.Book.FirstOrDefault(p => p.Id == not.ID);
 				if (bookToUpdate != null)
 				{
-					bookToUpdate.SmsSendApi = 1;
+					bookToUpdate.SmsSendApi = apiNumber;
 				}
+
 			}
 			await _context.SaveChangesAsync();
+			if (smsApiFail) _help.ShowSMSApiError();
 		}
 		private void CheckBookPageButton(object sender, EventArgs e)
 		{

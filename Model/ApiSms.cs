@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Maui.Controls;
 using SMSApi.Api;
 
 namespace Library.Model
 {
-    internal class ApiSms
+    public class ApiSms
     {
 		public async Task SendSmsToReader(string Text, string Number)
 		{

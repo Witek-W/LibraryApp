@@ -59,6 +59,7 @@
 	<ItemGroup>
 	  <None Remove="Resources\Images\bell.png" />
 	  <None Remove="Resources\Images\library.png" />
+	  <None Remove="Resources\Images\nocredits.png" />
 	  <None Remove="Resources\Images\refresh.png" />
 	</ItemGroup>
 
@@ -93,6 +94,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\HelperPages\NoRecordError.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\HelperPages\SmsApiError.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\MainPages\ChoiceBook.xaml">
