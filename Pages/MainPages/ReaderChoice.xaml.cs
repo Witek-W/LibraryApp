@@ -78,7 +78,7 @@ public partial class ReaderChoice : ContentPage
 		var user = await _context.Readers.FirstOrDefaultAsync(p => p.Id == ID);
 		if(user != null)
 		{
-			EditReader edit = new EditReader(ID);
+			EditReader edit = new EditReader(user);
 			Navigation.PushAsync(edit);
 		} else
 		{

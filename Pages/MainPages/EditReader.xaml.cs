@@ -1,4 +1,5 @@
 using Library.Model;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Maui.Controls;
 
 namespace Library.Pages.MainPages;
@@ -9,12 +10,23 @@ public partial class EditReader : ContentPage
 	private LibraryDbContext _context;
 	private int IDReader;
 	private Helpers _help;
-	public EditReader(int ID)
+	private Readers editedUser;
+	public EditReader(Readers user)
 	{
 		InitializeComponent();
+		editedUser = user;
 		_context = new LibraryDbContext();
-		IDReader = ID;
 		_help = new Helpers(Navigation);
+		SettingPlaceholders();
+	}
+	private void SettingPlaceholders()
+	{
+		ReaderName.Placeholder = $"Poprzednie: {editedUser.Name}";
+		ReaderSurname.Placeholder = $"Poprzednie: {editedUser.Surname}";
+		ReaderPhoneNumber.Placeholder = $"Poprzednie: {editedUser.Phone_Number}";
+		ReaderCity.Placeholder = $"Poprzednie: {editedUser.City}";
+		ReaderStreet.Placeholder = $"Poprzednie: {editedUser.Street}";
+		ReaderHouseNumber.Placeholder = $"Poprzednie: {editedUser.House_Number}";
 	}
 	private void ReaderInput(object sender, EventArgs e)
 	{
@@ -51,7 +63,7 @@ public partial class EditReader : ContentPage
 			MainStackLayout.Padding = new Thickness(20, 20, 20, 260);
 		}
 	}
-	private void EditReaderButton(object sender, EventArgs e)
+	private async void EditReaderButton(object sender, EventArgs e)
 	{
 		NewName = ReaderName.Text;
 		NewSurname = ReaderSurname.Text;
@@ -61,7 +73,7 @@ public partial class EditReader : ContentPage
 		NewHouseNumber = ReaderHouseNumber.Text;
 		try
 		{
-			var EditReader = _context.Readers.FirstOrDefault(p => p.Id == IDReader);
+			var EditReader = await _context.Readers.FirstOrDefaultAsync(p => p.Id == editedUser.Id);
 			if(EditReader != null)
 			{
 				if(NewName != null)
@@ -88,7 +100,7 @@ public partial class EditReader : ContentPage
 				{
 					EditReader.House_Number = NewHouseNumber;
 				}
-				_context.SaveChanges();
+				await _context.SaveChangesAsync();
 				Application.Current.MainPage.DisplayAlert("Potwierdzenie", "Dane czytelnika zosta³y zmienione", "Ok");
 				MainPage refreshMainPage = new MainPage();
 				NavigationPage.SetHasBackButton(refreshMainPage, false);
