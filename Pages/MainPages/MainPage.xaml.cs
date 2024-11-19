@@ -65,7 +65,6 @@ namespace Library
 							   Planned_return = Books.Planned_return_date.Value.Date.ToString("dd-MM-yyyy"),
 							   Phone_Number = Readers.Phone_Number
 						   }).ToListAsync();
-			notifications = notificationss;
 			smsApiFail = false;
 			int apiNumber = 1;
 			foreach (var not in notificationss)
@@ -122,7 +121,7 @@ namespace Library
 		}
 		private void NotificationButton(object sender, EventArgs e)
 		{
-			NotificationPage resultsPage = new NotificationPage(notifications, _context);
+			NotificationPage resultsPage = new NotificationPage(_context);
 			Navigation.PushAsync(resultsPage);
 		}
 		private void QRButton(object sender, EventArgs e)
