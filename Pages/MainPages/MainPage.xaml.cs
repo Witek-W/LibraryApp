@@ -20,101 +20,55 @@ namespace Library
 	public partial class MainPage : ContentPage
 	{
 		private readonly LibraryDbContext _context;
-		private IQueryable<BookWithReaderInfo> notifications;
+		private List<BookWithReaderInfo> notifications;
 		private Loading load;
 		private ApiSms _sms;
 		public MainPage()
 		{
-			DateTime today = DateTime.Now;
 			_context = new LibraryDbContext();
 			_sms = new ApiSms();
+			var network = Connectivity.Current.NetworkAccess;
 			Application.Current.UserAppTheme = AppTheme.Light;
-			try
+			InitializeComponent();
+			refreshanimate.IsAnimationEnabled = false;
+			IconsLayout.IsVisible = true;
+			bellanimation.IsVisible = false;
+			bellstatic.IsVisible = true;
+			//Wysyłanie SMS
+			if (network == NetworkAccess.Internet)
 			{
-				notifications = _context.Book.Where(p => p.Planned_return_date < today && p.SmsSendApi == 0).Join(_context.Readers,
-							book => book.ReaderID,
-							Readers => Readers.Id,
-							(Books, Readers) => new BookWithReaderInfo
-							{
-								ID = Books.Id,
-								BookName = Books.Name,
-								BookAuthor = Books.Author,
-								ReaderName = Readers.Name,
-								ReaderSurname = Readers.Surname,
-								Planned_return = Books.Planned_return_date.Value.Date.ToString("dd-MM-yyyy"),
-								Phone_Number = Readers.Phone_Number
-							});
+				SendingSms();
 			}
-			catch (Exception ex)
+			else
 			{
 				ErrorStartPage BrandNew = new ErrorStartPage();
 				NavigationPage.SetHasBackButton(BrandNew, false);
 				Navigation.PushAsync(BrandNew);
 			}
-			//Sending sms
-			foreach (var not in notifications)
-			{
-				string number = "48" + not.Phone_Number;
-				string message = $"Dzien Dobry. Niezwlocznie prosimy Pana/Pania o oddanie zaleglej ksiazki pod tytulem: {not.BookName}. " +
-									$"Ksiazka miala zostac zwrocona dnia: {not.Planned_return}.";
-				try
-				{
-					_sms.SendSmsToReader(message, number);
-				}
-				catch
-				{
-					return;
-				}
-
-				using (var context = new LibraryDbContext())
-				{
-					var bookToUpdate = context.Book.FirstOrDefault(p => p.Id == not.ID);
-					if (bookToUpdate != null)
-					{
-						bookToUpdate.SmsSendApi = 1;
-						context.SaveChanges();
-					}
-				}
-			}
-			 
-
-			InitializeComponent();
-			refreshanimate.IsAnimationEnabled = false;
-			if (notifications != null) {
-				var res = notifications.Count();
-				IconsLayout.IsVisible = true;
-				if (res > 0 && res < 99)
-				{
-					NotificationsView.Text = notifications.Count().ToString();
-					FrameNotification.IsVisible = true;
-					bellanimation.IsVisible = true;
-					bellstatic.IsVisible = false;
-
-				}
-				else if (res >= 99)
-				{
-					NotificationsView.Text = "99";
-					FrameNotification.IsVisible = true;
-					bellanimation.IsVisible = true;
-					bellstatic.IsVisible = false;
-				}
-				else
-				{
-					FrameNotification.IsVisible = false;
-					bellanimation.IsVisible = false;
-					bellstatic.IsVisible = true;
-				}
-			}
 		}
-		private async Task SendingSms()
+		private async void SendingSms()
 		{
-			foreach (var not in notifications)
+			var notificationss = await _context.Book.Where(p => p.Planned_return_date < DateTime.Now && p.SmsSendApi == 0).Join(_context.Readers,
+						   book => book.ReaderID,
+						   Readers => Readers.Id,
+						   (Books, Readers) => new BookWithReaderInfo
+						   {
+							   ID = Books.Id,
+							   BookName = Books.Name,
+							   BookAuthor = Books.Author,
+							   ReaderName = Readers.Name,
+							   ReaderSurname = Readers.Surname,
+							   Planned_return = Books.Planned_return_date.Value.Date.ToString("dd-MM-yyyy"),
+							   Phone_Number = Readers.Phone_Number
+						   }).ToListAsync();
+			notifications = notificationss;
+			foreach (var not in notificationss)
 			{
 				string number = "48" + not.Phone_Number;
 				string message = $"Dzień Dobry. Niezwłocznie prosimy Pana/Panią o oddanie zaległej książki pod tytułem: {not.ReaderName}. " +
 									$"Książka miała zostać zwrócona dnia: {not.Planned_return}.";
-				//_sms.SendSmsToReader(message, number);
-				var bookToUpdate = await _context.Book.FirstOrDefaultAsync(p => p.Id == not.ID);
+				await _sms.SendSmsToReader(message, number);
+				var bookToUpdate = _context.Book.FirstOrDefault(p => p.Id == not.ID);
 				if (bookToUpdate != null)
 				{
 					bookToUpdate.SmsSendApi = 1;

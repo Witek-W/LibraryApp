@@ -9,7 +9,7 @@ namespace Library.Model
 {
     internal class ApiSms
     {
-		public void SendSmsToReader(string Text, string Number)
+		public async Task SendSmsToReader(string Text, string Number)
 		{
 			//IClient client = new ClientOAuth("***REMOVED***");
 			//var smsApi = new SMSFactory(client, new ProxyHTTP("https://api.smsapi.pl/"));

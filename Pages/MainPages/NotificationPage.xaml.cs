@@ -8,7 +8,7 @@ public partial class NotificationPage : ContentPage
 {
 	private LibraryDbContext _context;
 	private Helpers _help;
-	public NotificationPage(IQueryable<BookWithReaderInfo> results, LibraryDbContext context)
+	public NotificationPage(List<BookWithReaderInfo> results, LibraryDbContext context)
 	{
 		InitializeComponent();
 		ResultsListView.ItemsSource = results.ToList();
@@ -24,6 +24,7 @@ public partial class NotificationPage : ContentPage
 		Books result = null;
 		try
 		{
+			//Do zmiany?
 			result = _context.Book.FirstOrDefault(p => p.Id == ID);
 		}
 		catch

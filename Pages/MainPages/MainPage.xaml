@@ -48,15 +48,6 @@
                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
                 </skia:SKLottieView.GestureRecognizers>
             </skia:SKLottieView>
-                <Frame BackgroundColor="Red" Padding="0" WidthRequest="20" HeightRequest="20"
-                   CornerRadius="5"
-                   AbsoluteLayout.LayoutBounds="0.957,0.05,autosize,autosize"
-                   AbsoluteLayout.LayoutFlags="PositionProportional"
-                   IsVisible="True"
-                   x:Name="FrameNotification">
-                <Label Text="" x:Name="NotificationsView" TextColor="White"
-                       HorizontalOptions="Center" VerticalOptions="Center"/>
-            </Frame>
         </AbsoluteLayout>
     </NavigationPage.TitleView>
     <Grid RowDefinitions=".18*,.18*,.18*,.18*,.18*" 
