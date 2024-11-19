@@ -125,8 +125,8 @@
                              BackgroundColor="#6f78df" HorizontalOptions="End"/>
                 </Frame>
                 <Image Grid.Row="0" Grid.Column="1"
-                       Source="flatarrow.jpg"  HorizontalOptions="End" Margin="0,0,20,0"
-                       WidthRequest="55"/>
+                       Source="returnbook.png"  HorizontalOptions="End" Margin="0,0,28,0"
+                       WidthRequest="48"/>
                 <Label Grid.Row="0" Grid.ColumnSpan="2" Text="Zwróć książkę" VerticalOptions="Center" HorizontalOptions="Start" FontAttributes="Bold"
                        TextColor="White" FontSize="20" Margin="15,0,0,0"/>
             </Grid>

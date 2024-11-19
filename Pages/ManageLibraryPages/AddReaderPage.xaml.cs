@@ -132,6 +132,7 @@ public partial class AddReaderPage : ContentPage
 		}
 		catch (Exception ex)
 		{
+			Debug.WriteLine(ex);
 		}
 	}
 	async void Current_OnMessagePublished(ITagInfo tagInfo)

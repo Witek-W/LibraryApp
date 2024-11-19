@@ -40,10 +40,10 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#6f78df" BaseSize="128,128" />
+		<MauiSplashScreen Include="Resources\Splash\bookssplashscreen.png" Color="#c6c7c5" BaseSize="128,128" />
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
@@ -61,6 +61,7 @@
 	  <None Remove="Resources\Images\library.png" />
 	  <None Remove="Resources\Images\nocredits.png" />
 	  <None Remove="Resources\Images\refresh.png" />
+	  <None Remove="Resources\Images\returnbook.png" />
 	</ItemGroup>
 
 	<ItemGroup>
