@@ -37,6 +37,15 @@ public partial class NotificationPage : ContentPage
 							   Phone_Number = Readers.Phone_Number
 						   }).ToListAsync();
 			ResultsListView.ItemsSource = results;
+			if(results.Count() == 0)
+			{
+				NoUsersLabel.IsVisible = true;
+				ResultsListView.IsVisible = false;
+			} else
+			{
+				NoUsersLabel.IsVisible = false;
+				ResultsListView.IsVisible = true;
+			}
 
 		}
 		catch

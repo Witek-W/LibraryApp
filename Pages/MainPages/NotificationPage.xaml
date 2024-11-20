@@ -3,75 +3,86 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:maui="clr-namespace:epj.Expander.Maui;assembly=epj.Expander.Maui"
              x:Class="Library.Pages.MainPages.NotificationPage">
+
     <ContentPage.Content>
-        <CollectionView x:Name="ResultsListView">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <maui:Expander Animated="True" BindingContext="{Binding}">
-                        <maui:Expander.HeaderContent>
-                            <Border BackgroundColor="#6f78df"
-                                    StrokeShape="RoundRectangle 25" StrokeThickness="0"
-                                    Margin="3,3,3,0">
-                                <Grid HeightRequest="60" ColumnDefinitions=".50*,.50*" ColumnSpacing="10" Padding="10">
-                                    <Label Grid.Column="0"
-                                           Text="{Binding BookName}"
-                                           VerticalOptions="Center"
-                                           HorizontalOptions="Center"
-                                           TextColor="White" />
-                                    <Label Grid.Column="1"
-                                           Text="{Binding BookAuthor}"
-                                           VerticalOptions="Center"
-                                           HorizontalOptions="Center"
-                                           TextColor="White"/>
-                                </Grid>
-                            </Border>
-                        </maui:Expander.HeaderContent>
-                        <Grid HeightRequest="205"
-                              RowDefinitions="40,40,40,40"
-                              ColumnDefinitions=".50*,.50*"
-                              ColumnSpacing="10"
-                              Padding="10"
-                              RowSpacing="10"
-                              BackgroundColor="LightGrey"
-                              Margin="3,0,3,0"
-                              WidthRequest="310">
-                            <Label Grid.Row="0" Grid.Column="0"
-                                   Text="Imię:" 
-                                   VerticalOptions="Center" 
-                                   HorizontalOptions="Center"/>
-                            <Label Grid.Row="0" Grid.Column="1"
-                                   Text="{Binding ReaderName}" 
-                                   VerticalOptions="Center" 
-                                   HorizontalOptions="Center"/>
-                            <Label Grid.Row="1" Grid.Column="0"
-                                   Text="Nazwisko:" 
-                                   VerticalOptions="Center" 
-                                   HorizontalOptions="Center"/>
-                            <Label Grid.Row="1" Grid.Column="1"
-                                   Text="{Binding ReaderSurname}" 
-                                   VerticalOptions="Center" 
-                                   HorizontalOptions="Center"/>
-                            <Label Grid.Row="2" Grid.Column="0"
-                                   Text="Zaległa data zwrotu: " 
-                                   VerticalOptions="Center" 
-                                   HorizontalOptions="Center"/>
-                            <Label Grid.Row="2" Grid.Column="1"
-                                   Text="{Binding Planned_return}" 
-                                   VerticalOptions="Center" 
-                                   HorizontalOptions="Center"/>
-                            <Button Grid.Row="3" Grid.ColumnSpan="2"
-                                    Text="Wyślij SMS"
-                                    HorizontalOptions="Center"
-                                    VerticalOptions="Center"
-                                    WidthRequest="175"
-                                    Clicked="SendSms"
-                                    CommandParameter="{Binding ID, Mode=OneWay}"
-                                    BackgroundColor="#6f78df"
-                                    FontAttributes="Bold"/>
-                        </Grid>
-                    </maui:Expander>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+        <Grid>
+            <Label x:Name="NoUsersLabel"
+                   Text="Brak użytkowników do których możesz wysłać SMS"
+                   IsVisible="False"
+                   HorizontalOptions="FillAndExpand"
+                   HorizontalTextAlignment="Center"
+                   VerticalOptions="Start"
+                   TextColor="Red" FontSize="24"
+                   FontAttributes="Bold" />
+            <CollectionView x:Name="ResultsListView" IsVisible="True">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <maui:Expander Animated="True" BindingContext="{Binding}">
+                            <maui:Expander.HeaderContent>
+                                <Border BackgroundColor="#6f78df"
+                                        StrokeShape="RoundRectangle 25" StrokeThickness="0"
+                                        Margin="3,3,3,0">
+                                    <Grid HeightRequest="60" ColumnDefinitions=".50*,.50*" ColumnSpacing="10" Padding="10">
+                                        <Label Grid.Column="0"
+                                               Text="{Binding BookName}"
+                                               VerticalOptions="Center"
+                                               HorizontalOptions="Center"
+                                               TextColor="White" />
+                                        <Label Grid.Column="1"
+                                               Text="{Binding BookAuthor}"
+                                               VerticalOptions="Center"
+                                               HorizontalOptions="Center"
+                                               TextColor="White"/>
+                                    </Grid>
+                                </Border>
+                            </maui:Expander.HeaderContent>
+                            <Grid HeightRequest="205"
+                                  RowDefinitions="40,40,40,40"
+                                  ColumnDefinitions=".50*,.50*"
+                                  ColumnSpacing="10"
+                                  Padding="10"
+                                  RowSpacing="10"
+                                  BackgroundColor="LightGrey"
+                                  Margin="3,0,3,0"
+                                  WidthRequest="310">
+                                <Label Grid.Row="0" Grid.Column="0"
+                                       Text="Imię:" 
+                                       VerticalOptions="Center" 
+                                       HorizontalOptions="Center"/>
+                                <Label Grid.Row="0" Grid.Column="1"
+                                       Text="{Binding ReaderName}" 
+                                       VerticalOptions="Center" 
+                                       HorizontalOptions="Center"/>
+                                <Label Grid.Row="1" Grid.Column="0"
+                                       Text="Nazwisko:" 
+                                       VerticalOptions="Center" 
+                                       HorizontalOptions="Center"/>
+                                <Label Grid.Row="1" Grid.Column="1"
+                                       Text="{Binding ReaderSurname}" 
+                                       VerticalOptions="Center" 
+                                       HorizontalOptions="Center"/>
+                                <Label Grid.Row="2" Grid.Column="0"
+                                       Text="Zaległa data zwrotu: " 
+                                       VerticalOptions="Center" 
+                                       HorizontalOptions="Center"/>
+                                <Label Grid.Row="2" Grid.Column="1"
+                                       Text="{Binding Planned_return}" 
+                                       VerticalOptions="Center" 
+                                       HorizontalOptions="Center"/>
+                                <Button Grid.Row="3" Grid.ColumnSpan="2"
+                                        Text="Wyślij SMS"
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="Center"
+                                        WidthRequest="175"
+                                        Clicked="SendSms"
+                                        CommandParameter="{Binding ID, Mode=OneWay}"
+                                        BackgroundColor="#6f78df"
+                                        FontAttributes="Bold"/>
+                            </Grid>
+                        </maui:Expander>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

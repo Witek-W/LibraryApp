@@ -30,11 +30,11 @@
                     <TapGestureRecognizer Tapped="NotificationButton"/>
                 </skia:SKLottieView.GestureRecognizers>
             </skia:SKLottieView>
-            <ImageButton Source="bell.png" HorizontalOptions="Center" VerticalOptions="Center"
+            <ImageButton Source="calendarexpired.png" HorizontalOptions="Center" VerticalOptions="Center"
                          AbsoluteLayout.LayoutBounds="0.96, 0.8, 50,50"
                          AbsoluteLayout.LayoutFlags="PositionProportional"
-                         MaximumWidthRequest="50"
-                         MaximumHeightRequest="50"
+                         MaximumWidthRequest="44"
+                         MaximumHeightRequest="44"
                          Clicked="NotificationButton"
                          x:Name="bellstatic"/>
             <skia:SKLottieView Source="refresh.json"
