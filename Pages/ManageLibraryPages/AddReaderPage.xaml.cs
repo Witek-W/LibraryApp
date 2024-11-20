@@ -128,7 +128,7 @@ public partial class AddReaderPage : ContentPage
 		//Sprawdzanie i zmiana pola: Numer telefonu
 		} else if(sender == ReaderPhoneNumber)
 		{
-			if (CheckString(ReaderPhoneNumber.Text, 4) || ReaderPhoneNumber.Text.Length > 9)
+			if (CheckString(ReaderPhoneNumber.Text, 4) || ReaderPhoneNumber.Text.Length > 9 || ReaderPhoneNumber.Text.Length < 9)
 			{
 				ChangeUI(LabelPhoneNumber, FramePhoneNumber, FrameBackgroundPhoneNumber, ImagePhoneNumber, false, "phone.png");
 				ReaderPhoneNumberValid = false;
@@ -137,6 +137,7 @@ public partial class AddReaderPage : ContentPage
 			{
 				ChangeUI(LabelPhoneNumber, FramePhoneNumber, FrameBackgroundPhoneNumber, ImagePhoneNumber, true, "phone.png");
 				ReaderPhoneNumberValid = true;
+				LabelPhoneNumber.Text = "Numer telefonu";
 			}
 		//Sprawdzanie i zmiana pola: Miejscowoœæ
 		} else if(sender == ReaderCity)

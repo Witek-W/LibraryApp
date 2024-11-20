@@ -33,7 +33,7 @@
                         <Label Grid.Row="6" Grid.Column="0" HorizontalOptions="Center" Grid.ColumnSpan="4"
                            Text="Numer telefonu" TextColor="#6f78df" FontSize="16" FontAttributes="Bold" Margin="5,0,0,6" x:Name="LabelPhoneNumber"/>
                         <Frame Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="10" CornerRadius="30" Padding="0" BorderColor="Gray" x:Name="FramePhoneNumber"/>
-                        <Entry Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="7"  Placeholder="Format 123123123"  PlaceholderColor="Gray"
+                        <Entry Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="7"  Placeholder="Wpisz 9 cyfr"  PlaceholderColor="Gray"
                            VerticalOptions="Center" FontSize="15" x:Name="ReaderPhoneNumber" TextChanged="ReaderInput"  Focused="OnEntryFocused"/>
                         <Frame Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="#6f78df" x:Name="FrameBackgroundPhoneNumber"
                            WidthRequest="40" HeightRequest="40" CornerRadius="50" HorizontalOptions="Center"/>
@@ -70,7 +70,7 @@
                         <Image Grid.Row="16" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center"
                            Source="city.png" WidthRequest="25" HeightRequest="25" x:Name="ImageHouseNumber"/>
                         <Button Grid.Row="18" Grid.Column="1" Grid.ColumnSpan="8" Text="Dodaj czytelnika" BackgroundColor="#6f78df"
-                                CornerRadius="25" Clicked="AddNewReader" x:Name="AddReaderButton"/>
+                                CornerRadius="25" Clicked="AddNewReader" x:Name="AddReaderButton" FontSize="17" FontAttributes="Bold"/>
                     </Grid>
                 </StackLayout>
             </ScrollView>
