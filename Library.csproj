@@ -57,9 +57,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Remove="Resources\Images\bell.png" />
 	  <None Remove="Resources\Images\calendarexpired.png" />
-	  <None Remove="Resources\Images\expiredreturnbookdate.png" />
+	  <None Remove="Resources\Images\errorvalidation.png" />
 	  <None Remove="Resources\Images\library.png" />
 	  <None Remove="Resources\Images\nocredits.png" />
 	  <None Remove="Resources\Images\refresh.png" />
