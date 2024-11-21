@@ -12,7 +12,6 @@ public partial class EditReader : ContentPage
 	private int IDReader;
 	private Helpers _help;
 	private Readers editedUser;
-	private AddReaderPage _readerpage;
 	//Bool walidacja
 	private bool NameValid = true;
 	private bool SurnameValid = true;
@@ -25,7 +24,6 @@ public partial class EditReader : ContentPage
 		InitializeComponent();
 		editedUser = user;
 		_context = new LibraryDbContext();
-		_readerpage = new AddReaderPage();
 		_help = new Helpers(Navigation);
 		SettingPlaceholders();
 	}
@@ -62,7 +60,7 @@ public partial class EditReader : ContentPage
 		//Pole Imiê
 		if(sender == ReaderName)
 		{
-			if(_readerpage.CheckString(ReaderName.Text,3)) {
+			if(_help.CheckString(ReaderName.Text,3)) {
 				ChangeUI(LabelReaderName, FrameReaderName, FrameBackgroundReaderName, ImageReaderName, false, "name.png");
 				NameValid = false;
 			} else
@@ -73,7 +71,7 @@ public partial class EditReader : ContentPage
 		//Pole Nazwisko
 		} else if(sender == ReaderSurname)
 		{
-			if (_readerpage.CheckString(ReaderSurname.Text, 3))
+			if (_help.CheckString(ReaderSurname.Text, 3))
 			{
 				ChangeUI(LabelReaderSurname, FrameReaderSurname, FrameBackgroundReaderSurname, ImageReaderSurname, false, "name.png");
 				SurnameValid = false;
@@ -86,7 +84,7 @@ public partial class EditReader : ContentPage
 		//Pole numer telefonu
 		} else if(sender == ReaderPhoneNumber)
 		{
-			if (_readerpage.CheckString(ReaderPhoneNumber.Text, 4) || ReaderPhoneNumber.Text.Length > 9 || ReaderPhoneNumber.Text.Length < 9)
+			if (_help.CheckString(ReaderPhoneNumber.Text, 4) || ReaderPhoneNumber.Text.Length > 9 || ReaderPhoneNumber.Text.Length < 9)
 			{
 				ChangeUI(LabelPhoneNumber, FramePhoneNumber, FrameBackgroundPhoneNumber, ImagePhoneNumber, false, "phone.png");
 				PhoneNumberValid = false;
@@ -99,7 +97,7 @@ public partial class EditReader : ContentPage
 		//Pole miejscowoœæ
 		} else if(sender == ReaderCity)
 		{
-			if (_readerpage.CheckString(ReaderCity.Text, 1))
+			if (_help.CheckString(ReaderCity.Text, 1))
 			{
 				ChangeUI(LabelCity, FrameCity, FrameBackgroundCity, ImageCity, false, "city.png");
 				CityValid = false;
@@ -112,7 +110,7 @@ public partial class EditReader : ContentPage
 		//Pole ulica
 		} else if(sender == ReaderStreet)
 		{
-			if (_readerpage.CheckString(ReaderStreet.Text, 1))
+			if (_help.CheckString(ReaderStreet.Text, 1))
 			{
 				ChangeUI(LabelStreet, FrameStreet, FrameBackgroundStreet, ImageStreet, false, "city.png");
 				StreetValid = false;
@@ -125,7 +123,7 @@ public partial class EditReader : ContentPage
 		//Pole numer domu
 		} else if(sender == ReaderHouseNumber)
 		{
-			if (_readerpage.CheckString(ReaderHouseNumber.Text, 2))
+			if (_help.CheckString(ReaderHouseNumber.Text, 2))
 			{
 				ChangeUI(LabelHouseNumber, FrameHouseNumber, FrameBackgroundHouseNumber, ImageHouseNumber, false, "city.png");
 				HouseNumberValid = false;

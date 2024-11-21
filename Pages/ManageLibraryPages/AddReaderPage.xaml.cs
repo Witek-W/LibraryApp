@@ -6,7 +6,6 @@ using System.Security.Cryptography;
 using System.Diagnostics;
 using Microsoft.Maui.Controls.PlatformConfiguration;
 using Library;
-using System.Text.RegularExpressions;
 
 namespace Library.Pages.ManageLibraryPages;
 
@@ -46,40 +45,6 @@ public partial class AddReaderPage : ContentPage
 			_writenfcwaiting = null;
 		}
 	}
-	//Regex
-	public bool CheckString(string input, int variant)
-	{
-		switch (variant)
-		{
-			//Sprawdzanie czy string ma liczby i znaki specjalnie z wy³¹czeniem "-" i spacji
-			case 1:
-				var regexNumbers = new Regex(@"[^a-zA-Z¹æê³ñóœŸ¿¥ÆÊ£ÑÓŒ¯\s\-]");
-				if (regexNumbers.IsMatch(input)) return true;
-				return false;
-			//Sprawdzanie znaków specjalnych
-			case 2:
-				var regexSpecial = new Regex(@"[^\w]");
-				if (regexSpecial.IsMatch(input)) return true;
-				return false;
-			//Sprawdzanie czy ma liczby i znaki specjalne
-			case 3:
-				var regexNumberSpecial = new Regex(@"[\d\W]");
-				if (regexNumberSpecial.IsMatch(input)) return true;
-				return false;
-			//Sprawdzanie czy ma znaki i litery
-			case 4:
-				foreach(char c in input)
-				{
-					if(!char.IsDigit(c))
-					{
-						return true;
-					}
-				}
-				return false;
-			default:
-				return true;
-		}
-	}
 	//Template do zmiany UI przy b³êdnej walidacji
 	private void ChangeUI(Label label, Frame frame, Frame background, Image image, bool isValid, string imageSource)
 	{
@@ -102,7 +67,7 @@ public partial class AddReaderPage : ContentPage
 		//Sprawdzanie i zmiana pola: Imiê
 		if(sender == ReaderName)
 		{
-			if (CheckString(ReaderName.Text, 3))
+			if (_help.CheckString(ReaderName.Text, 3))
 			{
 				ChangeUI(LabelReaderName, FrameReaderName, FrameBackgroundReaderName, ImageReaderName, false, "name.png");
 				ReaderNameValid = false;
@@ -115,7 +80,7 @@ public partial class AddReaderPage : ContentPage
 		//Sprawdzanie i zmiana pola: Nazwisko
 		} else if(sender == ReaderSurname)
 		{
-			if (CheckString(ReaderSurname.Text, 3))
+			if (_help.CheckString(ReaderSurname.Text, 3))
 			{
 				ChangeUI(LabelReaderSurname, FrameReaderSurname, FrameBackgroundReaderSurname, ImageReaderSurname, false, "name.png");
 				ReaderSurnameValid = false;
@@ -128,7 +93,7 @@ public partial class AddReaderPage : ContentPage
 		//Sprawdzanie i zmiana pola: Numer telefonu
 		} else if(sender == ReaderPhoneNumber)
 		{
-			if (CheckString(ReaderPhoneNumber.Text, 4) || ReaderPhoneNumber.Text.Length > 9 || ReaderPhoneNumber.Text.Length < 9)
+			if (_help.CheckString(ReaderPhoneNumber.Text, 4) || ReaderPhoneNumber.Text.Length > 9 || ReaderPhoneNumber.Text.Length < 9)
 			{
 				ChangeUI(LabelPhoneNumber, FramePhoneNumber, FrameBackgroundPhoneNumber, ImagePhoneNumber, false, "phone.png");
 				ReaderPhoneNumberValid = false;
@@ -141,7 +106,7 @@ public partial class AddReaderPage : ContentPage
 		//Sprawdzanie i zmiana pola: Miejscowoœæ
 		} else if(sender == ReaderCity)
 		{
-			if (CheckString(ReaderCity.Text, 1))
+			if (_help.CheckString(ReaderCity.Text, 1))
 			{
 				ChangeUI(LabelCity, FrameCity, FrameBackgroundCity, ImageCity, false, "city.png");
 				ReaderCityValid = false;
@@ -154,7 +119,7 @@ public partial class AddReaderPage : ContentPage
 		//Sprawdzanie i zmiana pola: Ulica
 		} else if(sender == ReaderStreet)
 		{
-			if (CheckString(ReaderStreet.Text, 1))
+			if (_help.CheckString(ReaderStreet.Text, 1))
 			{
 				ChangeUI(LabelStreet, FrameStreet, FrameBackgroundStreet, ImageStreet, false, "city.png");
 				ReaderStreetValid = false;
@@ -167,7 +132,7 @@ public partial class AddReaderPage : ContentPage
 		//Sprawdzanie i zmiana pola: Numer domu
 		} else if(sender == ReaderHouseNumber)
 		{
-			if (CheckString(ReaderHouseNumber.Text, 2))
+			if (_help.CheckString(ReaderHouseNumber.Text, 2))
 			{
 				ChangeUI(LabelHouseNumber, FrameHouseNumber, FrameBackgroundHouseNumber, ImageHouseNumber, false, "city.png");
 				ReaderHouseNumberValid = false;
