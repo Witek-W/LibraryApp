@@ -47,7 +47,7 @@ public partial class AddReaderPage : ContentPage
 		}
 	}
 	//Regex
-	bool CheckString(string input, int variant)
+	public bool CheckString(string input, int variant)
 	{
 		switch (variant)
 		{
@@ -137,7 +137,6 @@ public partial class AddReaderPage : ContentPage
 			{
 				ChangeUI(LabelPhoneNumber, FramePhoneNumber, FrameBackgroundPhoneNumber, ImagePhoneNumber, true, "phone.png");
 				ReaderPhoneNumberValid = true;
-				LabelPhoneNumber.Text = "Numer telefonu";
 			}
 		//Sprawdzanie i zmiana pola: Miejscowoœæ
 		} else if(sender == ReaderCity)
