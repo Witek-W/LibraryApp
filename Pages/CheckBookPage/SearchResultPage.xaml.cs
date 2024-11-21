@@ -13,10 +13,12 @@ public partial class SearchResultPage : ContentPage
 	private List<Model.Books> allbooks;
 	private LibraryDbContext _context;
 	private Helpers _help;
+	private int allbooksCount;
 	public SearchResultPage(List<Model.Books> results, LibraryDbContext context)
 	{
 		InitializeComponent();
 		allbooks = results;
+		allbooksCount = allbooks.Count();
 		LoadPage(currentPage);
 		PageNumberLabel.Text = (currentPage + 1).ToString();
 		_context = context;
@@ -29,6 +31,7 @@ public partial class SearchResultPage : ContentPage
 		if(booksCount == 0)
 		{
 			NoBooks.IsVisible = true;
+			Results.IsVisible = false;
 			PrevButton.IsEnabled = false;
 			NextButton.IsEnabled = false;
 		} else
@@ -44,7 +47,7 @@ public partial class SearchResultPage : ContentPage
 			{
 				PrevButton.IsEnabled = true;
 			}
-			if (booksCount < currentPage * pageSize)
+			if (allbooksCount < (currentPage + 1) * pageSize)
 			{
 				NextButton.IsEnabled = false;
 			}

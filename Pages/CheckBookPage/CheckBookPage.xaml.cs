@@ -20,8 +20,6 @@ public partial class CheckBookPage : ContentPage
 		_context = new LibraryDbContext();
 		_help = new Helpers(Navigation);
 	}
-	//public double ScreenWidthPercentage => DeviceDisplay.MainDisplayInfo.Width * 0.8;
-	//public double ScreenHeightPercentage => DeviceDisplay.MainDisplayInfo.Height * 0.7;
 
 	private void OnSwitchToggledAval(object sender, ToggledEventArgs e)
 	{
@@ -56,11 +54,11 @@ public partial class CheckBookPage : ContentPage
 		
 		if (!string.IsNullOrEmpty(Author))
 		{
-			query = query.Where(p => p.Author == Author);
+			query = query.Where(p => p.Author.Contains(Author));
 		}
 		if (!string.IsNullOrEmpty(Name))
 		{
-			query = query.Where(p => p.Name == Name);
+			query = query.Where(p => p.Name.Contains(Name));
 		}
 		if (!string.IsNullOrEmpty(Type))
 		{
