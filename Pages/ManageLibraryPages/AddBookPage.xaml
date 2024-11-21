@@ -19,24 +19,24 @@
                        Source="booktitle.png" WidthRequest="25" HeightRequest="25"/>
                 <!-- Autor ksiazki -->
                 <Label Grid.Row="3" Grid.Column="0" HorizontalOptions="Center" Grid.ColumnSpan="3"
-                       Text="Autor książki" TextColor="#6f78df" FontSize="16" FontAttributes="Bold" Margin="0,0,0,6"/>
-                <Frame Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="10" CornerRadius="30" Padding="0" BorderColor="Gray"/>
+                       Text="Autor książki" TextColor="#6f78df" FontSize="16" FontAttributes="Bold" Margin="0,0,0,6" x:Name="LabelAuthorBook"/>
+                <Frame Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="10" CornerRadius="30" Padding="0" BorderColor="Gray" x:Name="FrameAuthorBook"/>
                 <Entry Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="7"  Placeholder="Wpisz autora książki"  PlaceholderColor="Gray"
                        VerticalOptions="Center" FontSize="15" x:Name="AuthorBook" TextChanged="InputBook"/>
-                <Frame Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="#6f78df"
+                <Frame Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="#6f78df" x:Name="FrameBackgroundAuthorBook"
                        WidthRequest="40" HeightRequest="40" CornerRadius="50" HorizontalOptions="Center"/>
                 <Image Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center"
-                       Source="user.png" WidthRequest="25" HeightRequest="25"/>
+                       Source="user.png" WidthRequest="25" HeightRequest="25" x:Name="ImageAuthorBook"/>
                 <!-- Gatunek ksiazki -->
                 <Label Grid.Row="6" Grid.Column="0" HorizontalOptions="Center" Grid.ColumnSpan="4"
-                       Text="Gatunek książki" TextColor="#6f78df" FontSize="16" FontAttributes="Bold" Margin="0,0,0,6"/>
-                <Frame Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="10" CornerRadius="30" Padding="0" BorderColor="Gray"/>
+                       Text="Gatunek książki" TextColor="#6f78df" FontSize="16" FontAttributes="Bold" Margin="0,0,0,6" x:Name="LabelTypeBook"/>
+                <Frame Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="10" CornerRadius="30" Padding="0" BorderColor="Gray" x:Name="FrameTypeBook"/>
                 <Entry Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="7"  Placeholder="Wpisz gatunek książki"  PlaceholderColor="Gray"
                        VerticalOptions="Center" FontSize="15" x:Name="TypeBook" TextChanged="InputBook"/>
-                <Frame Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="#6f78df"
+                <Frame Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="#6f78df" x:Name="FrameBackgroundTypeBook"
                        WidthRequest="40" HeightRequest="40" CornerRadius="50" HorizontalOptions="Center"/>
                 <Image Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center"
-                       Source="booktype.png" WidthRequest="25" HeightRequest="25"/>
+                       Source="booktype.png" WidthRequest="25" HeightRequest="25" x:Name="ImageTypeBook"/>
                 <Button Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="8" Text="Dodaj książkę" CornerRadius="25"
                         BackgroundColor="#6f78df" FontSize="17" FontAttributes="Bold" Clicked="AddBookClicked"
                         x:Name="AddBookButton"/>

@@ -9,15 +9,64 @@ namespace Library;
 public partial class AddBookPage : ContentPage
 {
 	private Helpers _help;
+	//Bools walidacja
+	private bool AuthorValid = true;
+	private bool TypeValid = true;
 	public AddBookPage()
 	{
 		InitializeComponent();
 		AddBookButton.IsEnabled = false;
 		_help = new Helpers(Navigation);
 	}
+	//Template UI
+	private void ChangeUI(Label label, Frame frame, Frame background, Image image, bool isValid, string imageSource)
+	{
+		if (!isValid)
+		{
+			label.TextColor = Colors.Red;
+			frame.BorderColor = Colors.Red;
+			background.BackgroundColor = Colors.Red;
+			image.Source = "errorvalidation.png";
+		}
+		else
+		{
+			label.TextColor = Color.FromArgb("#6f78df");
+			frame.BorderColor = Colors.Gray;
+			background.BackgroundColor = Color.FromArgb("#6f78df");
+			image.Source = imageSource;
+		}
+	}
 	private void InputBook(object sender, EventArgs e)
 	{
-		if(!string.IsNullOrEmpty(NameBook.Text) && !string.IsNullOrEmpty(AuthorBook.Text) && !string.IsNullOrEmpty(TypeBook.Text))
+		//Walidacja
+		//Pole autor ksiazki
+		if(sender == AuthorBook)
+		{
+			if(_help.CheckString(AuthorBook.Text,1))
+			{
+				ChangeUI(LabelAuthorBook, FrameAuthorBook, FrameBackgroundAuthorBook, ImageAuthorBook, false, "user.png");
+				AuthorValid = false;
+			} else
+			{
+				ChangeUI(LabelAuthorBook, FrameAuthorBook, FrameBackgroundAuthorBook, ImageAuthorBook, true, "user.png");
+				AuthorValid = true;
+			}
+		//Pole gatunek
+		}else if(sender == TypeBook)
+		{
+			if(_help.CheckString(TypeBook.Text,3))
+			{
+				ChangeUI(LabelTypeBook, FrameTypeBook, FrameBackgroundTypeBook, ImageTypeBook, false, "booktype.png");
+				TypeValid = false;
+			} else
+			{
+				ChangeUI(LabelTypeBook, FrameTypeBook, FrameBackgroundTypeBook, ImageTypeBook, true, "booktype.png");
+				TypeValid = true;
+			}
+		}
+
+		if(!string.IsNullOrEmpty(NameBook.Text) && !string.IsNullOrEmpty(AuthorBook.Text) && !string.IsNullOrEmpty(TypeBook.Text) && 
+			AuthorValid && TypeValid)
 		{
 			AddBookButton.IsEnabled = true;
 		} else
