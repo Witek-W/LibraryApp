@@ -36,24 +36,6 @@ public partial class EditReader : ContentPage
 		ReaderStreet.Placeholder = $"Poprzednie: {editedUser.Street}";
 		ReaderHouseNumber.Placeholder = $"Poprzednie: {editedUser.House_Number}";
 	}
-	//Template UI
-	private void ChangeUI(Label label, Frame frame, Frame background, Image image, bool isValid, string imageSource)
-	{
-		if (!isValid)
-		{
-			label.TextColor = Colors.Red;
-			frame.BorderColor = Colors.Red;
-			background.BackgroundColor = Colors.Red;
-			image.Source = "errorvalidation.png";
-		}
-		else
-		{
-			label.TextColor = Color.FromArgb("#6f78df");
-			frame.BorderColor = Colors.Gray;
-			background.BackgroundColor = Color.FromArgb("#6f78df");
-			image.Source = imageSource;
-		}
-	}
 	private void ReaderInput(object sender, EventArgs e)
 	{
 		//Walidacja danych
@@ -61,11 +43,11 @@ public partial class EditReader : ContentPage
 		if(sender == ReaderName)
 		{
 			if(_help.CheckString(ReaderName.Text,3)) {
-				ChangeUI(LabelReaderName, FrameReaderName, FrameBackgroundReaderName, ImageReaderName, false, "name.png");
+				_help.ChangeUI(LabelReaderName, FrameReaderName, FrameBackgroundReaderName, ImageReaderName, false, "name.png");
 				NameValid = false;
 			} else
 			{
-				ChangeUI(LabelReaderName, FrameReaderName, FrameBackgroundReaderName, ImageReaderName, true, "name.png");
+				_help.ChangeUI(LabelReaderName, FrameReaderName, FrameBackgroundReaderName, ImageReaderName, true, "name.png");
 				NameValid = true;
 			}
 		//Pole Nazwisko
@@ -73,12 +55,12 @@ public partial class EditReader : ContentPage
 		{
 			if (_help.CheckString(ReaderSurname.Text, 3))
 			{
-				ChangeUI(LabelReaderSurname, FrameReaderSurname, FrameBackgroundReaderSurname, ImageReaderSurname, false, "name.png");
+				_help.ChangeUI(LabelReaderSurname, FrameReaderSurname, FrameBackgroundReaderSurname, ImageReaderSurname, false, "name.png");
 				SurnameValid = false;
 			}
 			else
 			{
-				ChangeUI(LabelReaderSurname, FrameReaderSurname, FrameBackgroundReaderSurname, ImageReaderSurname, true, "name.png");
+				_help.ChangeUI(LabelReaderSurname, FrameReaderSurname, FrameBackgroundReaderSurname, ImageReaderSurname, true, "name.png");
 				SurnameValid = true;
 			}
 		//Pole numer telefonu
@@ -86,12 +68,12 @@ public partial class EditReader : ContentPage
 		{
 			if (_help.CheckString(ReaderPhoneNumber.Text, 4) || ReaderPhoneNumber.Text.Length > 9 || ReaderPhoneNumber.Text.Length < 9)
 			{
-				ChangeUI(LabelPhoneNumber, FramePhoneNumber, FrameBackgroundPhoneNumber, ImagePhoneNumber, false, "phone.png");
+				_help.ChangeUI(LabelPhoneNumber, FramePhoneNumber, FrameBackgroundPhoneNumber, ImagePhoneNumber, false, "phone.png");
 				PhoneNumberValid = false;
 			}
 			else
 			{
-				ChangeUI(LabelPhoneNumber, FramePhoneNumber, FrameBackgroundPhoneNumber, ImagePhoneNumber, true, "phone.png");
+				_help.ChangeUI(LabelPhoneNumber, FramePhoneNumber, FrameBackgroundPhoneNumber, ImagePhoneNumber, true, "phone.png");
 				PhoneNumberValid = true;
 			}
 		//Pole miejscowoœæ
@@ -99,12 +81,12 @@ public partial class EditReader : ContentPage
 		{
 			if (_help.CheckString(ReaderCity.Text, 1))
 			{
-				ChangeUI(LabelCity, FrameCity, FrameBackgroundCity, ImageCity, false, "city.png");
+				_help.ChangeUI(LabelCity, FrameCity, FrameBackgroundCity, ImageCity, false, "city.png");
 				CityValid = false;
 			}
 			else
 			{
-				ChangeUI(LabelCity, FrameCity, FrameBackgroundCity, ImageCity, true, "city.png");
+				_help.ChangeUI(LabelCity, FrameCity, FrameBackgroundCity, ImageCity, true, "city.png");
 				CityValid = true;
 			}
 		//Pole ulica
@@ -112,12 +94,12 @@ public partial class EditReader : ContentPage
 		{
 			if (_help.CheckString(ReaderStreet.Text, 1))
 			{
-				ChangeUI(LabelStreet, FrameStreet, FrameBackgroundStreet, ImageStreet, false, "city.png");
+				_help.ChangeUI(LabelStreet, FrameStreet, FrameBackgroundStreet, ImageStreet, false, "city.png");
 				StreetValid = false;
 			}
 			else
 			{
-				ChangeUI(LabelStreet, FrameStreet, FrameBackgroundStreet, ImageStreet, true, "city.png");
+				_help.ChangeUI(LabelStreet, FrameStreet, FrameBackgroundStreet, ImageStreet, true, "city.png");
 				StreetValid = true;
 			}
 		//Pole numer domu
@@ -125,12 +107,12 @@ public partial class EditReader : ContentPage
 		{
 			if (_help.CheckString(ReaderHouseNumber.Text, 2))
 			{
-				ChangeUI(LabelHouseNumber, FrameHouseNumber, FrameBackgroundHouseNumber, ImageHouseNumber, false, "city.png");
+				_help.ChangeUI(LabelHouseNumber, FrameHouseNumber, FrameBackgroundHouseNumber, ImageHouseNumber, false, "city.png");
 				HouseNumberValid = false;
 			}
 			else
 			{
-				ChangeUI(LabelHouseNumber, FrameHouseNumber, FrameBackgroundHouseNumber, ImageHouseNumber, true, "city.png");
+				_help.ChangeUI(LabelHouseNumber, FrameHouseNumber, FrameBackgroundHouseNumber, ImageHouseNumber, true, "city.png");
 				HouseNumberValid = true;
 			}
 		}

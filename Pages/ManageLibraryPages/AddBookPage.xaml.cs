@@ -18,24 +18,6 @@ public partial class AddBookPage : ContentPage
 		AddBookButton.IsEnabled = false;
 		_help = new Helpers(Navigation);
 	}
-	//Template UI
-	private void ChangeUI(Label label, Frame frame, Frame background, Image image, bool isValid, string imageSource)
-	{
-		if (!isValid)
-		{
-			label.TextColor = Colors.Red;
-			frame.BorderColor = Colors.Red;
-			background.BackgroundColor = Colors.Red;
-			image.Source = "errorvalidation.png";
-		}
-		else
-		{
-			label.TextColor = Color.FromArgb("#6f78df");
-			frame.BorderColor = Colors.Gray;
-			background.BackgroundColor = Color.FromArgb("#6f78df");
-			image.Source = imageSource;
-		}
-	}
 	private void InputBook(object sender, EventArgs e)
 	{
 		//Walidacja
@@ -44,11 +26,11 @@ public partial class AddBookPage : ContentPage
 		{
 			if(_help.CheckString(AuthorBook.Text,1))
 			{
-				ChangeUI(LabelAuthorBook, FrameAuthorBook, FrameBackgroundAuthorBook, ImageAuthorBook, false, "user.png");
+				_help.ChangeUI(LabelAuthorBook, FrameAuthorBook, FrameBackgroundAuthorBook, ImageAuthorBook, false, "user.png");
 				AuthorValid = false;
 			} else
 			{
-				ChangeUI(LabelAuthorBook, FrameAuthorBook, FrameBackgroundAuthorBook, ImageAuthorBook, true, "user.png");
+				_help.ChangeUI(LabelAuthorBook, FrameAuthorBook, FrameBackgroundAuthorBook, ImageAuthorBook, true, "user.png");
 				AuthorValid = true;
 			}
 		//Pole gatunek
@@ -56,11 +38,11 @@ public partial class AddBookPage : ContentPage
 		{
 			if(_help.CheckString(TypeBook.Text,3))
 			{
-				ChangeUI(LabelTypeBook, FrameTypeBook, FrameBackgroundTypeBook, ImageTypeBook, false, "booktype.png");
+				_help.ChangeUI(LabelTypeBook, FrameTypeBook, FrameBackgroundTypeBook, ImageTypeBook, false, "booktype.png");
 				TypeValid = false;
 			} else
 			{
-				ChangeUI(LabelTypeBook, FrameTypeBook, FrameBackgroundTypeBook, ImageTypeBook, true, "booktype.png");
+				_help.ChangeUI(LabelTypeBook, FrameTypeBook, FrameBackgroundTypeBook, ImageTypeBook, true, "booktype.png");
 				TypeValid = true;
 			}
 		}

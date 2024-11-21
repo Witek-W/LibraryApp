@@ -74,5 +74,23 @@ namespace Library.Model
 					return true;
 			}
 		}
+		//Template do zmiany UI
+		public void ChangeUI(Label label, Frame frame, Frame background, Image image, bool isValid, string imageSource)
+		{
+			if (!isValid)
+			{
+				label.TextColor = Colors.Red;
+				frame.BorderColor = Colors.Red;
+				background.BackgroundColor = Colors.Red;
+				image.Source = "errorvalidation.png";
+			}
+			else
+			{
+				label.TextColor = Color.FromArgb("#6f78df");
+				frame.BorderColor = Colors.Gray;
+				background.BackgroundColor = Color.FromArgb("#6f78df");
+				image.Source = imageSource;
+			}
+		}
 	}
 }
