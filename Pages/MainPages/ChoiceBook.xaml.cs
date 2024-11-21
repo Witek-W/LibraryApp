@@ -52,9 +52,6 @@ public partial class ChoiceBook : ContentPage
 		{
 			_context.Book.Remove(BookToDelete);
 			_context.SaveChangesAsync();
-		} else
-		{
-			
 		}
 	}
 }

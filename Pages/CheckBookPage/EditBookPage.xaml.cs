@@ -10,6 +10,9 @@ public partial class EditBookPage : ContentPage
 	private string TypeEntry;
 	private int IDbook = 0;
 	private Helpers _help;
+	//Boole walidacja
+	private bool AuthorValid = true;
+	private bool TypeValid = true;
 	public EditBookPage(int ID, LibraryDbContext context)
 	{
 		_context = context;
@@ -32,7 +35,36 @@ public partial class EditBookPage : ContentPage
 	}
 	private void EditEntry(object sender, EventArgs e)
 	{
-		if(!string.IsNullOrEmpty(EntryName.Text) || !string.IsNullOrEmpty(EntryAuthor.Text) || !string.IsNullOrEmpty(EntryType.Text))
+		//Walidacja
+		//Pole autir
+		if(sender == EntryAuthor)
+		{
+			if (_help.CheckString(EntryAuthor.Text, 1))
+			{
+				_help.ChangeUI(LabelAuthorBook, FrameAuthorBook, FrameBackgroundAuthorBook, ImageAuthorBook, false, "user.png");
+				AuthorValid = false;
+			}
+			else
+			{
+				_help.ChangeUI(LabelAuthorBook, FrameAuthorBook, FrameBackgroundAuthorBook, ImageAuthorBook, true, "user.png");
+				AuthorValid = true;
+			}
+		//Pole gatunek
+		}else if(sender == EntryType)
+		{
+			if (_help.CheckString(EntryType.Text, 3))
+			{
+				_help.ChangeUI(LabelTypeBook, FrameTypeBook, FrameBackgroundTypeBook, ImageTypeBook, false, "booktype.png");
+				TypeValid = false;
+			}
+			else
+			{
+				_help.ChangeUI(LabelTypeBook, FrameTypeBook, FrameBackgroundTypeBook, ImageTypeBook, true, "booktype.png");
+				TypeValid = true;
+			}
+		}
+
+		if(!string.IsNullOrEmpty(EntryName.Text) || (!string.IsNullOrEmpty(EntryAuthor.Text) && AuthorValid) || (!string.IsNullOrEmpty(EntryType.Text) && TypeValid))
 		{
 			EditButtonConfirm.IsEnabled = true;
 		} else
