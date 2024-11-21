@@ -1,73 +1,73 @@
+using CommunityToolkit.Mvvm.ComponentModel;
 using epj.Expander.Maui;
 using Library.Model;
 using Library.Pages.CheckBookPage;
 using Library.Pages.Popups;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Globalization;
 
 namespace Library;
 
 public partial class SearchResultPage : ContentPage
 {
-	private int currentPage = 0;
-	private const int pageSize = 9;
-	private List<Model.Books> allbooks;
+	private const int pageSize = 13;
+	private bool isLoading = false;
+	public List<Item> _allBooksList;
+	public ObservableCollection<Item> Items { get; set; } = new ObservableCollection<Item>();
 	private LibraryDbContext _context;
 	private Helpers _help;
-	private int allbooksCount;
+	public class Item
+	{
+		public string Name { get; set; }
+		public string Author { get; set; }
+		public string Type { get; set; }
+		public int Availability { get; set; }
+	}
 	public SearchResultPage(List<Model.Books> results, LibraryDbContext context)
 	{
+		BindingContext = this;
 		InitializeComponent();
-		allbooks = results;
-		allbooksCount = allbooks.Count();
-		LoadPage(currentPage);
-		PageNumberLabel.Text = (currentPage + 1).ToString();
+		_allBooksList = results.Select(p => new Item
+		{
+			Name = p.Name,
+			Author = p.Author,
+			Type = p.Type,
+			Availability = p.Availability,
+		}).ToList();
+		LoadMoreItems();
 		_context = context;
 		_help = new Helpers(Navigation);
 	}
-	private void LoadPage(int pageNumber)
+	
+	private async void LoadMoreItems()
 	{
-		var booksForPage = allbooks.Skip(pageNumber * pageSize).Take(pageSize).ToList();
-		int booksCount = booksForPage.Count();
-		if(booksCount == 0)
+		Items.Clear();
+		var records = _allBooksList.Take(pageSize).ToList();
+		foreach(var record in records)
 		{
-			NoBooks.IsVisible = true;
-			Results.IsVisible = false;
-			PrevButton.IsEnabled = false;
-			NextButton.IsEnabled = false;
-		} else
-		{
-			ResultsListView.ItemsSource = booksForPage;
-			currentPage = pageNumber;
-
-			if (currentPage == 0)
-			{
-				PrevButton.IsEnabled = false;
-			}
-			else
-			{
-				PrevButton.IsEnabled = true;
-			}
-			if (allbooksCount < (currentPage + 1) * pageSize)
-			{
-				NextButton.IsEnabled = false;
-			}
-			else
-			{
-				NextButton.IsEnabled = true;
-			}
+			Items.Add(record);
 		}
 	}
-	public void NextPage(object sender, EventArgs e)
+	public async void LoadMoreRecords(object sender, EventArgs e)
 	{
-		LoadPage(currentPage + 1);
-		PageNumberLabel.Text = (currentPage + 1).ToString();
-	}
-	public void PreviousPage(object sender, EventArgs e)
-	{
-		if(currentPage > 0)
+		if (isLoading) return;
+		if (Items.Count >= _allBooksList.Count)
 		{
-			LoadPage(currentPage - 1);
-			PageNumberLabel.Text = (currentPage + 1).ToString();
+			LoadingIcon.IsVisible = false;
+			collection.RemainingItemsThreshold = -1;
+			return;
+		}
+		if(_allBooksList?.Count > 0)
+		{
+			isLoading = true;
+			await Task.Delay(1000);
+			var records = _allBooksList.Skip(Items.Count).Take(pageSize).ToList();
+			foreach (var record in records)
+			{
+				Items.Add(record);
+			}
+			isLoading = false;
 		}
 	}
 
