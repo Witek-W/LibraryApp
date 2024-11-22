@@ -70,7 +70,7 @@
                         <Image Grid.Row="16" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center"
                                Source="city.png" WidthRequest="25" HeightRequest="25" x:Name="ImageHouseNumber"/>
                         <Button Grid.Row="18" Grid.Column="1" Grid.ColumnSpan="8" Text="Edytuj dane czytelnika" BackgroundColor="#6f78df"
-                        CornerRadius="25" Clicked="EditReaderButton" x:Name="AddReaderButton" FontSize="16" IsEnabled="False"/>
+                                CornerRadius="25" Clicked="EditReaderButton" x:Name="AddReaderButton" FontSize="17" FontAttributes="Bold" IsEnabled="False"/>
                     </Grid>
                 </StackLayout>
             </ScrollView>

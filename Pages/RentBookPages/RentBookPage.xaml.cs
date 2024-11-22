@@ -9,12 +9,15 @@ namespace Library;
 public partial class RentBookPage : ContentPage
 {
 	private readonly NFC _nfc;
+	private readonly Helpers _help;
 	private bool NfcEnabled = false;
 	private int ID = 0;
+	private bool IDBookValid = true;
 	public RentBookPage()
 	{
 		InitializeComponent();
 		_nfc = new NFC(Navigation);
+		_help = new Helpers(Navigation);
 		qrbutton.IsVisible = true;
 		labelhide.IsVisible = false;
 		framehide.IsVisible = false;
@@ -107,7 +110,18 @@ public partial class RentBookPage : ContentPage
 	}
 	private void entryhidechanged(object sender, EventArgs e)
 	{
-		if(!string.IsNullOrEmpty(entryhide.Text) && int.TryParse(IDReaderInput.Text, out int b))
+		//Walidacja ID ksiazki
+		if(_help.CheckString(entryhide.Text,4))
+		{
+			_help.ChangeUI(labelhide, framehide, frame2hide, imagehide, false, "bookid.png");
+			IDBookValid = false;
+		} else
+		{
+			_help.ChangeUI(labelhide, framehide, frame2hide, imagehide, true, "bookid.png");
+			IDBookValid = true;
+		}
+
+		if(!string.IsNullOrEmpty(entryhide.Text) && IDBookValid)
 		{
 			button2hide.IsEnabled = true;
 		} else

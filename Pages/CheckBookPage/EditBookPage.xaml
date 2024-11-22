@@ -6,7 +6,7 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Padding="20" x:Name="MainStackLayout">
-                <Grid RowDefinitions="20,20,55,20,55,20,55,10,20,2,30,55,10,30,55,10,30,55,10,40"
+                <Grid RowDefinitions="25,20,55,20,55,20,55,10,25,2,30,55,10,30,55,10,30,55,10,50"
                       ColumnDefinitions=".10*,.10*,.10*,.10*,.10*,.10*,.10*,.10*,.10*,.10*">
                     <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="10" HorizontalOptions="Center" VerticalOptions="Center"
                            FontAttributes="Bold" FontSize="16" Text="Książka którą edytujesz:" TextColor="#6f78df"/>

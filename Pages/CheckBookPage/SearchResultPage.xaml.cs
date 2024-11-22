@@ -19,6 +19,7 @@ public partial class SearchResultPage : ContentPage
 	private Helpers _help;
 	public class Item
 	{
+		public int ID { get; set; }
 		public string Name { get; set; }
 		public string Author { get; set; }
 		public string Type { get; set; }
@@ -30,6 +31,7 @@ public partial class SearchResultPage : ContentPage
 		InitializeComponent();
 		_allBooksList = results.Select(p => new Item
 		{
+			ID = p.Id,
 			Name = p.Name,
 			Author = p.Author,
 			Type = p.Type,
@@ -79,13 +81,13 @@ public partial class SearchResultPage : ContentPage
 	async void BookDeleteButton(object sender, EventArgs e)
 	{
 		Button button = (Button)sender;
-		var book = button.BindingContext as Model.Books;
+		var book = button.BindingContext as Item;
 		try
 		{
 			bool result = await Application.Current.MainPage.DisplayAlert("Potwierdzenie", "Czy na pewno chcesz usun¹æ tê ksi¹¿kê?", "Tak", "Nie");
 			if (result)
 			{
-				int ID = book.Id;
+				int ID = book.ID;
 				var BookToDelete = _context.Book.FirstOrDefault(p => p.Id == ID);
 				if (BookToDelete != null)
 				{
@@ -106,13 +108,13 @@ public partial class SearchResultPage : ContentPage
 	async void BookEditButton(object sender, EventArgs e)
 	{
 		Button button = (Button)sender;
-		var book = button.BindingContext as Model.Books;
+		var book = button.BindingContext as Item;
 		try
 		{
 			bool result = await Application.Current.MainPage.DisplayAlert("Potwierdzenie", "Czy na pewno chcesz edytowaæ tê ksi¹¿kê?", "Tak", "Nie");
 			if (result)
 			{
-				int ID = book.Id;
+				int ID = book.ID;
 				EditBookPage resultsPage = new EditBookPage(ID, _context);
 				Navigation.PushAsync(resultsPage);
 			}
@@ -125,13 +127,13 @@ public partial class SearchResultPage : ContentPage
 	async void ReservationButton(object sender, EventArgs e)
 	{
 		Button button = (Button)sender;
-		var book = button.BindingContext as Model.Books;
+		var book = button.BindingContext as Item;
 		try
 		{
 			bool result = await Application.Current.MainPage.DisplayAlert("Potwierdzenie", "Czy na pewno chcesz zarezerwowaæ te ksi¹¿kê?", "Tak", "Nie");
 			if (result)
 			{
-				int ID = book.Id;
+				int ID = book.ID;
 				ReservationPage resultPage = new ReservationPage(ID, _context);
 				Navigation.PushAsync(resultPage);
 			}
