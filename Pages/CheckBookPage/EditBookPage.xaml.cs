@@ -29,14 +29,14 @@ public partial class EditBookPage : ContentPage
 			_help.ShowInternetError();
 		}
 
-		BookName.Text = $"{result.Name}";
-		Author.Text = $"{result.Author}";
-		Type.Text = $"{result.Type}";
+		BookName.Text = "Tytu³ ksi¹¿ki: " + $"{result.Name}";
+		Author.Text = "Autor ksi¹¿ki: " + $"{result.Author}"; 
+		Type.Text = "Gatunek ksi¹¿ki: " + $"{result.Type}";
 	}
 	private void EditEntry(object sender, EventArgs e)
 	{
 		//Walidacja
-		//Pole autir
+		//Pole autor
 		if(sender == EntryAuthor)
 		{
 			if (_help.CheckString(EntryAuthor.Text, 1))

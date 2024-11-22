@@ -29,9 +29,9 @@ public partial class ChoiceBook : ContentPage
 		{
 			_help.ShowInternetError();
 		}
-		BookName.Text = $"{result.Name}";
-		Author.Text = $"{result.Author}";
-		Type.Text = $"{result.Type}";
+		BookName.Text = "Tytu³ ksi¹¿ki: " + $"{result.Name}";
+		Author.Text = "Autor ksi¹¿ki: " + $"{result.Author}";
+		Type.Text = "Gatunek ksi¹¿ki: " + $"{result.Type}";
 	}
 	private async void DeleteBook(object sender, EventArgs e)
 	{

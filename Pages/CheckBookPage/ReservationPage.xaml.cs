@@ -29,10 +29,10 @@ public partial class ReservationPage : ContentPage
 		{
 			_help.ShowInternetError();
 		}
-		BookName.Text = $"{book.Name}";
-		Author.Text = $"{book.Author}";
-		Type.Text = $"{book.Type}";
-		ReturnDate.Text = $"{book.Planned_return_date.Value.Date.ToString("dd-MM-yyyy")}";
+		BookName.Text = "Tytu³ ksi¹¿ki: " + $"{book.Name}";
+		Author.Text = "Autor ksi¹¿ki: " + $"{book.Author}";
+		Type.Text = "Gatunek ksi¹¿ki: " + $"{book.Type}";
+		ReturnDate.Text = "Planowana data zwrotu: " + $"{book.Planned_return_date.Value.Date.ToString("dd-MM-yyyy")}";
 		if (!CrossNFC.Current.IsAvailable)
 		{
 			ReaderEntry.Text = "NFC jest niedostêpne";

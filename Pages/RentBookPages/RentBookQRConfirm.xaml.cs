@@ -24,9 +24,9 @@ public partial class RentBookQRConfirm : ContentPage
 				_help.ShowSQLError();
 				return;
 			}
-			NameType.Text = $"{result.Name}";
-			AuthorType.Text = $"{result.Author}";
-			Type.Text = $"{result.Type}";
+			NameType.Text = "Tytu³ ksi¹¿ki: " + $"{result.Name}";
+			AuthorType.Text = "Autor ksi¹¿ki: " + $"{result.Author}";
+			Type.Text = "Gatunek ksi¹¿ki: " + $"{result.Type}";
 			ButtonConfirm.IsEnabled = false;
 		}
 		catch

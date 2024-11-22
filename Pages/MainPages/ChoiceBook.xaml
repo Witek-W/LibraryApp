@@ -11,25 +11,24 @@
                        FontAttributes="Bold" FontSize="18" Text="Książka którą zeskanowałeś" TextColor="#6f78df"/>
                     <!--Tytul ksiazki -->
                     <Frame Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="10" CornerRadius="30" Padding="0" BorderColor="Gray"/>
-                    <Label Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="3" VerticalOptions="Center" Text="Tytuł książki: "/>
-                    <Label Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="5" VerticalOptions="Center" HorizontalOptions="Start" Text="" x:Name="BookName"/>
+                    <Label Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="8" HorizontalOptions="StartAndExpand" Text="" x:Name="BookName"
+                           VerticalOptions="Center" LineBreakMode="TailTruncation"/>
                     <Frame Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="#6f78df"
                        WidthRequest="40" HeightRequest="40" CornerRadius="50" HorizontalOptions="Center"/>
                     <Image Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center"
                        Source="booktitle.png" WidthRequest="25" HeightRequest="25"/>
                     <!-- Autor ksiazki -->
                     <Frame Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="10" CornerRadius="30" Padding="0" BorderColor="Gray"/>
-                    <Label Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3" VerticalOptions="Center" Text="Autor książki: "/>
-                    <Label Grid.Row="4" Grid.Column="5" Grid.ColumnSpan="5" VerticalOptions="Center" HorizontalOptions="Start" Text="" x:Name="Author"/>
+                    <Label Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="8" HorizontalOptions="StartAndExpand" x:Name="Author"
+                           LineBreakMode="TailTruncation" VerticalOptions="Center"/>
                     <Frame Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="#6f78df"
                        WidthRequest="40" HeightRequest="40" CornerRadius="50" HorizontalOptions="Center"/>
                     <Image Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center"
                        Source="user.png" WidthRequest="25" HeightRequest="25"/>
                     <!-- Gatunek ksiazki -->
                     <Frame Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="10" CornerRadius="30" Padding="0" BorderColor="Gray"/>
-                    <Label Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="4" VerticalOptions="Center" Text="Gatunek książki: "/>
-                    <Label Grid.Row="6" Grid.Column="5" Grid.ColumnSpan="5" VerticalOptions="Center" HorizontalOptions="Start"
-                       Margin="10,0,0,0" Text="" x:Name="Type"/>
+                    <Label Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="8" HorizontalOptions="StartAndExpand"
+                           Text="" x:Name="Type" LineBreakMode="TailTruncation" VerticalOptions="Center"/>
                     <Frame Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="#6f78df"
                        WidthRequest="40" HeightRequest="40" CornerRadius="50" HorizontalOptions="Center"/>
                     <Image Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center"

@@ -26,9 +26,9 @@ public partial class ReturnBookQRConfirm : ContentPage
 				_help.ShowSQLError();
 				return;
 			}
-			ManualResultName.Text = $"{result.Name}";
-			ManualResultAuthor.Text = $"{result.Author}";
-			ManualResultType.Text = $"{result.Type}";
+			ManualResultName.Text = "Tytu³ ksi¹¿ki: " + $"{result.Name}";
+			ManualResultAuthor.Text = "Autor ksi¹¿ki: " + $"{result.Author}";
+			ManualResultType.Text = "Gatunek ksi¹¿ki: " + $"{result.Type}";
 			if(result.Reservation == 1)
 			{
 				var reader = _context.Readers.FirstOrDefault(p => p.Id == result.ReservationReaderID);
