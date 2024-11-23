@@ -35,14 +35,14 @@
                        Source="booktype.png" WidthRequest="25" HeightRequest="25"/>
                 <!-- Dlugosc wypozyczenia -->
                 <Label Grid.Row="8" Grid.Column="0" HorizontalOptions="Start" Grid.ColumnSpan="7" VerticalOptions="Start"
-                       Text="Długość wypożyczenia" TextColor="#6f78df" FontSize="16" FontAttributes="Bold" Margin="12,0,0,6"/>
-                <Frame Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="10" CornerRadius="30" Padding="0" BorderColor="Gray"/>
+                       Text="Długość wypożyczenia" TextColor="#6f78df" FontSize="16" FontAttributes="Bold" Margin="12,0,0,6" x:Name="LabelRentLength"/>
+                <Frame Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="10" CornerRadius="30" Padding="0" BorderColor="Gray" x:Name="FrameRentLength"/>
                 <Entry Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="7"  Placeholder="Wpisz ilość dni"  PlaceholderColor="Gray"
                        VerticalOptions="Center" FontSize="15" x:Name="RentLength" TextChanged="RentLengthText"/>
-                <Frame Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="#6f78df"
+                <Frame Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="#6f78df" x:Name="FrameBackgroundRentLength"
                        WidthRequest="40" HeightRequest="40" CornerRadius="50" HorizontalOptions="Center"/>
                 <Image Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center"
-                       Source="calendar.png" WidthRequest="25" HeightRequest="25"/>
+                       Source="calendar.png" WidthRequest="25" HeightRequest="25" x:Name="ImageRentLength"/>
                 <!-- Przyciski -->
                 <Button Grid.Row="11" Grid.Column="1" Grid.ColumnSpan="3" Text="Nie" BackgroundColor="red"
                         WidthRequest="120" x:Name="ButtonDeny" Clicked="BookRentDeny"/>

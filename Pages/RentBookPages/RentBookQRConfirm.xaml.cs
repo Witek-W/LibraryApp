@@ -9,6 +9,7 @@ public partial class RentBookQRConfirm : ContentPage
 	private int idreader;
 	private Books result;
 	private Helpers _help;
+	private bool LenghtValid = true;
 	public RentBookQRConfirm(string qrresult,string clientid)
 	{
 		qr = Convert.ToInt32(qrresult);
@@ -36,9 +37,23 @@ public partial class RentBookQRConfirm : ContentPage
 	}
 	private void RentLengthText(object sender, EventArgs e)
 	{
-		if(!string.IsNullOrEmpty(RentLength.Text))
+		//Walidacja liczby
+		if(_help.CheckString(RentLength.Text,4))
+		{
+			_help.ChangeUI(LabelRentLength, FrameRentLength, FrameBackgroundRentLength, ImageRentLength, false, "calendar.png");
+			LenghtValid = false;
+		} else
+		{
+			_help.ChangeUI(LabelRentLength, FrameRentLength, FrameBackgroundRentLength, ImageRentLength, true, "calendar.png");
+			LenghtValid = true;
+		}
+
+		if(!string.IsNullOrEmpty(RentLength.Text) && LenghtValid)
 		{
 			ButtonConfirm.IsEnabled = true;
+		} else
+		{
+			ButtonConfirm.IsEnabled = false;
 		}
 	}
 	private async void BookRentConfirm(object sender, EventArgs e)
