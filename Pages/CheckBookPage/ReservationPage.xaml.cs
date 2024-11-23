@@ -57,10 +57,15 @@ public partial class ReservationPage : ContentPage
 		{
 			if (book.Reservation == 1)
 			{
-				await Application.Current.MainPage.DisplayAlert("Ostrzeøenie", "Nie moøna zarezerwowaÊ ksiπøki", "Wyjdü");
+				await Application.Current.MainPage.DisplayAlert("Ostrzeøenie", "Ksiπøka jest juø zarezerwowana", "Wyjdü");
 			}
 			else
 			{
+				if(book.ReaderID == ReaderID)
+				{
+					await Application.Current.MainPage.DisplayAlert("Ostrzeøenie", "Nie moøesz zarezerwowaÊ wypoøyczonej przez siebie ksiπøki", "Wyjdü");
+					return;
+				}
 				book.Reservation = 1;
 				book.ReservationReaderID = ReaderID;
 				_context.SaveChanges();

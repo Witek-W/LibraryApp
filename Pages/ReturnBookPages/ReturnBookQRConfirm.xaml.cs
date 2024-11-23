@@ -69,7 +69,8 @@ public partial class ReturnBookQRConfirm : ContentPage
 						_sms.SendSmsToReader(message, number);
 					} catch
 					{
-
+						_context.SaveChanges();
+						_help.ShowSMSApiError();
 					}
 				}
 				_context.SaveChanges();
