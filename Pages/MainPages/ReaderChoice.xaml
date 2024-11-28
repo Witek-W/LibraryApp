@@ -4,7 +4,7 @@
              x:Class="Library.Pages.MainPages.ReaderChoice">
     <VerticalStackLayout>
         <StackLayout Padding="20">
-            <Grid RowDefinitions="28,55,15,50"
+            <Grid RowDefinitions="28,55,15,*"
           ColumnDefinitions=".10*,.10*,.10*,.10*,.10*,.10*,.10*,.10*,.10*,.10*">
                 <!-- ID czytelnka -->
                 <Label Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" Grid.ColumnSpan="3"

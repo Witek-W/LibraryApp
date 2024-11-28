@@ -40,8 +40,8 @@
                                 </Grid>
                             </Border>
                         </maui:Expander.HeaderContent>
-                        <Grid HeightRequest="155"
-                      RowDefinitions="40,40,40"
+                        <Grid HeightRequest="160"
+                      RowDefinitions=".30*,.30*,.40*"
                       ColumnDefinitions=".25*,.25*,.25*,.25*"
                       ColumnSpacing="10"
                       Padding="10"
@@ -89,12 +89,13 @@
                             </Label>
                             <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
                             VerticalOptions="Center"
-                            HorizontalOptions="Center"
+                            HorizontalOptions="FillAndExpand"
                             Text="Usuń"
                             BackgroundColor="Red"
                             Clicked="BookDeleteButton"
-                            FontSize="16"
+                            FontSize="15"
                             FontAttributes="Bold"
+                            CornerRadius="15"
                             CommandParameter="{Binding ID, Mode=OneWay}">
                                 <Button.Triggers>
                                     <DataTrigger TargetType="Button"
@@ -109,12 +110,13 @@
                             </Button>
                             <Button Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2"
                             VerticalOptions="Center"
-                            HorizontalOptions="Center"
+                            HorizontalOptions="FillAndExpand"
                             Text="Edytuj"
                             BackgroundColor="Green"
                             Clicked="BookEditButton"
-                            FontSize="16"
+                            FontSize="15"
                             FontAttributes="Bold"
+                            CornerRadius="15"       
                             CommandParameter="{Binding ID, Mode=OneWay}">
                                 <Button.Triggers>
                                     <DataTrigger TargetType="Button"
@@ -134,8 +136,9 @@
                             IsVisible="false"
                             Clicked="ReservationButton"
                             BackgroundColor="#6f78df"
-                            FontSize="16"
+                            FontSize="15"
                             FontAttributes="Bold"
+                            CornerRadius="15"
                             CommandParameter="{Binding ID, Mode=OneWay}">
                                 <Button.Triggers>
                                     <DataTrigger TargetType="Button"

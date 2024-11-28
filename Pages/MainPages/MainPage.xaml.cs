@@ -38,8 +38,8 @@ namespace Library
 			IconsLayout.IsVisible = true;
 			bellanimation.IsVisible = false;
 			bellstatic.IsVisible = true;
-			//Wysyłanie SMS
-			if (network == NetworkAccess.Internet)
+            //Wysyłanie SMS
+            if (network == NetworkAccess.Internet)
 			{
 				SendingSms();
 			}

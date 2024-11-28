@@ -261,7 +261,8 @@ public partial class AddReaderPage : ContentPage
 	{
 		if (e.IsFocused)
 		{
-			MainStackLayout.Padding = new Thickness(20, 20, 20, 280);
+            double screenHeight = DeviceDisplay.MainDisplayInfo.Height / DeviceDisplay.MainDisplayInfo.Density;
+            MainStackLayout.Padding = new Thickness(20, 20, 20, screenHeight * 0.32);
 		}
 	}
 }

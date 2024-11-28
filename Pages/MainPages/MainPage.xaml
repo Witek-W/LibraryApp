@@ -5,7 +5,13 @@
              xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
              x:Class="Library.MainPage"
              xmlns:viewmodel="clr-namespace:Library.ViewModel"
+             xmlns:local="clr-namespace:Library.Model"
              x:DataType="viewmodel:MainViewModel">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:MainPageUIConvert x:Key="MainPageUIChange" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <NavigationPage.TitleView>
         <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" x:Name="IconsLayout" IsVisible="False">
             <ImageButton Source="qr.png" HorizontalOptions="Center" VerticalOptions="Center"
@@ -71,7 +77,7 @@
                 <Frame Grid.Row="0" Grid.ColumnSpan="2"
                        CornerRadius="35" BackgroundColor="Transparent"
                        Padding="0" HasShadow="False" IsClippedToBounds="True" InputTransparent="True" BorderColor="Transparent">
-                    <Ellipse Grid.Row="0" Grid.Column="1" WidthRequest="120" HeightRequest="140"
+                    <Ellipse Grid.Row="0" Grid.Column="1" WidthRequest="120" HeightRequest="{Binding ., Converter={StaticResource MainPageUIChange}}"
                              BackgroundColor="#6f78df" HorizontalOptions="End"/>
                 </Frame>
                 <Image Grid.Row="0" Grid.Column="1"
@@ -96,7 +102,7 @@
                 <Frame Grid.Row="0" Grid.ColumnSpan="2"
                        CornerRadius="35" BackgroundColor="Transparent" BorderColor="Transparent"
                        Padding="0" HasShadow="False" IsClippedToBounds="True" InputTransparent="True">
-                    <Ellipse Grid.Row="0" Grid.Column="1" WidthRequest="120" HeightRequest="140"
+                    <Ellipse Grid.Row="0" Grid.Column="1" WidthRequest="120" HeightRequest="{Binding ., Converter={StaticResource MainPageUIChange}}"
                              BackgroundColor="#6f78df" HorizontalOptions="End"/>
                 </Frame>
                 <Image Grid.Row="0" Grid.Column="1"
@@ -121,7 +127,7 @@
                 <Frame Grid.Row="0" Grid.ColumnSpan="2"
                        CornerRadius="35" BackgroundColor="Transparent" BorderColor="Transparent"
                        Padding="0" HasShadow="False" IsClippedToBounds="True" InputTransparent="True">
-                    <Ellipse Grid.Row="0" Grid.Column="1" WidthRequest="120" HeightRequest="140"
+                    <Ellipse Grid.Row="0" Grid.Column="1" WidthRequest="120" HeightRequest="{Binding ., Converter={StaticResource MainPageUIChange}}"
                              BackgroundColor="#6f78df" HorizontalOptions="End"/>
                 </Frame>
                 <Image Grid.Row="0" Grid.Column="1"
@@ -146,7 +152,7 @@
                 <Frame Grid.Row="0" Grid.ColumnSpan="2"
                        CornerRadius="35" BackgroundColor="Transparent" BorderColor="Transparent"
                        Padding="0" HasShadow="False" IsClippedToBounds="True" InputTransparent="True">
-                    <Ellipse Grid.Row="0" Grid.Column="1" WidthRequest="120" HeightRequest="140"
+                    <Ellipse Grid.Row="0" Grid.Column="1" WidthRequest="120" HeightRequest="{Binding ., Converter={StaticResource MainPageUIChange}}"
                              BackgroundColor="#6f78df" HorizontalOptions="End"/>
                 </Frame>
                 <Image Grid.Row="0" Grid.Column="1"
@@ -171,7 +177,7 @@
                 <Frame Grid.Row="0" Grid.ColumnSpan="2"
                        CornerRadius="35" BackgroundColor="Transparent" BorderColor="Transparent"
                        Padding="0" HasShadow="False" IsClippedToBounds="True" InputTransparent="True">
-                    <Ellipse Grid.Row="0" Grid.Column="1" WidthRequest="120" HeightRequest="140"
+                    <Ellipse Grid.Row="0" Grid.Column="1" WidthRequest="120" HeightRequest="{Binding ., Converter={StaticResource MainPageUIChange}}"
                              BackgroundColor="#6f78df" HorizontalOptions="End"/>
                 </Frame>
                 <Image Grid.Row="0" Grid.Column="1"
