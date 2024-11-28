@@ -91,6 +91,8 @@ public partial class RentBookQRConfirm : ContentPage
 			result.Reservation_End = null;
 			result.ReservationReaderID = null;
 			_context.SaveChanges();
+			RentLength.IsEnabled = false;
+			RentLength.IsEnabled = true;
 			await DisplayAlert("Powiadomienie", "Ksiπøka zosta≥a wypoøyczona", "Wyjdü");
 			MainPageBack();
 		}

@@ -132,20 +132,6 @@ public partial class AddReaderPage : ContentPage
 			&& ReaderNameValid && ReaderSurnameValid && ReaderPhoneNumberValid && ReaderCityValid && ReaderStreetValid && ReaderHouseNumberValid)
 		{
 			AddReaderButton.IsEnabled = true;
-			MainStackLayout.Padding = new Thickness(20, 20, 20, 20);
-			//Sposób na znikniêcie klawiatury
-			ReaderHouseNumber.IsEnabled = false;
-			ReaderHouseNumber.IsEnabled = true;
-			ReaderSurname.IsEnabled = false;
-			ReaderSurname.IsEnabled = true;
-			ReaderPhoneNumber.IsEnabled = false;
-			ReaderPhoneNumber.IsEnabled = true;
-			ReaderCity.IsEnabled = false;
-			ReaderCity.IsEnabled = true;
-			ReaderStreet.IsEnabled = false;
-			ReaderStreet.IsEnabled = true;
-			ReaderName.IsEnabled = false;
-			ReaderName.IsEnabled = true;
 		} else
 		{
 			AddReaderButton.IsEnabled = false;
@@ -174,9 +160,23 @@ public partial class AddReaderPage : ContentPage
 			_help.ShowInternetError();
 			return;
 		}
-		//await DisplayAlert("Powiadomienie", $"Przy³ó¿ kartê NFC aby zapisaæ dane czytelnika {ID}", "Dalej");
-		//WriteNfcTag();
-		ReaderHouseNumber.IsEnabled = false;
+        //await DisplayAlert("Powiadomienie", $"Przy³ó¿ kartê NFC aby zapisaæ dane czytelnika {ID}", "Dalej");
+        //WriteNfcTag();
+        MainStackLayout.Padding = new Thickness(20, 20, 20, 20);
+        //Sposób na znikniêcie klawiatury
+        ReaderHouseNumber.IsEnabled = false;
+        ReaderHouseNumber.IsEnabled = true;
+        ReaderSurname.IsEnabled = false;
+        ReaderSurname.IsEnabled = true;
+        ReaderPhoneNumber.IsEnabled = false;
+        ReaderPhoneNumber.IsEnabled = true;
+        ReaderCity.IsEnabled = false;
+        ReaderCity.IsEnabled = true;
+        ReaderStreet.IsEnabled = false;
+        ReaderStreet.IsEnabled = true;
+        ReaderName.IsEnabled = false;
+        ReaderName.IsEnabled = true;
+        ReaderHouseNumber.IsEnabled = false;
 		await ShowPopup();
 		await Publish(NFCNdefTypeFormat.WellKnown);
 

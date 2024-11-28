@@ -52,10 +52,8 @@ namespace Library.Model
 			{
 				return;
 			}
-
 			try
 			{
-
 				if (ID != 0)
 				{
 					NFCNdefRecord record = new NFCNdefRecord

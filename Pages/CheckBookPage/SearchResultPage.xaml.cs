@@ -29,7 +29,7 @@ public partial class SearchResultPage : ContentPage
 	{
 		BindingContext = this;
 		InitializeComponent();
-		_allBooksList = results.Select(p => new Item
+        _allBooksList = results.Select(p => new Item
 		{
 			ID = p.Id,
 			Name = p.Name,

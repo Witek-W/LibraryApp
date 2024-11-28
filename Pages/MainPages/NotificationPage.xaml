@@ -2,8 +2,13 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:maui="clr-namespace:epj.Expander.Maui;assembly=epj.Expander.Maui"
-             x:Class="Library.Pages.MainPages.NotificationPage">
-
+             x:Class="Library.Pages.MainPages.NotificationPage"
+             xmlns:local="clr-namespace:Library.Model">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ScreenWidthConverter x:Key="ScreenWidthConvert" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <Grid>
             <Label x:Name="NoUsersLabel"
@@ -27,54 +32,55 @@
                                                Text="{Binding BookName}"
                                                VerticalOptions="Center"
                                                HorizontalOptions="Center"
-                                               TextColor="White" />
+                                               TextColor="White" FontAttributes="Bold" FontSize="16"/>
                                         <Label Grid.Column="1"
                                                Text="{Binding BookAuthor}"
                                                VerticalOptions="Center"
                                                HorizontalOptions="Center"
-                                               TextColor="White"/>
+                                               TextColor="White" FontAttributes="Bold" FontSize="16"/>
                                     </Grid>
                                 </Border>
                             </maui:Expander.HeaderContent>
-                            <Grid HeightRequest="205"
-                                  RowDefinitions="40,40,40,40"
+                            <Grid HeightRequest="212"
+                                  RowDefinitions="40,40,40,50"
                                   ColumnDefinitions=".50*,.50*"
                                   ColumnSpacing="10"
                                   Padding="10"
                                   RowSpacing="10"
                                   BackgroundColor="LightGrey"
                                   Margin="3,0,3,0"
-                                  WidthRequest="310">
+                                  WidthRequest="{Binding ., Converter={StaticResource ScreenWidthConvert}}">
                                 <Label Grid.Row="0" Grid.Column="0"
                                        Text="Imię:" 
                                        VerticalOptions="Center" 
-                                       HorizontalOptions="Center"/>
+                                       HorizontalOptions="Center" FontAttributes="Bold" FontSize="16"/>
                                 <Label Grid.Row="0" Grid.Column="1"
                                        Text="{Binding ReaderName}" 
                                        VerticalOptions="Center" 
-                                       HorizontalOptions="Center"/>
+                                       HorizontalOptions="Center" FontAttributes="Bold" FontSize="16"/>
                                 <Label Grid.Row="1" Grid.Column="0"
                                        Text="Nazwisko:" 
                                        VerticalOptions="Center" 
-                                       HorizontalOptions="Center"/>
+                                       HorizontalOptions="Center" FontAttributes="Bold" FontSize="16"/>
                                 <Label Grid.Row="1" Grid.Column="1"
                                        Text="{Binding ReaderSurname}" 
                                        VerticalOptions="Center" 
-                                       HorizontalOptions="Center"/>
+                                       HorizontalOptions="Center" FontAttributes="Bold" FontSize="16"/>
                                 <Label Grid.Row="2" Grid.Column="0"
                                        Text="Zaległa data zwrotu: " 
                                        VerticalOptions="Center" 
-                                       HorizontalOptions="Center"/>
+                                       HorizontalOptions="Center" FontAttributes="Bold" FontSize="16" HorizontalTextAlignment="Center"/>
                                 <Label Grid.Row="2" Grid.Column="1"
                                        Text="{Binding Planned_return}" 
                                        VerticalOptions="Center" 
-                                       HorizontalOptions="Center"/>
+                                       HorizontalOptions="Center" FontAttributes="Bold" FontSize="16"/>
                                 <Button Grid.Row="3" Grid.ColumnSpan="2"
                                         Text="Wyślij SMS"
                                         HorizontalOptions="Center"
                                         VerticalOptions="Center"
                                         WidthRequest="175"
                                         Clicked="SendSms"
+                                        FontSize="16"
                                         CommandParameter="{Binding ID, Mode=OneWay}"
                                         BackgroundColor="#6f78df"
                                         FontAttributes="Bold"/>

@@ -63,7 +63,9 @@ public partial class RentBookPage : ContentPage
 			IDReaderInput.Text = "NFC jest wy³¹czone";
 		}
 	}
-	private void NFC_MessageReceived(object sender, string message)
+
+    [Obsolete]
+    private void NFC_MessageReceived(object sender, string message)
 	{
 		Device.BeginInvokeOnMainThread(() =>
 		{
