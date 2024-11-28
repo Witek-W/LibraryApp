@@ -39,7 +39,7 @@ public partial class AddReaderPage : ContentPage
             await DisplayAlert("Ostrze¿enie", "NFC jest niedostêpne. Nie jesteœ w stanie dodaæ nowego czytelnika", "Powrót");
             MainPage BrandNew = new MainPage();
             NavigationPage.SetHasBackButton(BrandNew, false);
-            Navigation.PushAsync(BrandNew);
+            await Navigation.PushAsync(BrandNew);
         }
         else if (!CrossNFC.Current.IsEnabled)
         {
