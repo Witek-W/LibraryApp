@@ -30,8 +30,25 @@ public partial class AddReaderPage : ContentPage
 		InitializeComponent();
 		_help = new Helpers(Navigation);
 		_context = new LibraryDbContext();
-		AddReaderButton.IsEnabled = false;
-	}
+		CheckNFC();
+    }
+	private async Task CheckNFC()
+	{
+        if (!CrossNFC.Current.IsAvailable)
+        {
+            await DisplayAlert("Ostrze¿enie", "NFC jest niedostêpne. Nie jesteœ w stanie dodaæ nowego czytelnika", "Powrót");
+            MainPage BrandNew = new MainPage();
+            NavigationPage.SetHasBackButton(BrandNew, false);
+            Navigation.PushAsync(BrandNew);
+        }
+        else if (!CrossNFC.Current.IsEnabled)
+        {
+			while (!CrossNFC.Current.IsEnabled)
+			{
+				await DisplayAlert("Ostrze¿enie", "NFC jest wy³¹czone. W³¹cz NFC i kliknij Kontynuuj", "Kontynuuj");
+			}
+        }
+    }
 	async Task ShowPopup()
 	{
 		_writenfcwaiting = new WriteNFCWaiting();
