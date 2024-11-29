@@ -162,15 +162,27 @@ public partial class AddReaderPage : ContentPage
 		string city = ReaderCity.Text;
 		string street = ReaderStreet.Text;
 		string housenumber = ReaderHouseNumber.Text;
-		try
+        try
 		{
-			using (var dbContext = new LibraryDbContext())
+            var checkUser = _context.Readers.FirstOrDefault(p => p.Phone_Number == phone);
+            if (checkUser != null)
+            {
+                await DisplayAlert("Ostrze¿enie", "Ten numer telefonu jest ju¿ przypisany do innego czytelnika", "Powrót");
+                MainPage BrandNew = new MainPage();
+                NavigationPage.SetHasBackButton(BrandNew, false);
+                await Navigation.PushAsync(BrandNew);
+                return;
+            } else
 			{
-				var newRecord = new Readers { Name = name, Surname = surname, Phone_Number = phone, City = city, Street = street, House_Number = housenumber };
-				dbContext.Readers.Add(newRecord);
-				dbContext.SaveChanges();
-				ID = newRecord.Id;
+				using (var dbContext = new LibraryDbContext())
+				{
+					var newRecord = new Readers { Name = name, Surname = surname, Phone_Number = phone, City = city, Street = street, House_Number = housenumber };
+					dbContext.Readers.Add(newRecord);
+					dbContext.SaveChanges();
+					ID = newRecord.Id;
+				}
 			}
+
 		}
 		catch
 		{
@@ -205,16 +217,6 @@ public partial class AddReaderPage : ContentPage
 		_type = NFCNdefTypeFormat.Empty;
 		if (type.HasValue) _type = type.Value;
 		CrossNFC.Current.StartPublishing(!type.HasValue);
-	}
-	private void WriteNfcTag()
-	{
-		CrossNFC.Current.StartListening();
-		CrossNFC.Current.StartPublishing();
-	}
-	private void StopWriteNfcTag()
-	{
-		CrossNFC.Current.StopListening();
-		CrossNFC.Current.StopPublishing();
 	}
 	private async void Current_OnTagDiscovered(ITagInfo tagInfo, bool format)
 	{
