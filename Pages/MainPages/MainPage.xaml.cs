@@ -39,32 +39,32 @@ namespace Library
 			bellanimation.IsVisible = false;
 			bellstatic.IsVisible = true;
             //Wysyłanie SMS
-            if (network == NetworkAccess.Internet)
-			{
-				SendingSms();
-			}
-			else
-			{
-				ErrorStartPage BrandNew = new ErrorStartPage();
-				NavigationPage.SetHasBackButton(BrandNew, false);
-				Navigation.PushAsync(BrandNew);
-			}
+			SendingSms();
 		}
 		private async void SendingSms()
 		{
-			var notificationss = await _context.Book.Where(p => p.Planned_return_date < DateTime.Now && p.SmsSendApi == 0).Join(_context.Readers,
-						   book => book.ReaderID,
-						   Readers => Readers.Id,
-						   (Books, Readers) => new BookWithReaderInfo
-						   {
-							   ID = Books.Id,
-							   BookName = Books.Name,
-							   BookAuthor = Books.Author,
-							   ReaderName = Readers.Name,
-							   ReaderSurname = Readers.Surname,
-							   Planned_return = Books.Planned_return_date.Value.Date.ToString("dd-MM-yyyy"),
-							   Phone_Number = Readers.Phone_Number
-						   }).ToListAsync();
+			List<BookWithReaderInfo> notificationss;
+			try
+			{
+				notificationss = await _context.Book.Where(p => p.Planned_return_date < DateTime.Now && p.SmsSendApi == 0).Join(_context.Readers,
+							   book => book.ReaderID,
+							   Readers => Readers.Id,
+							   (Books, Readers) => new BookWithReaderInfo
+							   {
+								   ID = Books.Id,
+								   BookName = Books.Name,
+								   BookAuthor = Books.Author,
+								   ReaderName = Readers.Name,
+								   ReaderSurname = Readers.Surname,
+								   Planned_return = Books.Planned_return_date.Value.Date.ToString("dd-MM-yyyy"),
+								   Phone_Number = Readers.Phone_Number
+							   }).ToListAsync();
+			}
+            catch
+            {
+                _help.ShowInternetError();
+                return;
+            }
 			smsApiFail = false;
 			int apiNumber = 1;
 			foreach (var not in notificationss)
