@@ -11,6 +11,7 @@ public partial class ReturnBookQRConfirm : ContentPage
 	private Helpers _help;
 	private string PhoneNumerReader = "";
 	private ApiSms _sms;
+	private DateTime? plannedreturn;
 	public ReturnBookQRConfirm(string qrresult)
 	{
 		InitializeComponent();
@@ -52,6 +53,7 @@ public partial class ReturnBookQRConfirm : ContentPage
 		{
 			try
 			{
+				plannedreturn = result.Planned_return_date;
 				result.Availability = 1;
 				result.Rental_date = null;
 				result.Planned_return_date = null;
@@ -74,7 +76,16 @@ public partial class ReturnBookQRConfirm : ContentPage
 					}
 				}
 				_context.SaveChanges();
-				await DisplayAlert("Powiadomienie", "Ksi¹¿ka zosta³a zwrócona", "WyjdŸ");
+				DateTime now = DateTime.Now;
+                if (plannedreturn.HasValue && plannedreturn < now)
+				{
+					TimeSpan delay = now - plannedreturn.Value;
+					int delaydays = delay.Days;
+                    await DisplayAlert("Powiadomienie", $"Ksi¹¿ka zosta³a zwrócona z {delaydays} dniowym opóŸnieniem", "WyjdŸ");
+                } else
+				{
+                    await DisplayAlert("Powiadomienie", "Ksi¹¿ka zosta³a zwrócona", "WyjdŸ");
+                }
 			}
 			catch
 			{
