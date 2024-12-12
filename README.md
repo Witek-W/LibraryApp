@@ -1,6 +1,7 @@
 # Aplikacja Biblioteki
 
 Aplikacja została stworzona jako część projektowa w pracy inżynierskiej i jest przeznaczona na urządzenia z systemem Android. Jej celem jest usprawnienie kluczowych procesów bibliotecznych oraz zwiększenie komfortu pracy bibliotekarzy.
+
 <img src="https://github.com/user-attachments/assets/f13a1733-f3e5-46f4-817b-fc6c3959adac" width="30%"></img>
 
 ## Opis Projektu
